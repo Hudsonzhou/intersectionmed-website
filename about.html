@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - IntersectionMed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Content */
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .about-image {
+            background: var(--bg-light);
+            border-radius: 1rem;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        /* Values */
+        .values {
+            background: var(--bg-light);
+            padding: 4rem;
+            border-radius: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .values h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .value-card p {
+            color: var(--text-light);
+        }
+
+        /* Team */
+        .team {
+            margin-bottom: 4rem;
+        }
+
+        .team h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .team-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 4rem 2rem;
+            background: var(--primary);
+            text-align: center;
+            border-radius: 1rem;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        .btn-white:hover {
+            background: #f3f4f6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: #9ca3af;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.25rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid,
+            .values-grid,
+            .team-grid,
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="IntersectionMed" style="height: 40px; width: auto;">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="cases.html">Cases</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <div class="lang-switch">
+                    <button class="lang-btn active">EN</button>
+                    <button class="lang-btn">中</button>
+                    <button class="lang-btn">RU</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>About IntersectionMed</h1>
+        <p>Bridging the gap between international patients and China's world-class healthcare system</p>
+    </header>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>IntersectionMed was founded with a simple mission: to make China's exceptional healthcare accessible to patients worldwide. We understand the frustration of long waiting lists, exorbitant costs, and limited options in many Western healthcare systems.</p>
+                <p>Our team brings together medical professionals, international coordinators, and language specialists who have witnessed firsthand how China's efficient, affordable, and advanced medical care can transform lives.</p>
+                <p>From our first patient from Singapore seeking urgent pediatric surgery to hundreds of families we've helped across six continents, we've built a reputation for trust, efficiency, and compassionate care coordination.</p>
+            </div>
+            <div class="about-image">🏥</div>
+        </div>
+
+        <div class="values">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Trust</h3>
+                    <p>We build lasting relationships through transparency, honesty, and always putting patient interests first.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Efficiency</h3>
+                    <p>Time matters in healthcare. We streamline every step to get you the care you need without delay.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Compassion</h3>
+                    <p>Navigating foreign healthcare is daunting. We provide emotional support alongside logistical expertise.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="team">
+            <h2>Our Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">👨‍⚕️</div>
+                    <h3>Dr. Chen Wei</h3>
+                    <p>Medical Director</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👩‍💼</div>
+                    <h3>Sarah Lim</h3>
+                    <p>Patient Relations Director</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💻</div>
+                    <h3>Michael Zhang</h3>
+                    <p>Operations Manager</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👩‍⚕️</div>
+                    <h3>Dr. Anna Kowalski</h3>
+                    <p>International Coordinator</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Let us help you access world-class healthcare in China</p>
+            <a href="contact.html" class="btn-white">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3><img src="logo.png" alt="IntersectionMed" style="height: 30px; width: auto;"></h3>
+                <p>Your trusted partner for world-class healthcare in China. We bridge the gap between international patients and China's top medical facilities.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="cases.html">Case Studies</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <a href="#">Visa Guide</a>
+                <a href="#">Treatment Costs</a>
+                <a href="#">FAQs</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="mailto:hello@intersectionmed.com">hello@intersectionmed.com</a>
+                <a href="tel:+8612345678900">+86 123 4567 8900</a>
+                <a href="#">WeChat: IntersectionMed</a>
+                <a href="#">WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 IntersectionMed. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
