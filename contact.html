@@ -572,9 +572,46 @@
     </section>
 
     <section class="map-section">
-        <div class="map-placeholder">
-            <span>🗺️</span>
-            <p>Interactive Map - Shenzhen, China</p>
+        <div class="section-container" style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2>Our Location</h2>
+                <p>Based in Shenzhen, China - A Global Hub of Innovation and Healthcare</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                <!-- 交互式地图 -->
+                <div style="border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238130.70336399207!2d113.76328285!3d22.54151775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403f4c94a6f81c3%3A0xfd0c6f7f1e7a5c3!2sShenzhen%2C%20Guangdong%20Province%2C%20China!5e0!3m2!1sen!2sus!4v1709644800000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <!-- 深圳图片展示 -->
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="https://images.unsplash.com/photo-1582555172868-f73bb12a2ab3?w=600&q=80" 
+                             alt="Shenzhen Skyline" 
+                             style="width: 100%; height: 140px; object-fit: cover;">
+                        <div style="padding: 1rem; background: white;">
+                            <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">🏙️ Shenzhen Skyline</p>
+                        </div>
+                    </div>
+                    
+                    <div style="border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="https://images.unsplash.com/photo-1565354785692-864e5eac3923?w=600&q=80" 
+                             alt="Shenzhen Bay" 
+                             style="width: 100%; height: 140px; object-fit: cover;">
+                        <div style="padding: 1rem; background: white;">
+                            <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">🌊 Shenzhen Bay</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
