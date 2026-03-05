@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>China Medical Guide - World-Class Healthcare in China</title>
+    <title>IntersectionMed - World-Class Healthcare in China</title>
     <style>
         * {
             margin: 0;
@@ -42,7 +42,7 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.75rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,6 +55,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
         }
 
         .nav-links {
@@ -74,24 +79,52 @@
             color: var(--primary);
         }
 
-        .lang-switch {
-            display: flex;
-            gap: 0.5rem;
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
         }
 
-        .lang-btn {
-            padding: 0.25rem 0.75rem;
+        .lang-dropdown-btn {
+            padding: 0.5rem 1rem;
             border: 1px solid #e5e7eb;
             background: white;
             cursor: pointer;
             font-size: 0.875rem;
-            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.25rem;
         }
 
-        .lang-btn:hover, .lang-btn.active {
-            background: var(--primary);
-            color: white;
+        .lang-dropdown-btn:hover {
             border-color: var(--primary);
+        }
+
+        .lang-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 120px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.25rem;
+            z-index: 1001;
+        }
+
+        .lang-dropdown-content a {
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.875rem;
+        }
+
+        .lang-dropdown-content a:hover {
+            background: #f3f4f6;
+        }
+
+        .lang-dropdown:hover .lang-dropdown-content {
+            display: block;
         }
 
         /* Hero Section */
@@ -99,45 +132,12 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=1920&q=80');
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(37, 99, 235, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=1920&q=80');
             background-size: cover;
             background-position: center;
-            opacity: 0.08;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(240,249,255,0.95) 0%, rgba(224,242,254,0.9) 50%, rgba(219,234,254,0.85) 100%);
-        }
-
-        .hero-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><rect x="30" y="40" width="20" height="50" fill="rgba(59,130,246,0.03)"/><rect x="60" y="25" width="25" height="65" fill="rgba(59,130,246,0.03)"/><rect x="95" y="35" width="20" height="55" fill="rgba(59,130,246,0.03)"/><rect x="125" y="45" width="22" height="45" fill="rgba(59,130,246,0.03)"/></svg>');
-            background-size: 400px;
-            opacity: 0.6;
-            z-index: 1;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-container {
@@ -155,20 +155,33 @@
         .hero-content h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            color: #1e3a8a;
+            color: white;
             line-height: 1.1;
             margin-bottom: 1.5rem;
         }
 
         .hero-content h1 span {
-            color: #2563eb;
+            color: #93c5fd;
         }
 
         .hero-content p {
             font-size: 1.25rem;
-            color: #475569;
+            color: rgba(255,255,255,0.9);
             margin-bottom: 2rem;
             max-width: 500px;
+        }
+
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            color: white;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
         }
 
         .hero-buttons {
@@ -190,25 +203,25 @@
         }
 
         .btn-primary {
-            background: #2563eb;
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
-            background: #1d4ed8;
+            background: #f3f4f6;
             transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.8);
-            color: #2563eb;
-            border: 2px solid #2563eb;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         .btn-secondary:hover {
-            background: #2563eb;
-            color: white;
+            background: white;
+            color: var(--primary);
         }
 
         .hero-stats {
@@ -218,13 +231,13 @@
         }
 
         .stat-card {
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 1rem;
             text-align: center;
-            border: 1px solid rgba(37,99,235,0.1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .stat-card h3 {
@@ -351,38 +364,112 @@
         }
 
         .service-card {
-            padding: 2rem;
             border-radius: 1rem;
-            background: white;
-            border: 1px solid #e5e7eb;
+            overflow: hidden;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .service-card:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
         }
 
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .service-card h3 {
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
             font-size: 1.25rem;
             margin-bottom: 0.75rem;
         }
 
-        .service-card p {
+        .service-content p {
             color: var(--text-light);
             font-size: 0.9375rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+            overflow: hidden;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-scroll {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonials-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-stars {
+            color: #f59e0b;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .testimonial-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+            font-size: 0.875rem;
+            color: var(--text-light);
         }
 
         /* CTA Section */
@@ -433,6 +520,11 @@
             margin-top: 1rem;
         }
 
+        .footer-brand .logo-footer {
+            height: 100px;
+            width: auto;
+        }
+
         .footer-links h4 {
             margin-bottom: 1rem;
         }
@@ -456,6 +548,14 @@
             border-top: 1px solid #374151;
             text-align: center;
             color: #6b7280;
+        }
+
+        .footer-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
         }
 
         /* Responsive */
@@ -485,6 +585,10 @@
             .footer-container {
                 grid-template-columns: 1fr;
             }
+
+            .testimonial-card {
+                min-width: 280px;
+            }
         }
     </style>
 </head>
@@ -493,18 +597,22 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="logo.png" alt="IntersectionMed" style="height: 40px; width: auto;">
+                <img src="logo.png" alt="IntersectionMed">
             </div>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#cases">Cases</a>
-                <a href="#hospitals">Hospitals</a>
-                <a href="#contact">Contact</a>
-                <div class="lang-switch">
-                    <button class="lang-btn active">EN</button>
-                    <button class="lang-btn">中</button>
-                    <button class="lang-btn">RU</button>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="cases.html">Cases</a>
+                <a href="contact.html">Contact</a>
+                <div class="lang-dropdown">
+                    <button class="lang-dropdown-btn">🌐 English ▼</button>
+                    <div class="lang-dropdown-content">
+                        <a href="#">🇺🇸 English</a>
+                        <a href="#">🇪🇸 Español</a>
+                        <a href="#">🇫🇷 Français</a>
+                        <a href="#">🇲🇾 Bahasa Melayu</a>
+                        <a href="#">🇩🇪 Deutsch</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -512,14 +620,16 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-pattern"></div>
         <div class="hero-container">
             <div class="hero-content">
+                <div class="hero-location">
+                    📍 Based in Shenzhen, China · Serving Global Patients
+                </div>
                 <h1>World-Class Healthcare <span>Within Reach</span></h1>
                 <p>Skip the 26-week wait. Experience China's efficient, affordable, and advanced medical care. We guide international patients through every step of their medical journey.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get Free Consultation →</a>
-                    <a href="#cases" class="btn btn-secondary">View Success Stories</a>
+                    <a href="contact.html" class="btn btn-primary">Get Free Consultation →</a>
+                    <a href="cases.html" class="btn btn-secondary">View Success Stories</a>
                 </div>
             </div>
             <div class="hero-stats">
@@ -612,24 +722,155 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🏥</div>
-                    <h3>Hospital Matching</h3>
-                    <p>We connect you with the best hospitals and specialists for your specific condition.</p>
+                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80" alt="Hospital Matching" class="service-img">
+                    <div class="service-content">
+                        <h3>Hospital Matching</h3>
+                        <p>We connect you with the best hospitals and specialists for your specific condition.</p>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📋</div>
-                    <h3>Visa Assistance</h3>
-                    <p>Complete support for medical visa applications and documentation.</p>
+                    <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" alt="Visa Assistance" class="service-img">
+                    <div class="service-content">
+                        <h3>Visa Assistance</h3>
+                        <p>Complete support for medical visa applications and documentation.</p>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🗣️</div>
-                    <h3>Translation</h3>
-                    <p>Professional medical interpreters accompany you throughout your treatment.</p>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Translation" class="service-img">
+                    <div class="service-content">
+                        <h3>Translation</h3>
+                        <p>Professional medical interpreters accompany you throughout your treatment.</p>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">✈️</div>
-                    <h3>Travel Logistics</h3>
-                    <p>Airport pickup, accommodation, and local transportation arranged for you.</p>
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80" alt="Travel Logistics" class="service-img">
+                    <div class="service-content">
+                        <h3>Travel Logistics</h3>
+                        <p>Airport pickup, accommodation, and local transportation arranged for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <h2>What Our Patients Say</h2>
+                <p>Real stories from international patients we've helped</p>
+            </div>
+            <div class="testimonials-scroll">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"From my first consultation in Canada to my surgery in Shenzhen, everything was seamless. The team handled every detail, and I saved over $25,000 compared to US quotes."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-info">
+                            <h4>Michael Thompson</h4>
+                            <p>Cardiac Surgery Patient, Canada</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I was skeptical at first, but the professionalism exceeded my expectations. The hospital was state-of-the-art, and the doctors spoke excellent English."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">S</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Orthopedic Surgery, United Kingdom</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The waiting list in Germany was 4 months for my knee replacement. With IntersectionMed, I had surgery within 2 weeks. Incredible service!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">K</div>
+                        <div class="testimonial-info">
+                            <h4>Klaus Weber</h4>
+                            <p>Joint Replacement, Germany</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The translation services were outstanding. My medical interpreter was with me at every appointment, making sure I understood everything."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div class="testimonial-info">
+                            <h4>Ana Rodriguez</h4>
+                            <p>Cancer Treatment, Spain</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Best decision I ever made. The cost savings allowed me to bring my wife along for support. We even did some sightseeing in Shenzhen after recovery!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div class="testimonial-info">
+                            <h4>James Wilson</h4>
+                            <p>Spinal Surgery, Australia</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate for infinite scroll -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"From my first consultation in Canada to my surgery in Shenzhen, everything was seamless. The team handled every detail, and I saved over $25,000 compared to US quotes."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-info">
+                            <h4>Michael Thompson</h4>
+                            <p>Cardiac Surgery Patient, Canada</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I was skeptical at first, but the professionalism exceeded my expectations. The hospital was state-of-the-art, and the doctors spoke excellent English."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">S</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Orthopedic Surgery, United Kingdom</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The waiting list in Germany was 4 months for my knee replacement. With IntersectionMed, I had surgery within 2 weeks. Incredible service!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">K</div>
+                        <div class="testimonial-info">
+                            <h4>Klaus Weber</h4>
+                            <p>Joint Replacement, Germany</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The translation services were outstanding. My medical interpreter was with me at every appointment, making sure I understood everything."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div class="testimonial-info">
+                            <h4>Ana Rodriguez</h4>
+                            <p>Cancer Treatment, Spain</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Best decision I ever made. The cost savings allowed me to bring my wife along for support. We even did some sightseeing in Shenzhen after recovery!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div class="testimonial-info">
+                            <h4>James Wilson</h4>
+                            <p>Spinal Surgery, Australia</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -639,22 +880,25 @@
     <section class="cta">
         <h2>Start Your Medical Journey Today</h2>
         <p>Get a free consultation and personalized treatment plan within 24 hours</p>
-        <a href="mailto:contact@chinamedicalguide.com" class="btn btn-white">Contact Us Now</a>
+        <a href="contact.html" class="btn btn-white">Contact Us Now</a>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-container">
             <div class="footer-brand">
-                <h3><img src="logo.png" alt="IntersectionMed" style="height: 55px; width: auto;"></h3>
+                <img src="logo.png" alt="IntersectionMed" class="logo-footer">
                 <p>Your trusted partner for world-class healthcare in China. We bridge the gap between international patients and China's top medical facilities.</p>
+                <div class="footer-location">
+                    📍 Shenzhen, China
+                </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#cases">Case Studies</a>
-                <a href="#hospitals">Hospitals</a>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="cases.html">Cases</a>
+                <a href="contact.html">Contact</a>
             </div>
             <div class="footer-links">
                 <h4>Resources</h4>
@@ -665,14 +909,14 @@
             </div>
             <div class="footer-links">
                 <h4>Contact</h4>
-                <a href="mailto:hello@chinamedicalguide.com">hello@chinamedicalguide.com</a>
+                <a href="mailto:hello@intersectionmed.com">hello@intersectionmed.com</a>
                 <a href="tel:+8612345678900">+86 123 4567 8900</a>
-                <a href="#">WeChat: CMGuide</a>
+                <a href="#">WeChat: IntersectionMed</a>
                 <a href="#">WhatsApp</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 IntersectionMed. All rights reserved.</p>
+            <p>© 2026 IntersectionMed. All rights reserved. | Based in Shenzhen, China</p>
         </div>
     </footer>
 </body>
