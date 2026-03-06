@@ -397,6 +397,18 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header {
+                padding: 8rem 1rem 4rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
             .case-card {
                 grid-template-columns: 1fr;
             }
@@ -405,12 +417,33 @@
                 direction: ltr;
             }
 
+            .case-image {
+                min-height: 200px;
+            }
+
+            .case-content {
+                padding: 1.5rem;
+            }
+
+            .case-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
 
             .footer-container {
                 grid-template-columns: 1fr;
+            }
+
+            body {
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            html {
+                scroll-behavior: smooth;
             }
         }
     </style>
