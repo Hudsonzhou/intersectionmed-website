@@ -41,7 +41,7 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0.25rem 2rem;
+            padding: 0.75rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,6 +51,7 @@
             height: 120px;
             width: auto;
             background: transparent;
+            mix-blend-mode: multiply;
         }
 
         .logo {
@@ -364,9 +365,6 @@
         .footer-brand .logo-footer {
             height: 100px;
             width: auto;
-            background: white;
-            padding: 5px;
-            border-radius: 8px;
         }
 
         .footer-location {
@@ -399,18 +397,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .page-header {
-                padding: 8rem 1rem 4rem;
-            }
-
-            .page-header h1 {
-                font-size: 1.75rem;
-            }
-
             .case-card {
                 grid-template-columns: 1fr;
             }
@@ -419,33 +405,12 @@
                 direction: ltr;
             }
 
-            .case-image {
-                min-height: 200px;
-            }
-
-            .case-content {
-                padding: 1.5rem;
-            }
-
-            .case-stats {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
 
             .footer-container {
                 grid-template-columns: 1fr;
-            }
-
-            body {
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            html {
-                scroll-behavior: smooth;
             }
         }
     </style>
@@ -665,7 +630,8 @@
             </div>
             <div class="footer-links">
                 <h4>Contact</h4>
-                <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>
+                <a href="mailto:hello@intersectionmed.com">hello@intersectionmed.com</a>
+                <a href="#">WeChat: IntersectionMed</a>
             </div>
         </div>
         <div class="footer-bottom">
