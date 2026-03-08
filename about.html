@@ -41,16 +41,17 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0.25rem 2rem;
+            padding: 0.1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo img {
-            height: 120px;
+            height: 130px;
             width: auto;
             background: transparent;
+            border-radius: 0;
         }
 
         .logo {
@@ -178,14 +179,18 @@
         }
 
         .about-image {
-            background: var(--bg-light);
-            border-radius: 1rem;
+            background: transparent;
+            border-radius: 0;
             height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: var(--primary);
+        }
+        
+        .about-image img {
+            max-height: 350px;
+            width: auto;
+            object-fit: contain;
         }
 
         /* Values */
@@ -443,7 +448,7 @@
                 <p>Our team brings together medical professionals, international coordinators, and language specialists who have witnessed firsthand how China's efficient, affordable, and advanced medical care can transform lives.</p>
                 <p>From our first patient from Singapore seeking urgent pediatric surgery to hundreds of families we've helped across six continents, we've built a reputation for trust, efficiency, and compassionate care coordination.</p>
             </div>
-            <div class="about-image">🏥</div>
+            <div class="about-image"><img src="logo.png" alt="IntersectionMed" style="max-height: 300px; width: auto;"></div>
         </div>
 
         <div class="values">
