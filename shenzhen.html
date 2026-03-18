@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - IntersectionMed</title>
+    <title>Why Shenzhen - IntersectionMed</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Discover why Shenzhen is your gateway to next-generation healthcare. World-class medical care, Hong Kong proximity, and seamless international patient experience.">
     <style>
         * {
             margin: 0;
@@ -18,10 +19,12 @@
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
             --secondary: #10b981;
+            --accent: #f59e0b;
             --text: #1f2937;
             --text-light: #6b7280;
             --bg: #ffffff;
-            --bg-light: #f8fafc;
+            --bg-light: #f3f4f6;
+            --bg-dark: #0f172a;
         }
 
         body {
@@ -35,8 +38,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             z-index: 1000;
         }
@@ -50,13 +52,6 @@
             align-items: center;
         }
 
-        .logo img {
-            height: 130px;
-            width: auto;
-            background: transparent;
-            border-radius: 0;
-        }
-
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -65,6 +60,14 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            background: transparent;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            background: transparent;
+            border-radius: 0;
         }
 
         .nav-links {
@@ -88,134 +91,83 @@
             color: var(--primary);
         }
 
-        /* Page Header */
-        .page-header {
-            padding: 10rem 2rem 6rem;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            text-align: center;
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(37, 99, 235, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding-top: 100px;
         }
 
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Content */
-        .about-content {
+        .hero-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 2rem;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 6rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-        }
-
-        .about-text p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            font-size: 1.125rem;
-        }
-
-        .about-image {
-            border-radius: 1rem;
-            overflow: hidden;
-            height: 400px;
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Values */
-        .values {
-            background: var(--bg-light);
-            padding: 4rem;
-            border-radius: 1rem;
-            margin-bottom: 4rem;
-        }
-
-        .values h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .value-card {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .value-icon {
+        .hero-content h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
 
-        .value-card h3 {
+        .hero-content h1 span {
+            color: #93c5fd;
+        }
+
+        .hero-content p {
             font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .value-card p {
-            color: var(--text-light);
-        }
-
-        /* Why Shenzhen Section */
-        .shenzhen-section {
-            margin-bottom: 4rem;
-        }
-
-        .shenzhen-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .shenzhen-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .shenzhen-header p {
-            color: var(--text-light);
-            font-size: 1.125rem;
-            max-width: 800px;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
             margin: 0 auto;
         }
 
+        /* Content Sections */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text);
+            text-align: center;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: white;
+        }
+
+        .intro-text {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* Why Choose Grid */
         .why-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-bottom: 4rem;
+            margin-top: 3rem;
         }
 
         .why-card {
@@ -277,33 +229,18 @@
         /* Journey Section */
         .journey-section {
             background: var(--bg-light);
-            padding: 4rem;
-            border-radius: 1rem;
-            margin-bottom: 4rem;
-        }
-
-        .journey-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .journey-intro {
-            text-align: center;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 3rem;
         }
 
         .journey-steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .journey-step {
             background: white;
-            padding: 2rem 1.5rem;
+            padding: 2rem;
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
@@ -347,34 +284,27 @@
             line-height: 1.6;
         }
 
-        /* Facts Section */
+        /* Key Facts Section */
         .facts-section {
-            margin-bottom: 4rem;
-        }
-
-        .facts-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
+            background: white;
         }
 
         .facts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 3rem;
         }
 
         .fact-card {
             text-align: center;
             padding: 2rem;
-            background: white;
+            background: var(--bg-light);
             border-radius: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid #e5e7eb;
         }
 
         .fact-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
@@ -389,12 +319,17 @@
             color: var(--text-light);
         }
 
-        /* Disclaimer */
+        /* Disclaimer Section */
+        .disclaimer-section {
+            background: var(--bg-light);
+            padding: 3rem 2rem;
+        }
+
         .disclaimer-box {
             max-width: 900px;
-            margin: 0 auto 4rem;
+            margin: 0 auto;
             padding: 1.5rem 2rem;
-            background: #fef3c7;
+            background: white;
             border-radius: 0.75rem;
             border-left: 4px solid var(--accent);
         }
@@ -413,59 +348,11 @@
             line-height: 1.6;
         }
 
-        /* Team */
-        .team {
-            margin-bottom: 4rem;
-        }
-
-        .team h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .team-card {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .team-avatar {
-            width: 100px;
-            height: 100px;
-            background: var(--bg-light);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .team-card h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .team-card p {
-            color: var(--text-light);
-            font-size: 0.875rem;
-        }
-
         /* CTA Section */
         .cta {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             background: var(--primary);
             text-align: center;
-            border-radius: 1rem;
         }
 
         .cta h2 {
@@ -476,29 +363,30 @@
 
         .cta p {
             color: rgba(255,255,255,0.9);
+            font-size: 1.125rem;
             margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-white {
             background: white;
             color: var(--primary);
-            padding: 1rem 2rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            display: inline-block;
         }
 
         .btn-white:hover {
             background: #f3f4f6;
-        }
-
-        /* Image Credit */
-        .image-credit {
-            font-size: 0.75rem;
-            color: #9ca3af;
-            text-align: center;
-            margin-top: 0.5rem;
+            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -529,14 +417,6 @@
             border-radius: 8px;
         }
 
-        .footer-location {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #9ca3af;
-            margin-top: 0.5rem;
-        }
-
         .footer-links h4 {
             margin-bottom: 1rem;
         }
@@ -562,6 +442,14 @@
             color: #6b7280;
         }
 
+        .footer-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .journey-steps {
@@ -578,48 +466,25 @@
                 display: none;
             }
 
-            .about-grid,
-            .values-grid,
-            .facts-grid,
-            .why-grid,
-            .team-grid,
-            .footer-container {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .why-grid {
                 grid-template-columns: 1fr;
             }
 
-            .page-header {
-                padding: 8rem 1rem 4rem;
+            .journey-steps {
+                grid-template-columns: 1fr;
             }
 
-            .page-header h1 {
-                font-size: 1.75rem;
+            .facts-grid {
+                grid-template-columns: 1fr;
             }
 
-            .about-text h2,
-            .shenzhen-header h2 {
-                font-size: 1.75rem;
-            }
-
-            .about-content {
-                padding: 2rem 1rem;
-            }
-
-            .values,
-            .journey-section {
-                padding: 2rem 1rem;
-            }
-
-            .about-image {
-                height: 250px;
-            }
-
-            body {
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            html {
-                scroll-behavior: smooth;
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
     </style>
@@ -628,86 +493,35 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <div class="logo">
                 <img src="logo.png" alt="IntersectionMed">
-            </a>
+            </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="shenzhen.html">Why Shenzhen</a>
+                <a href="about.html">About</a>
+                <a href="shenzhen.html" class="active">Why Shenzhen</a>
                 <a href="cases.html">Cases</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>About IntersectionMed</h1>
-        <p>Bridging the gap between international patients and China's world-class healthcare system</p>
-    </header>
-
-    <!-- About Content -->
-    <section class="about-content">
-        <!-- Our Story -->
-        <div class="about-grid">
-            <div class="about-text">
-                <h2>Our Story</h2>
-                <p>IntersectionMed was founded with a simple mission: to make China's exceptional healthcare accessible to patients worldwide. We understand the frustration of long waiting lists, exorbitant costs, and limited options in many Western healthcare systems.</p>
-                <p>Our team brings together medical professionals, international coordinators, and language specialists who have witnessed firsthand how China's efficient, affordable, and advanced medical care can transform lives.</p>
-                <p>Based in Shenzhen—a premier global destination for medical innovation—we are strategically positioned to connect international patients with world-class healthcare facilities across the Greater Bay Area.</p>
-            </div>
-            <div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80" alt="Modern Medical Facility">
-                </div>
-                <p class="image-credit">Photo: Modern Healthcare Environment (Unsplash)</p>
-            </div>
-        </div>
-
-        <!-- Values -->
-        <div class="values">
-            <h2>Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">🤝</div>
-                    <h3>Trust</h3>
-                    <p>We build lasting relationships through transparency, honesty, and always putting patient interests first.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">⚡</div>
-                    <h3>Efficiency</h3>
-                    <p>Time matters in healthcare. We streamline every step to get you the care you need without delay.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">❤️</div>
-                    <h3>Compassion</h3>
-                    <p>Navigating foreign healthcare is daunting. We provide emotional support alongside logistical expertise.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Why Shenzhen Section -->
-        <div class="shenzhen-section">
-            <div class="shenzhen-header">
-                <h2>Why Shenzhen?</h2>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Welcome to <span>Shenzhen</span><br>Your Gateway to Next-Generation Healthcare</h1>
                 <p>Shenzhen has emerged as a premier global destination for medical innovation and high-efficiency healthcare. Strategically located adjacent to Hong Kong, Shenzhen offers international patients a unique combination of world-class clinical expertise, advanced medical technology, and a seamless service environment.</p>
             </div>
+        </div>
+    </section>
 
-            <div class="about-grid" style="margin-bottom: 3rem;">
-                <div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80" alt="Shenzhen Cityscape">
-                    </div>
-                    <p class="image-credit">Photo: Shenzhen Urban Landscape (Unsplash)</p>
-                </div>
-                <div class="about-text">
-                    <h3 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary);">Your Gateway to Next-Generation Healthcare</h3>
-                    <p>Shenzhen combines cutting-edge medical technology with exceptional patient care efficiency. Our strategic location in the Greater Bay Area provides unique advantages for international patients seeking high-quality healthcare.</p>
-                    <p>With only 15-30 minutes travel time from Hong Kong via High-Speed Rail, Shenzhen offers convenient access to world-class medical facilities with highly competitive pricing compared to Western markets.</p>
-                </div>
-            </div>
-
+    <!-- Why Choose Shenzhen Section -->
+    <section class="section intro-section">
+        <div class="section-container">
+            <h2 class="section-title">Why Choose Shenzhen for Medical Care?</h2>
+            <p class="intro-text">Shenzhen combines cutting-edge medical technology with exceptional patient care efficiency. Our strategic location in the Greater Bay Area provides unique advantages for international patients seeking high-quality healthcare.</p>
+            
             <div class="why-grid">
                 <div class="why-card">
                     <h3><span class="number">1</span>Exceptional Clinical Efficiency</h3>
@@ -719,7 +533,7 @@
                 </div>
 
                 <div class="why-card">
-                    <h3><span class="number">2</span>The GBA Pharmaceutical Link</h3>
+                    <h3><span class="number">2</span>The GBA Pharmaceutical & Medical Device Link</h3>
                     <p>Shenzhen enjoys a unique "Green Channel" policy that provides access to innovative treatments.</p>
                     <ul>
                         <li>Access innovative medications and advanced medical devices approved in Hong Kong or Europe</li>
@@ -737,7 +551,7 @@
                 </div>
 
                 <div class="why-card">
-                    <h3><span class="number">4</span>Insurance & Multilingual Support</h3>
+                    <h3><span class="number">4</span>Seamless Insurance & Multilingual Support</h3>
                     <p>Comprehensive support for international patients.</p>
                     <ul>
                         <li><strong>Direct Billing:</strong> Direct settlement partnerships with major global insurers (Bupa, Allianz, MSH, Aetna, Cigna)</li>
@@ -746,11 +560,13 @@
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Journey Section -->
-        <div class="journey-section">
-            <h2>Your Journey with IntersectionMed</h2>
-            <p class="journey-intro">We provide professional information consultancy and navigation services to bridge the gap between international patients and Shenzhen's leading medical institutions.</p>
+    <!-- Journey Section -->
+    <section class="section journey-section">
+        <div class="section-container">
+            <h2 class="section-title">Your Journey with IntersectionMed</h2>
+            <p class="intro-text">We provide professional information consultancy and navigation services to bridge the gap between international patients and Shenzhen's leading medical institutions.</p>
             
             <div class="journey-steps">
                 <div class="journey-step">
@@ -778,10 +594,13 @@
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Facts Section -->
-        <div class="facts-section">
-            <h2>Key Facts for International Visitors</h2>
+    <!-- Key Facts Section -->
+    <section class="section facts-section">
+        <div class="section-container">
+            <h2 class="section-title">Key Facts for International Visitors</h2>
+            
             <div class="facts-grid">
                 <div class="fact-card">
                     <div class="fact-icon">🚄</div>
@@ -802,46 +621,21 @@
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Disclaimer -->
+    <!-- Disclaimer Section -->
+    <section class="disclaimer-section">
         <div class="disclaimer-box">
             <h4>Disclaimer</h4>
             <p>IntersectionMed is an information consultancy and concierge service provider. We do not provide medical diagnosis, treatment, or clinical assessments. All medical services and clinical decisions are provided and made solely by licensed healthcare professionals at our partner medical institutions.</p>
         </div>
+    </section>
 
-        <!-- Team -->
-        <div class="team">
-            <h2>Our Leadership Team</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">👨‍⚕️</div>
-                    <h3>Dr. Chen Wei</h3>
-                    <p>Medical Director</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">👩‍💼</div>
-                    <h3>Sarah Lim</h3>
-                    <p>Patient Relations Director</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">👨‍💻</div>
-                    <h3>Michael Zhang</h3>
-                    <p>Operations Manager</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">👩‍⚕️</div>
-                    <h3>Dr. Anna Kowalski</h3>
-                    <p>International Coordinator</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta">
-            <h2>Ready to Start Your Journey?</h2>
-            <p>Let us help you access world-class healthcare in Shenzhen</p>
-            <a href="contact.html" class="btn-white">Contact Us Today</a>
-        </div>
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Start Your Medical Journey Today</h2>
+        <p>Get a free consultation and personalized treatment plan within 24 hours</p>
+        <a href="contact.html" class="btn btn-white">Contact Us Now →</a>
     </section>
 
     <!-- Footer -->
