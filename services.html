@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Escort Services in Shenzhen | Hospital Interpreter & Patient Advocacy - IntersectionMed</title>
+    <meta name="description" content="Professional medical escort services in Shenzhen for international patients. Hospital interpreter, appointment scheduling, translation, and 24/7 patient advocacy. English-speaking support.">
+    <meta name="keywords" content="medical escort Shenzhen, hospital interpreter China, patient advocate Shenzhen, foreigner medical service, medical translation Shenzhen, hospital appointment China">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f3f4f6;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 130px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.1) 100%);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Content */
+        .services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Service Detail Sections */
+        .service-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            align-items: center;
+        }
+
+        .service-detail:nth-child(even) {
+            direction: rtl;
+        }
+
+        .service-detail:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .service-detail h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .service-detail p {
+            color: var(--text-light);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .service-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .service-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Target Audience */
+        .audience-section {
+            background: var(--bg-light);
+            padding: 4rem 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .audience-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .audience-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .audience-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .audience-header p {
+            color: var(--text-light);
+            font-size: 1.125rem;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .audience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .audience-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .audience-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .audience-card p {
+            font-size: 0.9375rem;
+            color: var(--text-light);
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 4rem 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .process-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h4 {
+            font-size: 0.9375rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .process-step p {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-light);
+            padding: 4rem 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h3 {
+            font-size: 1.125rem;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .faq-item h3::before {
+            content: "Q";
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .faq-item p {
+            color: var(--text-light);
+            padding-left: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: #9ca3af;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.25rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .service-detail {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-detail:nth-child(even) {
+                direction: ltr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .process-step:nth-child(3)::after {
+                display: none;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step:nth-child(2)::after,
+            .process-step:nth-child(4)::after {
+                display: none;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="IntersectionMed">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="shenzhen.html">Why Shenzhen</a>
+                <a href="cases.html">Cases</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our Medical Escort Services</h1>
+        <p>Comprehensive support for international patients seeking quality healthcare in Shenzhen, China. From hospital appointments to recovery, we're with you every step.</p>
+    </section>
+
+    <!-- Service Details -->
+    <section class="services-content">
+        <!-- Hospital Appointment Scheduling -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Hospital Appointment Scheduling</h2>
+                <p>We handle the complexity of China's healthcare system for you. Our team has established relationships with Shenzhen's top hospitals, ensuring you get fast access to specialists who match your specific medical needs.</p>
+                <ul class="service-features">
+                    <li>Same-day appointments with leading specialists</li>
+                    <li>Direct coordination with hospital admission departments</li>
+                    <li>Selection of English-speaking doctors upon request</li>
+                    <li>Medical records translation and preparation</li>
+                    <li>Follow-up appointment management</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80" alt="Hospital appointment scheduling in Shenzhen">
+            </div>
+        </div>
+
+        <!-- Medical Interpretation -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Medical Interpretation</h2>
+                <p>Language barriers shouldn't compromise your healthcare. Our certified medical interpreters accompany you to every appointment, ensuring clear communication between you and your healthcare providers.</p>
+                <ul class="service-features">
+                    <li>Professional medical interpreters with healthcare background</li>
+                    <li>Accompany to all consultations and procedures</li>
+                    <li>Translation of medical documents and prescriptions</li>
+                    <li>Phone interpretation for emergency consultations</li>
+                    <li>Post-visit summary translation</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Medical interpretation services Shenzhen">
+            </div>
+        </div>
+
+        <!-- Admission & Discharge Assistance -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Admission & Discharge Assistance</h2>
+                <p>Navigating hospital bureaucracy can be overwhelming. We streamline the entire admission process and ensure a smooth discharge with complete follow-up care instructions.</p>
+                <ul class="service-features">
+                    <li>Complete admission paperwork handling</li>
+                    <li>Insurance coordination and billing clarification</li>
+                    <li>Room arrangement assistance</li>
+                    <li>Discharge planning and medication pickup</li>
+                    <li>Medical report collection and translation</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Hospital admission assistance China">
+            </div>
+        </div>
+
+        <!-- Emergency Coordination -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Emergency Coordination</h2>
+                <p>Medical emergencies don't wait. Our 24/7 rapid response team coordinates emergency care, ambulance services, and immediate specialist consultations when you need them most.</p>
+                <ul class="service-features">
+                    <li>24/7 emergency hotline (+86 400-XXX-XXXX)</li>
+                    <li>Immediate hospital ER coordination</li>
+                    <li>Ambulance service arrangement</li>
+                    <li>Family notification in multiple languages</li>
+                    <li>Emergency translation support</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=800&q=80" alt="Emergency medical coordination Shenzhen">
+            </div>
+        </div>
+
+        <!-- Medical Consultation -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Medical Consultation & Second Opinion</h2>
+                <p>Not sure if you need surgery or which treatment is best? We connect you with leading specialists for comprehensive consultations and can arrange international second opinions.</p>
+                <ul class="service-features">
+                    <li>Pre-travel medical consultation</li>
+                    <li>Treatment plan review and comparison</li>
+                    <li>International second opinion arrangement</li>
+                    <li>Specialist matching based on your condition</li>
+                    <li>Cost estimation before treatment</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Medical consultation second opinion China">
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience -->
+    <section class="audience-section">
+        <div class="audience-container">
+            <div class="audience-header">
+                <h2>Who We Serve</h2>
+                <p>Our medical escort services are designed for international patients seeking seamless healthcare experiences in Shenzhen</p>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">🌏</div>
+                    <h3>Expats in China</h3>
+                    <p>Foreign residents who need local medical care but face language and cultural barriers in China's healthcare system.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">✈️</div>
+                    <h3>Medical Tourists</h3>
+                    <p>International patients traveling specifically to Shenzhen for high-quality, affordable medical procedures not available or too expensive in their home country.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🎓</div>
+                    <h3>International Students</h3>
+                    <p>Foreign students studying in Shenzhen who need reliable, English-speaking medical support during their time here.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">💼</div>
+                    <h3>Corporate Clients</h3>
+                    <p>Companies with foreign employees in China who need comprehensive healthcare support as part of their employee wellness programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Process -->
+    <section class="process-section">
+        <div class="process-container">
+            <div class="process-header">
+                <h2>How It Works</h2>
+                <p>Simple, transparent process from your first inquiry to complete recovery</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Free Consultation</h4>
+                    <p>Share your medical needs</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Treatment Plan</h4>
+                    <p>Receive personalized proposal</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Appointment</h4>
+                    <p>We schedule hospital visits</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Medical Escort</h4>
+                    <p>We accompany you throughout</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h4>Treatment</h4>
+                    <p>Receive care with support</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h4>Recovery</h4>
+                    <p>Follow-up care coordination</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-item">
+                <h3>What languages do your interpreters speak?</h3>
+                <p>Our team includes interpreters fluent in English, Spanish, French, German, Japanese, Korean, and Arabic. Other languages can be arranged upon request with advance notice.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How quickly can you arrange a hospital appointment?</h3>
+                <p>For non-emergency cases, we can typically arrange appointments within 24-48 hours. Emergency cases are handled immediately through our 24/7 hotline. For specialist consultations, scheduling 3-5 days in advance ensures the best doctor availability.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What happens if I need emergency care?</h3>
+                <p>Call our 24/7 emergency hotline immediately. We'll coordinate with the nearest emergency room, arrange ambulance transport if needed, and ensure you receive immediate care while handling all communications.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Are your services covered by insurance?</h3>
+                <p>Our medical escort services are typically out-of-pocket expenses. However, we can assist you in understanding your insurance coverage and can provide detailed invoices for reimbursement claims where applicable.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How much do your services cost?</h3>
+                <p>Service packages start from ¥2,000 RMB per day depending on your needs. We provide transparent pricing after your free initial consultation. No hidden fees—you'll know exactly what's included.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can you help with visa applications for medical travel?</h3>
+                <p>Yes, we provide documentation support for medical visa (M-visa) applications, including invitation letters from hospitals, treatment plans, and cost estimates required by Chinese embassies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <p>Get a free consultation and personalized service quote within 24 hours</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-white">Get Free Consultation →</a>
+            <a href="shenzhen.html" class="btn btn-outline">Learn About Shenzhen</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <p><strong>IntersectionMed</strong></p>
+                <p>Your trusted partner for medical escort services in Shenzhen, China. Professional, compassionate, available 24/7.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="shenzhen.html">Why Shenzhen</a>
+                <a href="cases.html">Cases</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <a href="services.html">Hospital Appointment</a>
+                <a href="services.html">Medical Interpreter</a>
+                <a href="services.html">Emergency Support</a>
+                <a href="services.html">Second Opinion</a>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>
+                <a href="tel:+864001234567">24/7 Hotline</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 IntersectionMed. All rights reserved. | Based in Shenzhen, China</p>
+        </div>
+    </footer>
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalOrganization",
+        "name": "IntersectionMed - Medical Escort Services",
+        "description": "Professional medical escort services in Shenzhen for international patients. Hospital interpreter, appointment scheduling, translation, and 24/7 patient advocacy.",
+        "url": "https://intersectionmed.com",
+        "telephone": "+86-400-123-4567",
+        "email": "intersectionmed@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Shenzhen",
+            "addressRegion": "Guangdong",
+            "addressCountry": "CN"
+        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Shenzhen"
+            }
+        ],
+        "serviceType": ["Medical Escort", "Hospital Interpreter", "Patient Advocacy", "Medical Tourism Support"],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Medical Escort Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Hospital Appointment Scheduling"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Medical Interpretation"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Admission & Discharge Assistance"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Emergency Coordination"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+</body>
+</html>
