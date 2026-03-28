@@ -139,11 +139,11 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+            min-height: 100dvh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(37, 99, 235, 0.8) 100%),
-                        url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=1920&q=80');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=80');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -242,23 +242,42 @@
         .stat-card {
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             border-radius: 1rem;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .stat-card h3 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             color: #2563eb;
             font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-title {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
         .stat-card p {
             color: #64748b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
+            font-size: 0.8125rem;
+            margin-top: 0.25rem;
         }
 
         /* Comparison Section */
@@ -779,20 +798,28 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-card">
-                    <h3>4 Days</h3>
-                    <p>Average from consultation to surgery</p>
+                    <div class="stat-icon">🔬</div>
+                    <h3>技术</h3>
+                    <div class="stat-title">高端设备 · 前沿技术</div>
+                    <p>比肩国际的医疗技术与设备</p>
                 </div>
                 <div class="stat-card">
-                    <h3>70%</h3>
-                    <p>Cost savings vs Western countries*</p>
+                    <div class="stat-icon">💰</div>
+                    <h3>价格</h3>
+                    <div class="stat-title">顶级医疗 · 亲民成本</div>
+                    <p>颠覆性性价比，费用直降70%</p>
                 </div>
                 <div class="stat-card">
-                    <h3>10+</h3>
-                    <p>Partner hospitals in Shenzhen</p>
+                    <div class="stat-icon">🌐</div>
+                    <h3>服务</h3>
+                    <div class="stat-title">国际标准 · 商保直付</div>
+                    <p>无缝衔接，赔付更便捷</p>
                 </div>
                 <div class="stat-card">
-                    <h3>24/7</h3>
-                    <p>English-speaking support</p>
+                    <div class="stat-icon">⚡</div>
+                    <h3>效率</h3>
+                    <div class="stat-title">极速响应 · 告别等待</div>
+                    <p>即刻获得诊疗，快速住院</p>
                 </div>
             </div>
         </div>
