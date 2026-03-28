@@ -143,7 +143,7 @@
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.88) 100%),
-                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=80');
+                        url('https://files.catbox.moe/077it2.png');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -240,12 +240,9 @@
         }
 
         .stat-card {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem 1.5rem;
+            background: white;
             border-radius: 1rem;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
+            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -255,29 +252,34 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
         }
 
-        .stat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+        .stat-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .stat-content {
+            padding: 1.25rem 1.5rem;
         }
 
         .stat-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.125rem;
             color: #2563eb;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .stat-card .stat-title {
             color: #1e293b;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
 
         .stat-card p {
             color: #64748b;
             font-size: 0.8125rem;
-            margin-top: 0.25rem;
+            line-height: 1.5;
         }
 
         /* Comparison Section */
@@ -323,6 +325,19 @@
             text-align: center;
         }
 
+        .comparison-source {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 0.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .comparison-card.highlight {
             border: 2px solid var(--primary);
             position: relative;
@@ -342,8 +357,11 @@
             border-radius: 1rem;
         }
 
-        .country-flag {
-            font-size: 3rem;
+        .country-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 0.75rem;
             margin-bottom: 1rem;
         }
 
@@ -368,7 +386,7 @@
         }
 
         .metric-value {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
         }
 
@@ -392,35 +410,40 @@
         }
 
         .service-card {
+            background: white;
             border-radius: 1rem;
             overflow: hidden;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
 
         .service-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
         }
 
         .service-content {
             padding: 1.5rem;
+            background: white;
         }
 
         .service-content h3 {
             font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
 
         .service-content p {
             color: var(--text-light);
             font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
         /* Testimonials Section */
@@ -798,28 +821,36 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-card">
-                    <div class="stat-icon">🔬</div>
-                    <h3>Technology</h3>
-                    <div class="stat-title">World-Class Equipment</div>
-                    <p>Cutting-edge medical technology on par with international standards</p>
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Advanced Medical Technology" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Technology</h3>
+                        <div class="stat-title">World-Class Equipment</div>
+                        <p>Cutting-edge medical technology on par with international standards</p>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">💰</div>
-                    <h3>Pricing</h3>
-                    <div class="stat-title">Premium Care · Affordable Cost</div>
-                    <p>Revolutionary value — save up to 70% vs. US/EU prices</p>
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="Affordable Healthcare Costs" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Pricing</h3>
+                        <div class="stat-title">Premium Care · Affordable Cost</div>
+                        <p>Revolutionary value — save up to 70% vs. US/EU prices</p>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">🌐</div>
-                    <h3>Service</h3>
-                    <div class="stat-title">International Standard · Direct Insurance</div>
-                    <p>Seamless experience with direct billing acceptance</p>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="International Standard Service" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Service</h3>
+                        <div class="stat-title">International Standard · Direct Insurance</div>
+                        <p>Seamless experience with direct billing acceptance</p>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">⚡</div>
-                    <h3>Efficiency</h3>
-                    <div class="stat-title">Rapid Response · No Waiting</div>
-                    <p>Instant consultation — skip the long queues</p>
+                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80" alt="Rapid Medical Service" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Efficiency</h3>
+                        <div class="stat-title">Rapid Response · No Waiting</div>
+                        <p>Instant consultation — skip the long queues</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -834,54 +865,63 @@
             </div>
             <div class="comparison-grid">
                 <div class="comparison-card">
-                    <div class="country-flag">🇺🇸</div>
+                    <div class="country-img">
+                        <img src="https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?w=400&q=80" alt="United States - Statue of Liberty" class="country-img">
+                    </div>
                     <h3>United States</h3>
                     <div class="metric">
-                        <div class="metric-label">MRI Wait Time</div>
-                        <div class="metric-value bad">3-8 weeks</div>
+                        <div class="metric-label">New Patient Appointment</div>
+                        <div class="metric-value bad">31 days avg.</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">MRI Scheduling</div>
+                        <div class="metric-value bad">2-4+ weeks</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Gallbladder Surgery</div>
-                        <div class="metric-value bad">$30,000+</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Emergency Response</div>
-                        <div class="metric-value">Good</div>
+                        <div class="metric-value bad">$10,000-$20,000+</div>
                     </div>
                 </div>
                 <div class="comparison-card">
-                    <div class="country-flag">🇬🇧</div>
+                    <div class="country-img">
+                        <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?w=400&q=80" alt="United Kingdom - Big Ben" class="country-img">
+                    </div>
                     <h3>United Kingdom</h3>
                     <div class="metric">
-                        <div class="metric-label">MRI Wait Time</div>
-                        <div class="metric-value bad">18-26 weeks</div>
+                        <div class="metric-label">MRI/CT Wait</div>
+                        <div class="metric-value bad">6+ weeks (15.7% of patients)</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Specialist Consult</div>
                         <div class="metric-value bad">12+ weeks</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Cost (NHS)</div>
-                        <div class="metric-value">Free</div>
+                        <div class="metric-label">Routine Surgery</div>
+                        <div class="metric-value bad">18+ weeks</div>
                     </div>
                 </div>
                 <div class="comparison-card highlight">
-                    <div class="country-flag">🇨🇳</div>
+                    <div class="country-img">
+                        <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=400&q=80" alt="China - Shenzhen skyline" class="country-img">
+                    </div>
                     <h3>China</h3>
                     <div class="metric">
-                        <div class="metric-label">MRI Wait Time</div>
-                        <div class="metric-value good">Same day</div>
+                        <div class="metric-label">Hospital Admission</div>
+                        <div class="metric-value good">3.5 days avg.</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Gallbladder Surgery</div>
-                        <div class="metric-value good">$1,500-2,500</div>
+                        <div class="metric-label">MRI/CT Scan</div>
+                        <div class="metric-value good">Same day to 1 week</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">World-Class Tech</div>
-                        <div class="metric-value good">Robotic Surgery</div>
+                        <div class="metric-label">Advanced Equipment</div>
+                        <div class="metric-value good">Da Vinci Robotics</div>
                     </div>
                 </div>
             </div>
+            <p class="comparison-source">
+                Sources: NCHStats (2025) for US wait times; Royal College of Radiologists UK (Dec 2024); Canada MRI data: Statista (2024); China hospital data: China Daily (May 2024). US surgery costs: CostHelper (2024).
+            </p>
         </div>
     </section>
 
@@ -890,35 +930,35 @@
         <div class="section-container">
             <div class="section-header">
                 <h2>Our Services</h2>
-                <p>End-to-end support for your medical journey to China</p>
+                <p>Comprehensive medical escort support from consultation to recovery</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80" alt="Hospital Matching" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Medical Consultation" class="service-img">
+                    <div class="service-content">
+                        <h3>Medical Consultation</h3>
+                        <p>Pre-travel medical advice, treatment planning & specialist recommendations. Expert guidance before you arrive in Shenzhen.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="Hospital Matching" class="service-img">
                     <div class="service-content">
                         <h3>Hospital Matching</h3>
-                        <p>We connect you with the best hospitals and specialists for your specific condition.</p>
+                        <p>We connect you with the best-suited hospitals & specialists in Shenzhen based on your specific medical condition.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" alt="Visa Assistance" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Medical Escort" class="service-img">
                     <div class="service-content">
-                        <h3>Visa Assistance</h3>
-                        <p>Complete support for medical visa applications and documentation.</p>
+                        <h3>Medical Escort</h3>
+                        <p>Personalized in-person guidance throughout your entire medical journey — from hospital admission to discharge & recovery.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Translation" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Medical Translation" class="service-img">
                     <div class="service-content">
-                        <h3>Translation</h3>
-                        <p>Professional medical interpreters accompany you throughout your treatment.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80" alt="Travel Logistics" class="service-img">
-                    <div class="service-content">
-                        <h3>Travel Logistics</h3>
-                        <p>Airport pickup, accommodation, and local transportation arranged for you.</p>
+                        <h3>Medical Translation</h3>
+                        <p>Professional medical interpreters provide accurate translation during consultations, procedures, and all paperwork.</p>
                     </div>
                 </div>
             </div>
