@@ -326,7 +326,7 @@
         }
 
         .comparison-source {
-            text-align: center;
+            text-align: left;
             font-size: 0.75rem;
             color: var(--text-light);
             margin-top: 2rem;
@@ -874,16 +874,16 @@
                     </div>
                     <h3>United States</h3>
                     <div class="metric">
-                        <div class="metric-label">New Patient Appointment</div>
-                        <div class="metric-value bad">31 days avg.</div>
+                        <div class="metric-label">MRI/CT Wait</div>
+                        <div class="metric-value bad">2-4 weeks</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">MRI Scheduling</div>
-                        <div class="metric-value bad">2-4+ weeks</div>
+                        <div class="metric-label">Specialist Consultation</div>
+                        <div class="metric-value bad">24-30 days</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Gallbladder Surgery</div>
-                        <div class="metric-value bad">$10,000-$20,000+</div>
+                        <div class="metric-label">Routine Surgery</div>
+                        <div class="metric-value bad">3-4 weeks (elective)</div>
                     </div>
                 </div>
                 <div class="comparison-card">
@@ -893,38 +893,38 @@
                     <h3>United Kingdom</h3>
                     <div class="metric">
                         <div class="metric-label">MRI/CT Wait</div>
-                        <div class="metric-value bad">6+ weeks (15.7% of patients)</div>
+                        <div class="metric-value bad">17% wait 6+ weeks</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Specialist Consult</div>
-                        <div class="metric-value bad">12+ weeks</div>
+                        <div class="metric-label">Specialist Consultation</div>
+                        <div class="metric-value bad">12-18 weeks</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Routine Surgery</div>
-                        <div class="metric-value bad">18+ weeks</div>
+                        <div class="metric-value bad">18-24 weeks</div>
                     </div>
                 </div>
                 <div class="comparison-card highlight">
                     <div class="country-img">
                         <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=400&q=80" alt="China - Shenzhen skyline" class="country-img">
                     </div>
-                    <h3>China</h3>
+                    <h3>China (Shenzhen)</h3>
                     <div class="metric">
-                        <div class="metric-label">Hospital Admission</div>
-                        <div class="metric-value good">3.5 days avg.</div>
+                        <div class="metric-label">MRI/CT Wait</div>
+                        <div class="metric-value good">Same day - 1 week</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">MRI/CT Scan</div>
-                        <div class="metric-value good">Same day to 1 week</div>
+                        <div class="metric-label">Specialist Consultation</div>
+                        <div class="metric-value good">1-3 days</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Advanced Equipment</div>
-                        <div class="metric-value good">Da Vinci Robotics</div>
+                        <div class="metric-label">Routine Surgery</div>
+                        <div class="metric-value good">3-7 days</div>
                     </div>
                 </div>
             </div>
             <p class="comparison-source">
-                Sources: NCHStats (2025) for US wait times; Royal College of Radiologists UK (Dec 2024); Canada MRI data: Statista (2024); China hospital data: China Daily (May 2024). US surgery costs: CostHelper (2024).
+                Sources: US — Merritt Hawkins 2024 Physician Survey; UK — Royal College of Radiologists (Jun 2024) & NHS England RTT Statistics (2024); China (Shenzhen) — China Daily (May 2024), National Health Commission (2024). Note: Wait times vary by hospital, region, and condition. Contact us for current estimates for your specific case.
             </p>
         </div>
     </section>
@@ -1094,44 +1094,49 @@
 
     <!-- Cost Disclaimer -->
     <section style="background: var(--bg-light); padding: 3rem 2rem;">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div style="max-width: 900px; margin: 0 auto; text-align: left;">
             <p style="font-size: 0.875rem; color: var(--text-light);">
                 * <strong>Cost Comparison Disclaimer:</strong> The 70% cost savings figure is based on comparative studies between typical US/EU medical procedure costs and equivalent procedures in China. Actual savings vary by procedure type, hospital, and individual case. Data sourced from international medical tourism industry reports (2023-2024).
             </p>
         </div>
     </section>
 
-    <!-- Partner Hospitals -->
+    <!-- Our Medical Network -->
     <section style="padding: 4rem 2rem; background: var(--bg-light);">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Our Partner Hospitals in Shenzhen</h2>
-                <p style="color: var(--text-light);">Leading tertiary hospitals with international-standard medical services</p>
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Our Medical Network in Shenzhen</h2>
             </div>
-            <div class="partner-hospitals-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
-                <div style="background: white; padding: 1.5rem 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; line-height: 1.3;">HKU Shenzhen Hospital</h4>
-                    <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.5;">Joint venture with Hong Kong University, JCI accredited, international-style management</p>
-                </div>
-                <div style="background: white; padding: 1.5rem 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; line-height: 1.3;">Shenzhen People's Hospital</h4>
-                    <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.5;">Largest comprehensive tertiary hospital in Shenzhen with 80+ clinical departments</p>
-                </div>
-                <div style="background: white; padding: 1.5rem 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; line-height: 1.3;">Shenzhen Second People's Hospital</h4>
-                    <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.5;">Specialized in neurology, orthopedics, and trauma center with advanced equipment</p>
-                </div>
-                <div style="background: white; padding: 1.5rem 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; line-height: 1.3;">Peking University Shenzhen Hospital</h4>
-                    <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.5;">JCI certified teaching hospital affiliated with Peking University Health Science Center</p>
-                </div>
-                <div style="background: white; padding: 1.5rem 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; line-height: 1.3;">Southern Medical Univ. Shenzhen Hospital</h4>
-                    <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.5;">Modern teaching hospital integrating medical education, research, and patient care</p>
-                </div>
+            <div style="max-width: 700px; margin: 0 auto 2rem auto;">
+                <p style="text-gray-700; margin-bottom: 1.5rem;">We help connect you with leading hospitals across Shenzhen, including:</p>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">HKU Shenzhen Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Shenzhen People's Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Shenzhen Second People's Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Peking University Shenzhen Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Southern Medical University Shenzhen Hospital</span>
+                    </li>
+                </ul>
             </div>
-            <p style="text-align: center; font-size: 0.875rem; color: var(--text-light); margin-top: 2rem; padding: 1rem; background: white; border-radius: 0.75rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Plus 10+ additional partner hospitals across Shenzhen. <a href="contact.html" style="color: var(--primary); font-weight: 500; text-decoration: none;">Contact us</a> for a complete list and personalized hospital matching based on your medical needs.
+            <p style="text-align: left; font-size: 0.875rem; color: var(--text-light); margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 0.75rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                And <strong>10+ more facilities</strong> across Shenzhen. <a href="contact.html" style="color: var(--primary); font-weight: 500; text-decoration: none;">Contact us</a> for a complete list and personalized hospital matching based on your condition.
+            </p>
+            <p style="text-align: left; font-size: 0.75rem; color: #9ca3af; margin-top: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                <strong>Disclaimer:</strong> We facilitate connections with these and other quality hospitals based on your medical needs. IntersectionMed is an independent patient advocacy and medical escort service, not affiliated with any hospital.
             </p>
         </div>
     </section>
