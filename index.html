@@ -47,7 +47,7 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0.1rem 2rem;
+            padding: 0.75rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -623,10 +623,19 @@
                 display: none;
             }
 
+            .logo img {
+                height: 80px;
+            }
+
+            .navbar {
+                padding: 0.5rem 0;
+            }
+
             .hero-container {
                 grid-template-columns: 1fr;
-                padding: 6rem 1rem 3rem;
+                padding: 12rem 1.5rem 3rem;
                 gap: 2rem;
+                align-items: flex-start;
             }
 
             .hero-content h1 {
@@ -636,6 +645,10 @@
 
             .hero-content p {
                 font-size: 1rem;
+            }
+
+            .hero-buttons {
+                padding: 0 0.5rem;
             }
 
             .hero-stats {
