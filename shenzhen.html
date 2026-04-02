@@ -94,16 +94,10 @@
         /* Hero Section */
         .hero {
             padding: 10rem 2rem 6rem;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(37, 99, 235, 0.85) 100%),
-                        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80');
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             background-size: cover;
             background-position: center;
             text-align: center;
-        }
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            padding-top: 100px;
         }
 
         .hero-container {
@@ -114,18 +108,18 @@
         .hero-content h1 {
             font-size: 3rem;
             font-weight: 800;
-            color: white;
+            color: var(--text);
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .hero-content h1 span {
-            color: #93c5fd;
+            color: var(--primary);
         }
 
         .hero-content p {
             font-size: 1.25rem;
-            color: rgba(255,255,255,0.9);
+            color: var(--text-light);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -472,6 +466,25 @@
 
             .why-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .why-card {
+                padding: 1.25rem;
+            }
+
+            .why-card h3 {
+                font-size: 1rem;
+            }
+
+            .why-card p {
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+
+            .why-card ul li {
+                font-size: 0.875rem;
+                padding: 0.35rem 0;
             }
 
             .journey-steps {
@@ -488,6 +501,113 @@
             }
         }
     </style>
+
+    <style>
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+        }
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .mobile-menu-links a {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .mobile-menu-links a:hover {
+            color: var(--primary);
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-links {
+                display: none;
+            }
+            .logo img {
+                height: 60px;
+            }
+            .navbar {
+                padding: 0.25rem 0;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var hamburger = document.querySelector('.hamburger');
+            var mobileMenu = document.getElementById('mobileMenu');
+            var mobileMenuClose = document.querySelector('.mobile-menu-close');
+            var mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function() {
+                    mobileMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                mobileMenuClose.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+                mobileMenuLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+        });
+    </script>
 
     <!-- Schema.org markup -->
     <script type="application/ld+json">
@@ -524,8 +644,23 @@
                 <a href="shenzhen.html" class="active">Why Shenzhen</a>
                 <a href="contact.html">Contact</a>
             </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Close">✕</button>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="shenzhen.html">Why Shenzhen</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
