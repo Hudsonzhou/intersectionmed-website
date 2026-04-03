@@ -179,6 +179,18 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
 
+        function toggleGenderOther() {
+            var genderSelect = document.getElementById('genderAnswer');
+            var genderOtherInput = document.getElementById('genderOther');
+            if (genderSelect.value === 'Other') {
+                genderOtherInput.style.display = 'block';
+                genderOtherInput.required = true;
+            } else {
+                genderOtherInput.style.display = 'none';
+                genderOtherInput.required = false;
+                genderOtherInput.value = '';
+            }
+        }
         function isValidEmail(email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
@@ -305,32 +317,31 @@
                     </div>
                     <div class="form-group">
                         <label>Country *</label>
-                        <select name="country" id="country" required>
-                            <option value="">-- Select your country --</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Canada">Canada</option>
-                            <option value="China">China</option>
-                            <option value="France">France</option>
-                            <option value="Germany">Germany</option>
-                            <option value="Hong Kong">Hong Kong</option>
-                            <option value="India">India</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Japan">Japan</option>
-                            <option value="Malaysia">Malaysia</option>
-                            <option value="Morocco">Morocco</option>
-                            <option value="Netherlands">Netherlands</option>
-                            <option value="New Zealand">New Zealand</option>
-                            <option value="Philippines">Philippines</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="South Korea">South Korea</option>
-                            <option value="Spain">Spain</option>
-                            <option value="Taiwan">Taiwan</option>
-                            <option value="Thailand">Thailand</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="United States">United States</option>
-                            <option value="Vietnam">Vietnam</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <input type="text" name="country" id="country" list="countryList" placeholder="Type or select your country" required style="width:100%;padding:0.75rem 1rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-size:1rem;">
+                        <datalist id="countryList">
+                            <option value="Australia">
+                            <option value="Canada">
+                            <option value="China">
+                            <option value="France">
+                            <option value="Germany">
+                            <option value="Hong Kong">
+                            <option value="India">
+                            <option value="Indonesia">
+                            <option value="Japan">
+                            <option value="Malaysia">
+                            <option value="Morocco">
+                            <option value="Netherlands">
+                            <option value="New Zealand">
+                            <option value="Philippines">
+                            <option value="Singapore">
+                            <option value="South Korea">
+                            <option value="Spain">
+                            <option value="Taiwan">
+                            <option value="Thailand">
+                            <option value="United Kingdom">
+                            <option value="United States">
+                            <option value="Vietnam">
+                        </datalist>
                     </div>
                     <div class="form-group">
                         <label>Medical Condition / Interest</label>
@@ -344,12 +355,15 @@
                     <small id="recaptchaError" class="recaptcha-error">Please complete the reCAPTCHA verification</small>
                     <div class="form-group" style="background:#f0f9ff;padding:1rem;border-radius:0.5rem;margin-bottom:1.5rem;">
                         <label for="genderAnswer">Quick Check: What is your gender? (spam protection)</label>
-                        <select id="genderAnswer" name="gender_answer" required style="margin-top:0.5rem;width:100%;padding:0.75rem 1rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-size:1rem;">
+                        <select id="genderAnswer" name="gender_answer" required style="margin-top:0.5rem;width:100%;padding:0.75rem 1rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-size:1rem;" onchange="toggleGenderOther()">
                             <option value="">-- Select --</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
+                            <option value="Non-binary">Non-binary</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
                             <option value="Other">Other</option>
                         </select>
+                        <input type="text" id="genderOther" name="gender_other" placeholder="Please specify your gender" style="margin-top:0.5rem;width:100%;padding:0.75rem 1rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-size:1rem;display:none;">
                     </div>
                     <button type="submit" class="btn-submit" id="submitBtn">Send Message →</button>
                     <p id="formStatus" style="margin-top:1rem;font-size:0.875rem;"></p>
