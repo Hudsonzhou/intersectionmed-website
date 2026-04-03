@@ -178,14 +178,7 @@
     </style>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
-        var num1, num2, mathAnswer;
-        function generateMath() {
-            num1 = Math.floor(Math.random() * 10) + 1;
-            num2 = Math.floor(Math.random() * 10) + 1;
-            document.getElementById('mathQ').textContent = num1 + ' + ' + num2 + '?';
-            mathAnswer = num1 + num2;
-        }
-        generateMath();
+
         function isValidEmail(email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
@@ -218,15 +211,7 @@
             } else {
                 document.getElementById('emailError').style.display = 'none';
             }
-            var userAnswer = document.getElementById('mathAnswer').value.trim();
-            if (parseInt(userAnswer) !== mathAnswer) {
-                document.getElementById('mathError').style.display = 'block';
-                isValid = false;
-                generateMath();
-                document.getElementById('mathAnswer').value = '';
-            } else {
-                document.getElementById('mathError').style.display = 'none';
-            }
+
             if (isValid) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Sending...';
@@ -358,9 +343,13 @@
                     <div class="g-recaptcha" data-sitekey="6LdxlaQsAAAAANv7GS82qGDojqip3QC6gI06IDYs"></div>
                     <small id="recaptchaError" class="recaptcha-error">Please complete the reCAPTCHA verification</small>
                     <div class="form-group" style="background:#f0f9ff;padding:1rem;border-radius:0.5rem;margin-bottom:1.5rem;">
-                        <label for="mathAnswer">Quick Check: What is <span id="mathQ"></span>? (spam protection)</label>
-                        <input type="text" id="mathAnswer" name="math_answer" placeholder="Your answer" required style="margin-top:0.5rem;">
-                        <small id="mathError" style="color:#dc2626;display:none;">Incorrect answer, please try again</small>
+                        <label for="genderAnswer">Quick Check: What is your gender? (spam protection)</label>
+                        <select id="genderAnswer" name="gender_answer" required style="margin-top:0.5rem;width:100%;padding:0.75rem 1rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-size:1rem;">
+                            <option value="">-- Select --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn-submit" id="submitBtn">Send Message →</button>
                     <p id="formStatus" style="margin-top:1rem;font-size:0.875rem;"></p>
