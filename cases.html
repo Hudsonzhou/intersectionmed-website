@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Cases - IntersectionMed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 130px;
+            width: auto;
+            background: transparent;
+            border-radius: 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
+        }
+
+        .lang-dropdown-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .lang-dropdown-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .lang-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 120px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.25rem;
+            z-index: 1001;
+        }
+
+        .lang-dropdown-content a {
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.875rem;
+        }
+
+        .lang-dropdown-content a:hover {
+            background: #f3f4f6;
+        }
+
+        .lang-dropdown:hover .lang-dropdown-content {
+            display: block;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cases Grid */
+        .cases-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .case-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .case-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .case-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .case-image {
+            background: var(--bg-light);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .case-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .case-flag {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-content h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .case-meta span {
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .case-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .case-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .case-stat h4 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .case-stat p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--bg-light);
+            padding: 4rem 2rem;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-card .quote {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin: 0;
+            font-style: normal;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 4rem 2rem;
+            background: var(--primary);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: #9ca3af;
+            margin-top: 1rem;
+        }
+
+        .footer-brand .logo-footer {
+            height: 100px;
+            width: auto;
+            background: white;
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        .footer-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.25rem 0;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header {
+                padding: 8rem 1rem 4rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .case-card {
+                grid-template-columns: 1fr;
+            }
+
+            .case-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .case-image {
+                min-height: 200px;
+            }
+
+            .case-content {
+                padding: 1.5rem;
+            }
+
+            .case-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+    </style>
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Patient Success Stories - IntersectionMed",
+        "description": "Real patient testimonials and success stories from international patients who received medical treatment in Shenzhen with IntersectionMed's escort services.",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Review",
+                    "reviewBody": "From my first consultation in Canada to my surgery in Shenzhen, everything was seamless. The team handled every detail, and I saved over $25,000 compared to US quotes.",
+                    "author": {"@type": "Person", "name": "Michael Thompson"},
+                    "reviewRating": {"@type": "Rating", "ratingValue": "5"}
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Review",
+                    "reviewBody": "I was skeptical at first, but the professionalism exceeded my expectations. The hospital was state-of-the-art, and the doctors spoke excellent English.",
+                    "author": {"@type": "Person", "name": "Sarah Mitchell"},
+                    "reviewRating": {"@type": "Rating", "ratingValue": "5"}
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Review",
+                    "reviewBody": "The waiting list in Germany was 4 months for my knee replacement. With IntersectionMed, I had surgery within 2 weeks.",
+                    "author": {"@type": "Person", "name": "Klaus Weber"},
+                    "reviewRating": {"@type": "Rating", "ratingValue": "5"}
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="IntersectionMed">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="shenzhen.html">Why Shenzhen</a>
+                <a href="cases.html">Cases</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Patient Success Stories</h1>
+        <p>Real experiences from patients who transformed their healthcare journey with IntersectionMed</p>
+    </header>
+
+    <section class="cases-section">
+        <!-- Case 1: Singapore -->
+        <div class="case-card">
+            <div class="case-image">👶</div>
+            <div class="case-content">
+                <div class="case-flag">🇸🇬</div>
+                <h2>Tonsil Surgery for 4-Year-Old in 4 Days</h2>
+                <div class="case-meta">
+                    <span>🇸🇬 Singapore</span>
+                    <span>Pediatric Surgery</span>
+                    <span>December 2025</span>
+                </div>
+                <p>Mrs. Lim's son had been suffering from chronic tonsillitis and sleep apnea. In Singapore, the surgery wait time was 3 months, with no guarantee of scheduling during school holidays. Through IntersectionMed, she connected with Children's Hospital Zhejiang University School of Medicine.</p>
+                <p>Within 24 hours of contacting us, she received a detailed treatment plan. The family flew to Hangzhou on Sunday, had consultation Monday, surgery Wednesday, and returned home Thursday. Total time from arrival to departure: 4 days.</p>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <h4>4 Days</h4>
+                        <p>TOTAL TIME</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>60%</h4>
+                        <p>COST SAVINGS</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>5★</h4>
+                        <p>SATISFACTION</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case 2: UK -->
+        <div class="case-card">
+            <div class="case-image">🦵</div>
+            <div class="case-content">
+                <div class="case-flag">🇬🇧</div>
+                <h2>From 26-Week NHS Wait to Same-Day MRI</h2>
+                <div class="case-meta">
+                    <span>🇬🇧 United Kingdom</span>
+                    <span>Orthopedics</span>
+                    <span>October 2025</span>
+                </div>
+                <p>Mr. Smith, 68, had been waiting 3 months for an MRI to diagnose his chronic leg pain. The NHS queue was 26 weeks long, and private options in the UK quoted £3,000+ for imaging alone. His condition was deteriorating daily.</p>
+                <p>After discovering IntersectionMed online, he flew to Shanghai. Within hours of landing, he completed his MRI, received a definitive diagnosis, and began treatment. Total cost: £280 for MRI + consultation. He called it "the best decision I've ever made for my health."</p>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <h4>Same Day</h4>
+                        <p>MRI COMPLETED</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>90%</h4>
+                        <p>COST SAVINGS</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>3 Weeks</h4>
+                        <p>RECOVERY TIME</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case 3: USA -->
+        <div class="case-card">
+            <div class="case-image">🏥</div>
+            <div class="case-content">
+                <div class="case-flag">🇺🇸</div>
+                <h2>$31,000 vs $1,200: Gallbladder Surgery</h2>
+                <div class="case-meta">
+                    <span>🇺🇸 United States</span>
+                    <span>General Surgery</span>
+                    <span>November 2025</span>
+                </div>
+                <p>Jennifer, a teacher from Texas, faced a $31,000 hospital bill for emergency gallbladder surgery in the US, even with insurance. Her deductible and out-of-network costs were overwhelming.</p>
+                <p>She researched alternatives and found IntersectionMed. We coordinated her surgery at a top-tier hospital in Hangzhou. The procedure, hospital stay, and all medications cost $1,200. Including flights and accommodation, her total was under $3,000.</p>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <h4>96%</h4>
+                        <p>COST SAVINGS</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>1 Day</h4>
+                        <p>SURGERY SCHEDULED</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>2 Days</h4>
+                        <p>HOSPITAL STAY</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case 4: Russia -->
+        <div class="case-card">
+            <div class="case-image">🦴</div>
+            <div class="case-content">
+                <div class="case-flag">🇷🇺</div>
+                <h2>Traditional Chinese Medicine for Chronic Pain</h2>
+                <div class="case-meta">
+                    <span>🇷🇺 Russia</span>
+                    <span>Traditional Medicine</span>
+                    <span>September 2025</span>
+                </div>
+                <p>Elena from Vladivostok had suffered from chronic back pain for 8 years. Russian doctors recommended surgery, but she sought alternative treatments. She had heard of TCM's effectiveness but didn't know where to start.</p>
+                <p>We connected her with a renowned TCM hospital in Hunchun, a border city with Russia. She received acupuncture, herbal therapy, and therapeutic massage over 2 weeks. Her pain reduced by 80%. Now she returns annually for maintenance treatment.</p>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <h4>80%</h4>
+                        <p>PAIN REDUCTION</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>2 Weeks</h4>
+                        <p>TREATMENT COURSE</p>
+                    </div>
+                    <div class="case-stat">
+                        <h4>Year 3</h4>
+                        <p>RETURNING PATIENT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2>What Our Patients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="quote">"</div>
+                    <p>I was skeptical at first, but the professionalism exceeded my expectations. The hospital was cleaner than any I've seen in London, and the doctors spoke excellent English.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨</div>
+                        <div class="author-info">
+                            <h4>James W.</h4>
+                            <p>UK Patient, Orthopedic Surgery</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote">"</div>
+                    <p>The cost difference was incredible, but what impressed me most was the speed. From first email to surgery was less than 2 weeks. In Canada, I was told 8 months.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩</div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Canadian Patient, Dental Surgery</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote">"</div>
+                    <p>IntersectionMed handled everything - visa invitation, hospital appointments, even hotel bookings near the hospital. I felt supported throughout my entire journey.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨</div>
+                        <div class="author-info">
+                            <h4>Ahmed K.</h4>
+                            <p>UAE Patient, Cardiac Treatment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Be Our Next Success Story</h2>
+        <p>Share your medical needs with us and discover how we can help</p>
+        <a href="contact.html" class="btn-white">Start Your Journey</a>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="logo.png" alt="IntersectionMed" class="logo-footer">
+                <p>Your trusted partner for quality healthcare in China.</p>
+                <div class="footer-location">
+                    📍 Shenzhen, China
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shenzhen.html">Why Shenzhen</a>
+                <a href="cases.html">Cases</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <a href="#">Visa Guide</a>
+                <a href="#">Costs</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 IntersectionMed. All rights reserved. | Based in Shenzhen, China</p>
+        </div>
+    </footer>
+</body>
+</html>

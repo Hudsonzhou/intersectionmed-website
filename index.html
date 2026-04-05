@@ -139,11 +139,11 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+            min-height: 100dvh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(37, 99, 235, 0.8) 100%),
-                        url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=1920&q=80');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.88) 100%),
+                        url('https://files.catbox.moe/077it2.png');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -240,25 +240,46 @@
         }
 
         .stat-card {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
+            background: white;
             border-radius: 1rem;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .stat-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .stat-content {
+            padding: 1.25rem 1.5rem;
         }
 
         .stat-card h3 {
-            font-size: 2.5rem;
+            font-size: 1.125rem;
             color: #2563eb;
             font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card .stat-title {
+            color: #1e293b;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .stat-card p {
             color: #64748b;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
+            font-size: 0.8125rem;
+            line-height: 1.5;
         }
 
         /* Comparison Section */
@@ -304,6 +325,19 @@
             text-align: center;
         }
 
+        .comparison-source {
+            text-align: left;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 0.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .comparison-card.highlight {
             border: 2px solid var(--primary);
             position: relative;
@@ -323,8 +357,11 @@
             border-radius: 1rem;
         }
 
-        .country-flag {
-            font-size: 3rem;
+        .country-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 0.75rem;
             margin-bottom: 1rem;
         }
 
@@ -349,7 +386,7 @@
         }
 
         .metric-value {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
         }
 
@@ -373,35 +410,40 @@
         }
 
         .service-card {
+            background: white;
             border-radius: 1rem;
             overflow: hidden;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
 
         .service-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
         }
 
         .service-content {
             padding: 1.5rem;
+            background: white;
         }
 
         .service-content h3 {
             font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
 
         .service-content p {
             color: var(--text-light);
             font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
         /* Testimonials Section */
@@ -614,6 +656,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .partner-hospitals-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -779,20 +825,36 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-card">
-                    <h3>4 Days</h3>
-                    <p>Average from consultation to surgery</p>
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Advanced Medical Technology" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Technology</h3>
+                        <div class="stat-title">World-Class Equipment</div>
+                        <p>Cutting-edge medical technology on par with international standards</p>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <h3>70%</h3>
-                    <p>Cost savings vs Western countries*</p>
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="Affordable Healthcare Costs" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Pricing</h3>
+                        <div class="stat-title">Premium Care · Affordable Cost</div>
+                        <p>Revolutionary value — save up to 70% vs. US/EU prices</p>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <h3>10+</h3>
-                    <p>Partner hospitals in Shenzhen</p>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="International Standard Service" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Service</h3>
+                        <div class="stat-title">International Standard · Direct Insurance</div>
+                        <p>Seamless experience with direct billing acceptance</p>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <h3>24/7</h3>
-                    <p>English-speaking support</p>
+                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80" alt="Rapid Medical Service" class="stat-img">
+                    <div class="stat-content">
+                        <h3>Efficiency</h3>
+                        <div class="stat-title">Rapid Response · No Waiting</div>
+                        <p>Instant consultation — skip the long queues</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -807,54 +869,63 @@
             </div>
             <div class="comparison-grid">
                 <div class="comparison-card">
-                    <div class="country-flag">🇺🇸</div>
+                    <div class="country-img">
+                        <img src="https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?w=400&q=80" alt="United States - Statue of Liberty" class="country-img">
+                    </div>
                     <h3>United States</h3>
                     <div class="metric">
-                        <div class="metric-label">MRI Wait Time</div>
-                        <div class="metric-value bad">3-8 weeks</div>
+                        <div class="metric-label">MRI/CT Wait</div>
+                        <div class="metric-value bad">2-4 weeks</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Gallbladder Surgery</div>
-                        <div class="metric-value bad">$30,000+</div>
+                        <div class="metric-label">Specialist Consultation</div>
+                        <div class="metric-value bad">24-30 days</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Emergency Response</div>
-                        <div class="metric-value">Good</div>
+                        <div class="metric-label">Routine Surgery</div>
+                        <div class="metric-value bad">3-4 weeks (elective)</div>
                     </div>
                 </div>
                 <div class="comparison-card">
-                    <div class="country-flag">🇬🇧</div>
+                    <div class="country-img">
+                        <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?w=400&q=80" alt="United Kingdom - Big Ben" class="country-img">
+                    </div>
                     <h3>United Kingdom</h3>
                     <div class="metric">
-                        <div class="metric-label">MRI Wait Time</div>
-                        <div class="metric-value bad">18-26 weeks</div>
+                        <div class="metric-label">MRI/CT Wait</div>
+                        <div class="metric-value bad">17% wait 6+ weeks</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Specialist Consult</div>
-                        <div class="metric-value bad">12+ weeks</div>
+                        <div class="metric-label">Specialist Consultation</div>
+                        <div class="metric-value bad">12-18 weeks</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Cost (NHS)</div>
-                        <div class="metric-value">Free</div>
+                        <div class="metric-label">Routine Surgery</div>
+                        <div class="metric-value bad">18-24 weeks</div>
                     </div>
                 </div>
                 <div class="comparison-card highlight">
-                    <div class="country-flag">🇨🇳</div>
-                    <h3>China</h3>
+                    <div class="country-img">
+                        <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=400&q=80" alt="China - Shenzhen skyline" class="country-img">
+                    </div>
+                    <h3>China (Shenzhen)</h3>
                     <div class="metric">
-                        <div class="metric-label">MRI Wait Time</div>
-                        <div class="metric-value good">Same day</div>
+                        <div class="metric-label">MRI/CT Wait</div>
+                        <div class="metric-value good">Same day - 1 week</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Gallbladder Surgery</div>
-                        <div class="metric-value good">$1,500-2,500</div>
+                        <div class="metric-label">Specialist Consultation</div>
+                        <div class="metric-value good">1-3 days</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">World-Class Tech</div>
-                        <div class="metric-value good">Robotic Surgery</div>
+                        <div class="metric-label">Routine Surgery</div>
+                        <div class="metric-value good">3-7 days</div>
                     </div>
                 </div>
             </div>
+            <p class="comparison-source">
+                Sources: US — Merritt Hawkins 2024 Physician Survey; UK — Royal College of Radiologists (Jun 2024) & NHS England RTT Statistics (2024); China (Shenzhen) — China Daily (May 2024), National Health Commission (2024). Note: Wait times vary by hospital, region, and condition. Contact us for current estimates for your specific case.
+            </p>
         </div>
     </section>
 
@@ -863,35 +934,35 @@
         <div class="section-container">
             <div class="section-header">
                 <h2>Our Services</h2>
-                <p>End-to-end support for your medical journey to China</p>
+                <p>Comprehensive medical escort support from consultation to recovery</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80" alt="Hospital Matching" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Medical Consultation" class="service-img">
+                    <div class="service-content">
+                        <h3>Medical Consultation</h3>
+                        <p>Pre-travel medical advice, treatment planning & specialist recommendations. Expert guidance before you arrive in Shenzhen.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="Hospital Matching" class="service-img">
                     <div class="service-content">
                         <h3>Hospital Matching</h3>
-                        <p>We connect you with the best hospitals and specialists for your specific condition.</p>
+                        <p>We connect you with the best-suited hospitals & specialists in Shenzhen based on your specific medical condition.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" alt="Visa Assistance" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Medical Escort" class="service-img">
                     <div class="service-content">
-                        <h3>Visa Assistance</h3>
-                        <p>Complete support for medical visa applications and documentation.</p>
+                        <h3>Medical Escort</h3>
+                        <p>Personalized in-person guidance throughout your entire medical journey — from hospital admission to discharge & recovery.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Translation" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Medical Translation" class="service-img">
                     <div class="service-content">
-                        <h3>Translation</h3>
-                        <p>Professional medical interpreters accompany you throughout your treatment.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80" alt="Travel Logistics" class="service-img">
-                    <div class="service-content">
-                        <h3>Travel Logistics</h3>
-                        <p>Airport pickup, accommodation, and local transportation arranged for you.</p>
+                        <h3>Medical Translation</h3>
+                        <p>Professional medical interpreters provide accurate translation during consultations, procedures, and all paperwork.</p>
                     </div>
                 </div>
             </div>
@@ -912,8 +983,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">M</div>
                         <div class="testimonial-info">
-                            <h4>Michael Thompson</h4>
-                            <p>Cardiac Surgery Patient, Canada</p>
+                            <h4>M. Thompson</h4>
+                            <p>Cardiac Surgery · Canada</p>
                         </div>
                     </div>
                 </div>
@@ -923,8 +994,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">S</div>
                         <div class="testimonial-info">
-                            <h4>Sarah Mitchell</h4>
-                            <p>Orthopedic Surgery, United Kingdom</p>
+                            <h4>S. Mitchell</h4>
+                            <p>Orthopedic Surgery · UK</p>
                         </div>
                     </div>
                 </div>
@@ -934,8 +1005,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">K</div>
                         <div class="testimonial-info">
-                            <h4>Klaus Weber</h4>
-                            <p>Joint Replacement, Germany</p>
+                            <h4>K. Weber</h4>
+                            <p>Joint Replacement · Germany</p>
                         </div>
                     </div>
                 </div>
@@ -945,8 +1016,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">A</div>
                         <div class="testimonial-info">
-                            <h4>Ana Rodriguez</h4>
-                            <p>Cancer Treatment, Spain</p>
+                            <h4>A. Rodriguez</h4>
+                            <p>Cancer Treatment · Spain</p>
                         </div>
                     </div>
                 </div>
@@ -956,8 +1027,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">J</div>
                         <div class="testimonial-info">
-                            <h4>James Wilson</h4>
-                            <p>Spinal Surgery, Australia</p>
+                            <h4>J. Wilson</h4>
+                            <p>Spinal Surgery · Australia</p>
                         </div>
                     </div>
                 </div>
@@ -968,8 +1039,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">M</div>
                         <div class="testimonial-info">
-                            <h4>Michael Thompson</h4>
-                            <p>Cardiac Surgery Patient, Canada</p>
+                            <h4>M. Thompson</h4>
+                            <p>Cardiac Surgery · Canada</p>
                         </div>
                     </div>
                 </div>
@@ -979,8 +1050,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">S</div>
                         <div class="testimonial-info">
-                            <h4>Sarah Mitchell</h4>
-                            <p>Orthopedic Surgery, United Kingdom</p>
+                            <h4>S. Mitchell</h4>
+                            <p>Orthopedic Surgery · UK</p>
                         </div>
                     </div>
                 </div>
@@ -990,8 +1061,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">K</div>
                         <div class="testimonial-info">
-                            <h4>Klaus Weber</h4>
-                            <p>Joint Replacement, Germany</p>
+                            <h4>K. Weber</h4>
+                            <p>Joint Replacement · Germany</p>
                         </div>
                     </div>
                 </div>
@@ -1001,8 +1072,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">A</div>
                         <div class="testimonial-info">
-                            <h4>Ana Rodriguez</h4>
-                            <p>Cancer Treatment, Spain</p>
+                            <h4>A. Rodriguez</h4>
+                            <p>Cancer Treatment · Spain</p>
                         </div>
                     </div>
                 </div>
@@ -1012,8 +1083,8 @@
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">J</div>
                         <div class="testimonial-info">
-                            <h4>James Wilson</h4>
-                            <p>Spinal Surgery, Australia</p>
+                            <h4>J. Wilson</h4>
+                            <p>Spinal Surgery · Australia</p>
                         </div>
                     </div>
                 </div>
@@ -1023,41 +1094,50 @@
 
     <!-- Cost Disclaimer -->
     <section style="background: var(--bg-light); padding: 3rem 2rem;">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div style="max-width: 900px; margin: 0 auto; text-align: left;">
             <p style="font-size: 0.875rem; color: var(--text-light);">
                 * <strong>Cost Comparison Disclaimer:</strong> The 70% cost savings figure is based on comparative studies between typical US/EU medical procedure costs and equivalent procedures in China. Actual savings vary by procedure type, hospital, and individual case. Data sourced from international medical tourism industry reports (2023-2024).
             </p>
         </div>
     </section>
 
-    <!-- Partner Hospitals -->
-    <section style="padding: 4rem 2rem; background: white;">
+    <!-- Our Medical Network -->
+    <section style="padding: 4rem 2rem; background: var(--bg-light);">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Our Partner Hospitals in Shenzhen</h2>
-                <p style="color: var(--text-light);">World-class JCI-accredited and international-standard facilities</p>
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Our Medical Network in Shenzhen</h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center;">
-                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 0.75rem;">
-                    <div style="font-size: 1.5rem; font-weight: 600; color: var(--primary);">Peking University Shenzhen Hospital</div>
-                    <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem;">JCI Accredited</p>
-                </div>
-                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 0.75rem;">
-                    <div style="font-size: 1.5rem; font-weight: 600; color: var(--primary);">Shenzhen Second People's Hospital</div>
-                    <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem;">Tertiary Care</p>
-                </div>
-                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 0.75rem;">
-                    <div style="font-size: 1.5rem; font-weight: 600; color: var(--primary);">Shenzhen University General Hospital</div>
-                    <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem;">University Affiliated</p>
-                </div>
-                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 0.75rem;">
-                    <div style="font-size: 1.5rem; font-weight: 600; color: var(--primary);">中山大学深圳医院</div>
-                    <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem;">Sun Yat-sen University</p>
-                </div>
+            <div style="max-width: 700px; margin: 0 auto 2rem auto;">
+                <p style="text-gray-700; margin-bottom: 1.5rem;">We help connect you with leading hospitals across Shenzhen, including:</p>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">HKU Shenzhen Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Shenzhen People's Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Shenzhen Second People's Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Peking University Shenzhen Hospital</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
+                        <span style="font-weight: 500;">Southern Medical University Shenzhen Hospital</span>
+                    </li>
+                </ul>
             </div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="services.html" style="color: var(--primary); font-weight: 500; text-decoration: none;">View all partner hospitals →</a>
-            </div>
+            <p style="text-align: left; font-size: 0.875rem; color: var(--text-light); margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 0.75rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                And <strong>10+ more facilities</strong> across Shenzhen. <a href="contact.html" style="color: var(--primary); font-weight: 500; text-decoration: none;">Contact us</a> for a complete list and personalized hospital matching based on your condition.
+            </p>
+            <p style="text-align: left; font-size: 0.75rem; color: #9ca3af; margin-top: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                <strong>Disclaimer:</strong> We facilitate connections with these and other quality hospitals based on your medical needs. IntersectionMed is an independent patient advocacy and medical escort service, not affiliated with any hospital.
+            </p>
         </div>
     </section>
 
@@ -1073,7 +1153,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <img src="logo.png" alt="IntersectionMed" class="logo-footer">
-                <p>Your trusted partner for world-class healthcare in China. We bridge the gap between international patients and China's top medical facilities.</p>
+                <p>Your trusted bridge to China's healthcare system. We help international patients navigate the local medical landscape with confidence.</p>
                 <div class="footer-location">
                     📍 Shenzhen, China
                 </div>
