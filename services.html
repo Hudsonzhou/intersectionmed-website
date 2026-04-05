@@ -88,7 +88,7 @@
         /* Page Header */
         .page-header {
             padding: 10rem 2rem 6rem;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.1) 100%);
             text-align: center;
         }
 
@@ -237,14 +237,6 @@
         .audience-card p {
             font-size: 0.9375rem;
             color: var(--text-light);
-        }
-
-        .audience-note {
-            text-align: center;
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-top: 2rem;
-            font-style: italic;
         }
 
         /* Process Section */
@@ -467,6 +459,11 @@
             border-radius: 8px;
         }
 
+        .footer-location {
+            margin-top: 1rem;
+            color: #9ca3af;
+        }
+
         .footer-links h4 {
             margin-bottom: 1rem;
         }
@@ -557,113 +554,6 @@
             }
         }
     </style>
-
-    <style>
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 36px;
-            height: 36px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-            z-index: 1001;
-        }
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background: var(--text);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.98);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .mobile-menu.active {
-            display: flex;
-        }
-        .mobile-menu-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text);
-            width: 40px;
-            height: 40px;
-        }
-        .mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .mobile-menu-links a {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .mobile-menu-links a:hover {
-            color: var(--primary);
-        }
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-            .nav-links {
-                display: none;
-            }
-            .logo img {
-                height: 60px;
-            }
-            .navbar {
-                padding: 0.25rem 0;
-            }
-        }
-    </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var hamburger = document.querySelector('.hamburger');
-            var mobileMenu = document.getElementById('mobileMenu');
-            var mobileMenuClose = document.querySelector('.mobile-menu-close');
-            var mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
-            if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', function() {
-                    mobileMenu.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-                mobileMenuClose.addEventListener('click', function() {
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-                mobileMenuLinks.forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        mobileMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                });
-            }
-        });
-    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -679,23 +569,8 @@
                 <a href="shenzhen.html">Why Shenzhen</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <button class="hamburger" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
         </div>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" aria-label="Close">✕</button>
-        <div class="mobile-menu-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="shenzhen.html">Why Shenzhen</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -705,73 +580,93 @@
 
     <!-- Service Details -->
     <section class="services-content">
-        <!-- Medical Consultation -->
+        <!-- Hospital Appointment Scheduling -->
         <div class="service-detail">
             <div class="service-info">
-                <h2>Medical Consultation</h2>
-                <p>We help you understand your options before you arrive.</p>
+                <h2>Hospital Appointment Scheduling</h2>
+                <p>We handle the complexity of China's healthcare system for you. Our team has established relationships with Shenzhen's top hospitals, ensuring you get fast access to specialists who match your specific medical needs.</p>
                 <ul class="service-features">
-                    <li>Medical record collection & preliminary assessment</li>
-                    <li>Treatment plan explanation in plain language</li>
-                    <li>Alternative medical opinion coordination</li>
-                    <li>Detailed cost estimation & budget planning</li>
-                </ul>
-            </div>
-            <div class="service-image">
-                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Medical consultation services Shenzhen">
-            </div>
-        </div>
-
-        <!-- Hospital Matching -->
-        <div class="service-detail">
-            <div class="service-info">
-                <h2>Hospital Matching</h2>
-                <p>We find the right hospital and specialist for your condition.</p>
-                <ul class="service-features">
-                    <li>Precision matching based on your specific condition</li>
-                    <li>Specialist selection with verified credentials</li>
-                    <li>International Medical Department coordination</li>
-                    <li>Hospital facilities & expertise explanation</li>
-                </ul>
-            </div>
-            <div class="service-image">
-                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80" alt="Hospital matching services Shenzhen">
-            </div>
-        </div>
-
-        <!-- Medical Escort -->
-        <div class="service-detail">
-            <div class="service-info">
-                <h2>Medical Escort</h2>
-                <p>We are with you from arrival to recovery.</p>
-                <ul class="service-features">
-                    <li>Hospital appointment & registration scheduling</li>
-                    <li>Full accompaniment through all consultations</li>
-                    <li>Examination & test coordination</li>
-                    <li>Hospitalization & surgery paperwork support</li>
+                    <li>Same-day appointments with leading specialists</li>
+                    <li>Direct coordination with hospital admission departments</li>
+                    <li>Selection of English-speaking doctors upon request</li>
+                    <li>Medical records translation and preparation</li>
                     <li>Follow-up appointment management</li>
                 </ul>
             </div>
             <div class="service-image">
-                <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80" alt="Medical escort services Shenzhen">
+                <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80" alt="Hospital appointment scheduling in Shenzhen">
             </div>
         </div>
 
-        <!-- Medical Translation -->
+        <!-- Medical Interpretation -->
         <div class="service-detail">
             <div class="service-info">
-                <h2>Medical Translation</h2>
-                <p>We make sure you and your doctor truly understand each other.</p>
+                <h2>Medical Interpretation</h2>
+                <p>Language barriers shouldn't compromise your healthcare. Our certified medical interpreters accompany you to every appointment, ensuring clear communication between you and your healthcare providers.</p>
                 <ul class="service-features">
-                    <li>Real-time interpretation during consultations</li>
-                    <li>Written translation of examination reports</li>
-                    <li>Medical document & prescription translation</li>
-                    <li>Informed consent explanation & assistance</li>
-                    <li>Post-visit remote follow-up coordination</li>
+                    <li>Professional medical interpreters with healthcare background</li>
+                    <li>Accompany to all consultations and procedures</li>
+                    <li>Translation of medical documents and prescriptions</li>
+                    <li>Phone interpretation for emergency consultations</li>
+                    <li>Post-visit summary translation</li>
                 </ul>
             </div>
             <div class="service-image">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Medical translation services Shenzhen">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Medical interpretation services Shenzhen">
+            </div>
+        </div>
+
+        <!-- Admission & Discharge Assistance -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Admission & Discharge Assistance</h2>
+                <p>Navigating hospital bureaucracy can be overwhelming. We streamline the entire admission process and ensure a smooth discharge with complete follow-up care instructions.</p>
+                <ul class="service-features">
+                    <li>Complete admission paperwork handling</li>
+                    <li>Insurance coordination and billing clarification</li>
+                    <li>Room arrangement assistance</li>
+                    <li>Discharge planning and medication pickup</li>
+                    <li>Medical report collection and translation</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Hospital admission assistance China">
+            </div>
+        </div>
+
+        <!-- Emergency Coordination -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Emergency Coordination</h2>
+                <p>Medical emergencies don't wait. Our 24/7 rapid response team coordinates emergency care, ambulance services, and immediate specialist consultations when you need them most.</p>
+                <ul class="service-features">
+                    <li>24/7 emergency hotline (+86 400-XXX-XXXX)</li>
+                    <li>Immediate hospital ER coordination</li>
+                    <li>Ambulance service arrangement</li>
+                    <li>Family notification in multiple languages</li>
+                    <li>Emergency translation support</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=800&q=80" alt="Emergency medical coordination Shenzhen">
+            </div>
+        </div>
+
+        <!-- Medical Consultation -->
+        <div class="service-detail">
+            <div class="service-info">
+                <h2>Medical Consultation & Second Opinion</h2>
+                <p>Not sure if you need surgery or which treatment is best? We connect you with leading specialists for comprehensive consultations and can arrange international second opinions.</p>
+                <ul class="service-features">
+                    <li>Pre-travel medical consultation</li>
+                    <li>Treatment plan review and comparison</li>
+                    <li>International second opinion arrangement</li>
+                    <li>Specialist matching based on your condition</li>
+                    <li>Cost estimation before treatment</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Medical consultation second opinion China">
             </div>
         </div>
     </section>
@@ -787,25 +682,24 @@
                 <div class="audience-card">
                     <div class="audience-icon">🌏</div>
                     <h3>Expats in China</h3>
-                    <p>Foreign residents living in China who need medical care but face language barriers and unfamiliarity with the local healthcare system.</p>
+                    <p>Foreign residents who need local medical care but face language and cultural barriers in China's healthcare system.</p>
                 </div>
                 <div class="audience-card">
                     <div class="audience-icon">✈️</div>
                     <h3>Medical Tourists</h3>
-                    <p>International patients who travel to Shenzhen specifically for high-quality, affordable medical procedures that are unavailable or significantly more expensive in their home country.</p>
+                    <p>International patients traveling specifically to Shenzhen for high-quality, affordable medical procedures not available or too expensive in their home country.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🎓</div>
+                    <h3>International Students</h3>
+                    <p>Foreign students studying in Shenzhen who need reliable, English-speaking medical support during their time here.</p>
                 </div>
                 <div class="audience-card">
                     <div class="audience-icon">💼</div>
                     <h3>Corporate Clients</h3>
-                    <p>Companies with foreign employees or executives in China who need reliable, professional healthcare coordination as part of their employee wellness programs.</p>
-                </div>
-                <div class="audience-card">
-                    <div class="audience-icon">🔍</div>
-                    <h3>Advance Care & Second Opinions</h3>
-                    <p>Patients seeking specialist consultations, treatment plan reviews, or alternative medical opinions from leading Chinese physicians before making major healthcare decisions.</p>
+                    <p>Companies with foreign employees in China who need comprehensive healthcare support as part of their employee wellness programs.</p>
                 </div>
             </div>
-            <p class="audience-note">And more — if you have medical needs in Shenzhen, contact us for a free consultation.</p>
         </div>
     </section>
 
@@ -859,15 +753,15 @@
             </div>
             <div class="faq-item">
                 <h3>What languages do your interpreters speak?</h3>
-                <p>We currently offer English-language services. Other languages may be arranged upon request—please contact us to discuss your specific needs.</p>
+                <p>Our team includes interpreters fluent in English, Spanish, French, German, Japanese, Korean, and Arabic. Other languages can be arranged upon request with advance notice.</p>
             </div>
             <div class="faq-item">
                 <h3>How quickly can you arrange a hospital appointment?</h3>
-                <p>For non-emergency cases, we can typically arrange appointments within 24-48 hours. For specialist consultations, scheduling 3-5 days in advance ensures the best doctor availability.</p>
+                <p>For non-emergency cases, we can typically arrange appointments within 24-48 hours. Emergency cases are handled immediately through our 24/7 hotline. For specialist consultations, scheduling 3-5 days in advance ensures the best doctor availability.</p>
             </div>
             <div class="faq-item">
                 <h3>What happens if I need emergency care?</h3>
-                <p>Contact us directly and we'll assist you as soon as possible. We'll coordinate with the nearest emergency room and ensure you receive prompt care while handling all communications.</p>
+                <p>Call our 24/7 emergency hotline immediately. We'll coordinate with the nearest emergency room, arrange ambulance transport if needed, and ensure you receive immediate care while handling all communications.</p>
             </div>
             <div class="faq-item">
                 <h3>Are your services covered by insurance?</h3>
@@ -876,6 +770,10 @@
             <div class="faq-item">
                 <h3>How much do your services cost?</h3>
                 <p>Service packages start from ¥2,000 RMB per day depending on your needs. We provide transparent pricing after your free initial consultation. No hidden fees—you'll know exactly what's included.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can you help with visa applications for medical travel?</h3>
+                <p>Yes, we provide documentation support for medical visa (M-visa) applications, including invitation letters from hospitals, treatment plans, and cost estimates required by Chinese embassies.</p>
             </div>
         </div>
     </section>
@@ -895,7 +793,10 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <img src="logo.png" alt="IntersectionMed" class="logo-footer">
-                <p>Your trusted bridge to China's healthcare system. We help international patients navigate the local medical landscape with confidence.</p>
+                <p>Your trusted partner for world-class healthcare in China. We bridge the gap between international patients and China's top medical facilities.</p>
+                <div class="footer-location">
+                    📍 Shenzhen, China
+                </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
@@ -907,10 +808,10 @@
             </div>
             <div class="footer-links">
                 <h4>Services</h4>
-                <a href="services.html">Hospital Appointment</a>
-                <a href="services.html">Medical Interpreter</a>
-                <a href="services.html">Emergency Support</a>
-                <a href="services.html">Second Opinion</a>
+                <a href="services.html">Medical Consultation</a>
+                <a href="services.html">Hospital Matching</a>
+                <a href="services.html">Medical Escort</a>
+                <a href="services.html">Medical Translation</a>
             </div>
             <div class="footer-links">
                 <h4>Contact</h4>
@@ -953,28 +854,28 @@
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Hospital Appointment Scheduling"
+                        "name": "Medical Consultation"
                     }
                 },
                 {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Medical Interpretation"
+                        "name": "Hospital Matching"
                     }
                 },
                 {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Admission & Discharge Assistance"
+                        "name": "Medical Escort"
                     }
                 },
                 {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Emergency Coordination"
+                        "name": "Medical Translation"
                     }
                 }
             ]
