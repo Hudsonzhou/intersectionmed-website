@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         * {
             margin: 0;
@@ -211,6 +212,11 @@
         .form-group textarea {
             min-height: 120px;
             resize: vertical;
+        }
+
+        .g-recaptcha {
+            margin: 1.5rem 0;
+            transform-origin: left top;
         }
 
         .btn-submit {
@@ -526,6 +532,7 @@
                         <textarea name="message" placeholder="Tell us about your medical needs..." required></textarea>
                     </div>
 
+                    <div class="g-recaptcha" data-sitekey="6LdxlaQsAAAAANv7GS82qGDojqip3QC6gI06IDYs"></div>
                     <button type="submit" class="btn-submit">Send Message →</button>
                 </form>
             </div>
