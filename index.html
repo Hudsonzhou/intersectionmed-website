@@ -47,7 +47,7 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0.1rem 2rem;
+            padding: 0.5rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,10 +65,16 @@
         }
 
         .logo img {
-            height: 130px;
+            height: 50px;
             width: auto;
             background: transparent;
             border-radius: 0;
+        }
+
+        @media (min-width: 769px) {
+            .logo img {
+                height: 130px;
+            }
         }
 
         .nav-links {
@@ -86,6 +92,67 @@
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text);
         }
 
         /* Language Dropdown */
@@ -619,36 +686,59 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .nav-links {
                 display: none;
             }
 
             .hero-container {
                 grid-template-columns: 1fr;
-                padding: 6rem 1rem 3rem;
-                gap: 2rem;
+                padding: 5rem 0.75rem 2rem;
+                gap: 1.5rem;
             }
 
             .hero-content h1 {
-                font-size: 2rem;
-                line-height: 1.2;
+                font-size: 1.5rem;
+                line-height: 1.3;
             }
 
             .hero-content p {
-                font-size: 1rem;
+                font-size: 0.875rem;
             }
 
             .hero-stats {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+                gap: 0.75rem;
             }
 
             .stat-card {
-                padding: 1.25rem;
+                padding: 0.75rem;
             }
 
             .stat-card h3 {
-                font-size: 1.75rem;
+                font-size: 1rem;
+                line-height: 1.2;
+            }
+
+            .stat-card .stat-title {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .stat-card p {
+                font-size: 0.6875rem;
+                line-height: 1.4;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .stat-img {
+                height: 80px;
             }
 
             .comparison-grid,
@@ -809,8 +899,31 @@
 
                 <a href="contact.html">Contact</a>
             </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+        <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+        <a href="about.html" onclick="toggleMobileMenu()">About</a>
+        <a href="services.html" onclick="toggleMobileMenu()">Services</a>
+        <a href="shenzhen.html" onclick="toggleMobileMenu()">Why Shenzhen</a>
+        <a href="contact.html" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+    </script>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
