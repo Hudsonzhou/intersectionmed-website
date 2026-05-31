@@ -3,47 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Escort Shenzhen | Hospital Interpreter & Patient Advocate - IntersectionMed</title>
+    <title>Medical Travel Support in Shenzhen, China | IntersectionMed</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <meta name="description" content="IntersectionMed provides professional medical escort services in Shenzhen for international patients. Hospital interpreter, appointment scheduling, translation support. 24/7 English-speaking patient advocacy. Save up to 70% on medical procedures.">
-    <meta name="keywords" content="medical escort Shenzhen, hospital interpreter China, patient advocate Shenzhen, foreigner medical service, medical tourism China, healthcare Shenzhen, hospital appointment China, medical translation">
+    <meta name="description" content="IntersectionMed helps international patients coordinate short-stay medical travel in Shenzhen, China, including hospital appointment support, medical translation, in-person accompaniment, and travel planning assistance.">
+    <meta name="keywords" content="medical travel China, healthcare in Shenzhen, health checkup China, medical tourism Shenzhen, dental treatment China, colonoscopy China, endoscopy China, IVF consultation China, international hospitals Shenzhen, medical translation Shenzhen">
     <link rel="canonical" href="https://intersectionmed.com/index.html">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
-            --secondary: #10b981;
-            --accent: #f59e0b;
+            --secondary: #0f766e;
+            --accent: #d97706;
             --text: #1f2937;
-            --text-light: #6b7280;
+            --text-light: #5f6b7a;
             --bg: #ffffff;
-            --bg-light: #f3f4f6;
+            --bg-light: #f4f7fb;
+            --border: #dbe3ef;
         }
-
+        html { scroll-behavior: smooth; }
         body {
             font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             color: var(--text);
+            background: var(--bg);
         }
-
-        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.96);
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -52,67 +47,13 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: transparent;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            background: transparent;
-            border-radius: 0;
-        }
-
-        @media (min-width: 769px) {
-            .logo img {
-                height: 80px;
-            }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            margin: 5px 0;
-            transition: all 0.3s;
-        }
-
+        .logo img { height: 50px; width: auto; display: block; }
+        @media (min-width: 769px) { .logo img { height: 80px; } }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: all 0.3s; }
         .mobile-menu {
             display: none;
             position: fixed;
@@ -127,789 +68,189 @@
             align-items: center;
             gap: 2rem;
         }
-
-        .mobile-menu.active {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            font-size: 1.5rem;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text);
-        }
-
-        /* Language Dropdown */
-        .lang-dropdown {
-            position: relative;
-        }
-
-        .lang-dropdown-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e5e7eb;
-            background: white;
-            cursor: pointer;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: 0.25rem;
-        }
-
-        .lang-dropdown-btn:hover {
-            border-color: var(--primary);
-        }
-
-        .lang-dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: white;
-            min-width: 120px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 0.25rem;
-            z-index: 1001;
-        }
-
-        .lang-dropdown-content a {
-            color: var(--text);
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            font-size: 0.875rem;
-        }
-
-        .lang-dropdown-content a:hover {
-            background: #f3f4f6;
-        }
-
-        .lang-dropdown:hover .lang-dropdown-content {
-            display: block;
-        }
-
-        /* Hero Section */
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-size: 1.5rem; text-decoration: none; color: var(--text); font-weight: 600; }
+        .mobile-menu-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text); }
         .hero {
-            min-height: 100vh;
-            min-height: 100dvh;
+            min-height: 94vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.88) 100%),
-                        url('https://files.catbox.moe/077it2.png');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 64, 120, 0.84) 100%), url('hero-bg.png');
             background-size: cover;
             background-position: center;
             position: relative;
         }
-
         .hero-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            z-index: 2;
+            padding: 9rem 2rem 4rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 3rem;
             align-items: center;
         }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content h1 span {
-            color: #93c5fd;
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
         .hero-location {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(255,255,255,0.15);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
+            background: rgba(255,255,255,0.14);
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
             color: white;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary:hover {
-            background: #f3f4f6;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--primary);
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-        }
-
-        .stat-img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .stat-content {
-            padding: 1.25rem 1.5rem;
-        }
-
-        .stat-card h3 {
-            font-size: 1.125rem;
-            color: #2563eb;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-card .stat-title {
-            color: #1e293b;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card p {
-            color: #64748b;
-            font-size: 0.8125rem;
-            line-height: 1.5;
-        }
-
-        /* Comparison Section */
-        .comparison {
-            padding: 6rem 2rem;
-            background: var(--bg-light);
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-light);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .comparison-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        .comparison-source {
-            text-align: left;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-top: 2rem;
-            padding: 1rem;
-            background: var(--bg-light);
-            border-radius: 0.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .comparison-card.highlight {
-            border: 2px solid var(--primary);
-            position: relative;
-        }
-
-        .comparison-card.highlight::before {
-            content: 'RECOMMENDED';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border-radius: 1rem;
-        }
-
-        .country-img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .comparison-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .metric {
-            padding: 1rem 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .metric:last-child {
-            border-bottom: none;
-        }
-
-        .metric-label {
-            color: var(--text-light);
-            font-size: 0.875rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .metric-value.bad {
-            color: #ef4444;
-        }
-
-        .metric-value.good {
-            color: var(--secondary);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        }
-
-        .service-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .service-content {
-            padding: 1.5rem;
-            background: white;
-        }
-
-        .service-content h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .service-content p {
-            color: var(--text-light);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 6rem 2rem;
-            background: var(--bg-light);
-            overflow: hidden;
-        }
-
-        .testimonials-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .testimonials-scroll {
-            display: flex;
-            gap: 2rem;
-            animation: scroll 30s linear infinite;
-            width: max-content;
-            touch-action: pan-x; /* Allow horizontal touch scrolling */
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .testimonials-scroll:hover,
-        .testimonials-scroll:active {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .testimonial-card {
-            min-width: 350px;
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .testimonial-stars {
-            color: #f59e0b;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .testimonial-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1.25rem;
-        }
-
-        .testimonial-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .testimonial-info p {
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 2rem;
-            background: var(--primary);
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.125rem;
+        .hero-content h1 { font-size: 3.45rem; font-weight: 800; color: white; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-content p { font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; max-width: 620px; }
+        .hero-note {
+            color: rgba(255,255,255,0.84);
+            font-size: 0.92rem;
+            max-width: 650px;
+            border-left: 3px solid #93c5fd;
+            padding-left: 1rem;
             margin-bottom: 2rem;
         }
-
-        .btn-white {
-            background: white;
-            color: var(--primary);
-        }
-
-        .btn-white:hover {
-            background: #f3f4f6;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand p {
-            color: #9ca3af;
-            margin-top: 1rem;
-        }
-
-        .footer-brand .logo-footer {
-            height: 100px;
-            width: auto;
-            background: white;
-            padding: 5px;
-            border-radius: 8px;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            display: block;
-            color: #9ca3af;
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.95rem 1.45rem;
+            font-size: 1rem;
+            font-weight: 700;
             text-decoration: none;
-            padding: 0.25rem 0;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid #374151;
-            text-align: center;
-            color: #6b7280;
-        }
-
-        .footer-location {
-            display: flex;
+            border-radius: 0.5rem;
+            transition: all 0.25s;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            color: #9ca3af;
-            margin-top: 0.5rem;
         }
-
-        /* Responsive */
+        .btn-primary { background: white; color: var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .btn-primary:hover { background: #f3f4f6; transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.9); }
+        .btn-secondary:hover { background: white; color: var(--primary); }
+        .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .stat-card { background: rgba(255,255,255,0.96); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.16); }
+        .stat-img { width: 100%; height: 118px; object-fit: cover; }
+        .stat-content { padding: 1.15rem; }
+        .stat-card h3 { font-size: 1.05rem; color: var(--primary); font-weight: 800; margin-bottom: 0.25rem; }
+        .stat-title { color: #1e293b; font-size: 0.96rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .stat-card p { color: #526071; font-size: 0.83rem; line-height: 1.5; }
+        section { padding: 5.5rem 2rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3.25rem; }
+        .section-header h2 { font-size: 2.35rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-light); font-size: 1.08rem; max-width: 760px; margin: 0 auto; }
+        .bg-light { background: var(--bg-light); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .card { background: white; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05); }
+        .card h3 { font-size: 1.18rem; margin-bottom: 0.65rem; color: #172033; }
+        .card p, .card li { color: var(--text-light); font-size: 0.96rem; }
+        .card ul { padding-left: 1.1rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .service-card { background: white; border-radius: 0.75rem; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(15,23,42,0.07); }
+        .service-img { width: 100%; height: 170px; object-fit: cover; }
+        .service-content { padding: 1.35rem; }
+        .service-content h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .service-content p { color: var(--text-light); font-size: 0.94rem; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: steps; }
+        .step { counter-increment: steps; position: relative; padding-top: 3.5rem; }
+        .step::before {
+            content: counter(steps);
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--primary);
+            color: white;
+            font-weight: 800;
+        }
+        .note-box { max-width: 920px; margin: 2rem auto 0; padding: 1.2rem 1.4rem; background: white; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 0.75rem; color: var(--text-light); }
+        .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        details { background: white; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.1rem 1.25rem; }
+        summary { cursor: pointer; font-weight: 800; color: #172033; }
+        details p { color: var(--text-light); margin-top: 0.75rem; }
+        .cta { background: var(--primary); text-align: center; color: white; }
+        .cta h2 { font-size: 2.35rem; margin-bottom: 1rem; }
+        .cta p { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin: 0 auto 2rem; max-width: 760px; }
+        .btn-white { background: white; color: var(--primary); }
+        footer { background: #1f2937; color: white; padding: 4rem 2rem 2rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 3rem; }
+        .footer-brand p, .footer-links a, .footer-links p { color: #c7d0dc; margin-top: 1rem; }
+        .logo-footer { height: 100px; width: auto; background: white; padding: 5px; border-radius: 8px; }
+        .footer-links h4 { margin-bottom: 1rem; }
+        .footer-links a { display: block; text-decoration: none; padding: 0.25rem 0; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-bottom { max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid #374151; color: #aab4c0; font-size: 0.9rem; }
+        @media (max-width: 960px) {
+            .hero-container, .grid-3, .grid-4, .services-grid, .steps, .faq-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.4rem; }
+            .footer-container { grid-template-columns: 1fr; }
+        }
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero-container {
-                grid-template-columns: 1fr;
-                padding: 8rem 0.75rem 3rem;
-                gap: 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: 1.5rem;
-                line-height: 1.3;
-            }
-
-            .hero-content p {
-                font-size: 0.875rem;
-            }
-
-            .hero-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
-            }
-
-            .stat-card {
-                padding: 0.75rem;
-            }
-
-            .stat-card h3 {
-                font-size: 1rem;
-                line-height: 1.2;
-            }
-
-            .stat-card .stat-title {
-                font-size: 0.75rem;
-                line-height: 1.3;
-            }
-
-            .stat-card p {
-                font-size: 0.6875rem;
-                line-height: 1.4;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .stat-img {
-                height: 80px;
-            }
-
-            .comparison-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .partner-hospitals-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .testimonial-card {
-                min-width: 280px;
-                max-width: 85vw;
-            }
-
-            .testimonials-scroll {
-                animation: scroll 20s linear infinite; /* Faster on mobile */
-            }
-
-            body {
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            html {
-                scroll-behavior: smooth;
-            }
+            .mobile-menu-btn { display: block; }
+            .nav-links { display: none; }
+            .hero-container { padding: 8rem 1rem 3rem; gap: 2rem; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .hero-stats { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .stat-img { height: 82px; }
+            .stat-content { padding: 0.85rem; }
+            .stat-card h3 { font-size: 0.95rem; }
+            .stat-title { font-size: 0.8rem; }
+            .stat-card p { font-size: 0.74rem; }
+            section { padding: 4rem 1rem; }
+            .section-header h2 { font-size: 1.8rem; }
         }
-
         @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.75rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .section-header h2 {
-                font-size: 1.75rem;
-            }
-
-            .stat-card h3 {
-                font-size: 1.5rem;
-            }
-
-            .stat-card p {
-                font-size: 0.75rem;
-            }
+            .hero-stats { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; }
         }
     </style>
-
-    <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "MedicalOrganization",
+        "@type": "Organization",
         "name": "IntersectionMed",
-        "alternateName": "医通达健康管理（深圳）有限责任公司",
-        "description": "Professional medical escort services in Shenzhen for international patients. Hospital interpreter, appointment scheduling, translation support, and 24/7 patient advocacy.",
+        "description": "Healthcare coordination and patient support platform helping international patients plan short-stay medical visits in Shenzhen, China.",
         "url": "https://intersectionmed.com",
         "logo": "https://intersectionmed.com/logo.png",
-        "telephone": "+86-400-123-4567",
         "email": "intersectionmed@gmail.com",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Shenzhen",
             "addressLocality": "Shenzhen",
             "addressRegion": "Guangdong",
-            "postalCode": "518000",
             "addressCountry": "CN"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 22.5431,
-            "longitude": 114.0579
-        },
-        "areaServed": {
-            "@type": "City",
-            "name": "Shenzhen"
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "00:00",
-            "closes": "23:59",
-            "description": "24/7 emergency support available"
-        },
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Medical Escort Services",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Hospital Appointment Scheduling",
-                        "description": "Fast-track appointment booking with Shenzhen's top hospitals and specialists"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Medical Interpretation",
-                        "description": "Professional medical interpreters accompanying patients to all consultations"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Admission & Discharge Assistance",
-                        "description": "Complete support with hospital admission paperwork and discharge planning"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Emergency Medical Coordination",
-                        "description": "24/7 emergency hotline and rapid response coordination"
-                    }
-                }
-            ]
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "127"
-        }
+        "areaServed": ["Shenzhen", "China"],
+        "knowsAbout": ["medical travel China", "healthcare in Shenzhen", "medical translation", "hospital appointment coordination"]
     }
     </script>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <img src="logo.png" alt="IntersectionMed">
-            </div>
+            <a class="logo" href="index.html" aria-label="IntersectionMed home"><img src="logo.png" alt="IntersectionMed"></a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
                 <a href="shenzhen.html">Why Shenzhen</a>
-
                 <a href="contact.html">Contact</a>
             </div>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">x</button>
         <a href="index.html" onclick="toggleMobileMenu()">Home</a>
         <a href="about.html" onclick="toggleMobileMenu()">About</a>
         <a href="services.html" onclick="toggleMobileMenu()">Services</a>
@@ -925,347 +266,199 @@
         }
     </script>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Reliable, Affordable and High-Quality Healthcare <span>Within Reach</span></h1>
-                <p>Skip the 26-week wait. Experience China's efficient, affordable, and advanced medical care. We guide international patients through every step of their medical journey.</p>
+                <div class="hero-location">Shenzhen, China | Support for international patients</div>
+                <h1>Medical Travel Support in Shenzhen, China</h1>
+                <p>IntersectionMed helps international patients coordinate short-stay healthcare visits in Shenzhen, including hospital appointments, medical translation, in-person accompaniment, and travel planning support.</p>
+                <div class="hero-note">IntersectionMed is not a hospital or healthcare provider. We do not provide diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions.</div>
                 <div class="hero-buttons">
-                    <a href="contact.html" class="btn btn-primary">Get Free Consultation →</a>
+                    <a href="contact.html" class="btn btn-primary">Request Appointment Support</a>
+                    <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
                 </div>
             </div>
-            <div class="hero-stats">
+            <div class="hero-stats" aria-label="IntersectionMed support summary">
                 <div class="stat-card">
-                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Advanced Medical Technology" class="stat-img">
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Hospital corridor" class="stat-img">
                     <div class="stat-content">
-                        <h3>Technology</h3>
-                        <div class="stat-title">World-Class Equipment</div>
-                        <p>Cutting-edge medical technology on par with international standards</p>
+                        <h3>Short-Stay Visits</h3>
+                        <div class="stat-title">Typically 1-7 Days</div>
+                        <p>Support for planned checkups, screenings, dental visits, and fertility assessments.</p>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="Affordable Healthcare Costs" class="stat-img">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Medical translation support" class="stat-img">
                     <div class="stat-content">
-                        <h3>Pricing</h3>
-                        <div class="stat-title">Premium Care · Affordable Cost</div>
-                        <p>Revolutionary value — save up to 70% vs. US/EU prices</p>
+                        <h3>Translation</h3>
+                        <div class="stat-title">English-Chinese Support</div>
+                        <p>Help with appointment communication, hospital navigation, and medical interpretation.</p>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="International Standard Service" class="stat-img">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="Travel planning documents" class="stat-img">
                     <div class="stat-content">
-                        <h3>Service</h3>
-                        <div class="stat-title">International Standard · Direct Insurance</div>
-                        <p>Seamless experience with direct billing acceptance</p>
+                        <h3>Travel Planning</h3>
+                        <div class="stat-title">Practical Logistics</div>
+                        <p>Assistance with timing, documents, hotels, airport pickup, and local transport.</p>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80" alt="Rapid Medical Service" class="stat-img">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="Modern Shenzhen hospital" class="stat-img">
                     <div class="stat-content">
-                        <h3>Efficiency</h3>
-                        <div class="stat-title">Rapid Response · No Waiting</div>
-                        <p>Instant consultation — skip the long queues</p>
+                        <h3>Clear Scope</h3>
+                        <div class="stat-title">Coordination Platform</div>
+                        <p>We coordinate and support visits. Licensed clinicians make medical decisions.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Comparison Section -->
-    <section class="comparison" id="comparison">
+    <section class="bg-light" id="who-we-help">
         <div class="section-container">
             <div class="section-header">
-                <h2>Why Choose China for Medical Care?</h2>
-                <p>See how China's healthcare system compares to Western alternatives</p>
+                <h2>Who We Help</h2>
+                <p>IntersectionMed is designed for international patients who want practical support accessing healthcare services in Shenzhen.</p>
             </div>
-            <div class="comparison-grid">
-                <div class="comparison-card">
-                    <div class="country-img">
-                        <img src="https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?w=400&q=80" alt="United States - Statue of Liberty" class="country-img">
-                    </div>
-                    <h3>United States</h3>
-                    <div class="metric">
-                        <div class="metric-label">MRI/CT Wait</div>
-                        <div class="metric-value bad">2-4 weeks</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Specialist Consultation</div>
-                        <div class="metric-value bad">24-30 days</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Routine Surgery</div>
-                        <div class="metric-value bad">3-4 weeks (elective)</div>
-                    </div>
-                </div>
-                <div class="comparison-card">
-                    <div class="country-img">
-                        <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?w=400&q=80" alt="United Kingdom - Big Ben" class="country-img">
-                    </div>
-                    <h3>United Kingdom</h3>
-                    <div class="metric">
-                        <div class="metric-label">MRI/CT Wait</div>
-                        <div class="metric-value bad">17% wait 6+ weeks</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Specialist Consultation</div>
-                        <div class="metric-value bad">12-18 weeks</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Routine Surgery</div>
-                        <div class="metric-value bad">18-24 weeks</div>
-                    </div>
-                </div>
-                <div class="comparison-card highlight">
-                    <div class="country-img">
-                        <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=400&q=80" alt="China - Shenzhen skyline" class="country-img">
-                    </div>
-                    <h3>China (Shenzhen)</h3>
-                    <div class="metric">
-                        <div class="metric-label">MRI/CT Wait</div>
-                        <div class="metric-value good">Same day - 1 week</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Specialist Consultation</div>
-                        <div class="metric-value good">1-3 days</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Routine Surgery</div>
-                        <div class="metric-value good">3-7 days</div>
-                    </div>
-                </div>
+            <div class="grid-3">
+                <div class="card"><h3>Medical Travelers</h3><p>Visitors who want to complete a health checkup or planned medical appointment while in China.</p></div>
+                <div class="card"><h3>Digestive Screening Clients</h3><p>Patients considering gastroenterology consultation, endoscopy, or colonoscopy support.</p></div>
+                <div class="card"><h3>Dental Clients</h3><p>Patients seeking dental consultation, assessment, treatment coordination, or follow-up communication.</p></div>
+                <div class="card"><h3>Fertility Assessment Clients</h3><p>Individuals or couples seeking fertility evaluation or IVF-related consultation coordination.</p></div>
+                <div class="card"><h3>Preventive Health Clients</h3><p>Women and men seeking short-stay screening, wellness checks, or medical report support.</p></div>
+                <div class="card"><h3>International Visitors</h3><p>Foreign patients who need English-Chinese translation, hospital navigation, and local logistics assistance.</p></div>
             </div>
-            <p class="comparison-source">
-                Sources: US — Merritt Hawkins 2024 Physician Survey; UK — Royal College of Radiologists (Jun 2024) & NHS England RTT Statistics (2024); China (Shenzhen) — China Daily (May 2024), National Health Commission (2024). Note: Wait times vary by hospital, region, and condition. Contact us for current estimates for your specific case.
-            </p>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <section id="services">
         <div class="section-container">
             <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Comprehensive medical escort support from consultation to recovery</p>
+                <h2>What We Can Help With</h2>
+                <p>Our role is to make the healthcare visit easier to plan, understand, and navigate.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Medical Consultation" class="service-img">
-                    <div class="service-content">
-                        <h3>Medical Consultation</h3>
-                        <p>Pre-travel medical advice, treatment planning & specialist recommendations. Expert guidance before you arrive in Shenzhen.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="Hospital Matching" class="service-img">
-                    <div class="service-content">
-                        <h3>Hospital Matching</h3>
-                        <p>We connect you with the best-suited hospitals & specialists in Shenzhen based on your specific medical condition.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Medical Escort" class="service-img">
-                    <div class="service-content">
-                        <h3>Medical Escort</h3>
-                        <p>Personalized in-person guidance throughout your entire medical journey — from hospital admission to discharge & recovery.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Medical Translation" class="service-img">
-                    <div class="service-content">
-                        <h3>Medical Translation</h3>
-                        <p>Professional medical interpreters provide accurate translation during consultations, procedures, and all paperwork.</p>
-                    </div>
-                </div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Health checkup coordination" class="service-img"><div class="service-content"><h3>Health Checkup Coordination</h3><p>Appointment support for health screening packages and assistance during the hospital visit.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=400&q=80" alt="Digestive screening support" class="service-img"><div class="service-content"><h3>Digestive Screening Support</h3><p>Coordination for gastroenterology consultation, endoscopy, colonoscopy, translation, and logistics.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&q=80" alt="Dental consultation support" class="service-img"><div class="service-content"><h3>Dental Consultation Support</h3><p>Help with dental appointment coordination, clinic communication, and treatment-plan explanation support from the care team.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&q=80" alt="Fertility assessment coordination" class="service-img"><div class="service-content"><h3>Fertility Assessment Coordination</h3><p>Appointment and translation support for fertility evaluation and specialist consultation in Shenzhen.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Medical translation" class="service-img"><div class="service-content"><h3>Medical Translation</h3><p>English-Chinese interpretation support during consultations, checkups, procedures, and document communication.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&q=80" alt="Medical accompaniment" class="service-img"><div class="service-content"><h3>In-Person Medical Accompaniment</h3><p>Hospital navigation, registration support, on-site communication assistance, and practical visit support.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&q=80" alt="Travel planning assistance" class="service-img"><div class="service-content"><h3>Travel Planning Assistance</h3><p>Help coordinating visit timing, airport pickup, hotel location, and local transport around your schedule.</p></div></div>
+                <div class="service-card"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&q=80" alt="Post visit support" class="service-img"><div class="service-content"><h3>Post-Visit Follow-Up Support</h3><p>Assistance with report translation, follow-up communication, and organizing medical records after the visit.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="testimonials-container">
+    <section class="bg-light" id="why-shenzhen">
+        <div class="section-container">
             <div class="section-header">
-                <h2>What Our Patients Say</h2>
-                <p>Real stories from international patients we've helped</p>
+                <h2>Why Shenzhen for Planned Healthcare Visits?</h2>
+                <p>Shenzhen is a major international city with modern hospitals, convenient transport links, and strong access to nearby Hong Kong and Southeast Asia. Appointment timing, costs, and service availability vary by hospital and medical need.</p>
             </div>
-            <div class="testimonials-scroll">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"From my first consultation in Canada to my surgery in Shenzhen, everything was seamless. The team handled every detail, and I saved over $25,000 compared to US quotes."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">M</div>
-                        <div class="testimonial-info">
-                            <h4>M. Thompson</h4>
-                            <p>Cardiac Surgery · Canada</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"I was skeptical at first, but the professionalism exceeded my expectations. The hospital was state-of-the-art, and the doctors spoke excellent English."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">S</div>
-                        <div class="testimonial-info">
-                            <h4>S. Mitchell</h4>
-                            <p>Orthopedic Surgery · UK</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The waiting list in Germany was 4 months for my knee replacement. With IntersectionMed, I had surgery within 2 weeks. Incredible service!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">K</div>
-                        <div class="testimonial-info">
-                            <h4>K. Weber</h4>
-                            <p>Joint Replacement · Germany</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The translation services were outstanding. My medical interpreter was with me at every appointment, making sure I understood everything."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">A</div>
-                        <div class="testimonial-info">
-                            <h4>A. Rodriguez</h4>
-                            <p>Cancer Treatment · Spain</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Best decision I ever made. The cost savings allowed me to bring my wife along for support. We even did some sightseeing in Shenzhen after recovery!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">J</div>
-                        <div class="testimonial-info">
-                            <h4>J. Wilson</h4>
-                            <p>Spinal Surgery · Australia</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Duplicate for infinite scroll -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"From my first consultation in Canada to my surgery in Shenzhen, everything was seamless. The team handled every detail, and I saved over $25,000 compared to US quotes."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">M</div>
-                        <div class="testimonial-info">
-                            <h4>M. Thompson</h4>
-                            <p>Cardiac Surgery · Canada</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"I was skeptical at first, but the professionalism exceeded my expectations. The hospital was state-of-the-art, and the doctors spoke excellent English."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">S</div>
-                        <div class="testimonial-info">
-                            <h4>S. Mitchell</h4>
-                            <p>Orthopedic Surgery · UK</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The waiting list in Germany was 4 months for my knee replacement. With IntersectionMed, I had surgery within 2 weeks. Incredible service!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">K</div>
-                        <div class="testimonial-info">
-                            <h4>K. Weber</h4>
-                            <p>Joint Replacement · Germany</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The translation services were outstanding. My medical interpreter was with me at every appointment, making sure I understood everything."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">A</div>
-                        <div class="testimonial-info">
-                            <h4>A. Rodriguez</h4>
-                            <p>Cancer Treatment · Spain</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Best decision I ever made. The cost savings allowed me to bring my wife along for support. We even did some sightseeing in Shenzhen after recovery!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">J</div>
-                        <div class="testimonial-info">
-                            <h4>J. Wilson</h4>
-                            <p>Spinal Surgery · Australia</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid-4">
+                <div class="card"><h3>Convenient Location</h3><p>Shenzhen is connected to Hong Kong, Southeast Asia, and major Chinese cities by air, high-speed rail, and cross-border transport.</p></div>
+                <div class="card"><h3>Short-Stay Planning</h3><p>Many checkups, dental consultations, digestive screenings, and fertility assessments can be planned around a short visit, depending on availability and physician assessment.</p></div>
+                <div class="card"><h3>Multilingual Coordination</h3><p>IntersectionMed helps international patients communicate with hospitals and move through the visit with less uncertainty.</p></div>
+                <div class="card"><h3>Transparent Preparation</h3><p>We help you understand what documents to prepare, what steps to expect, and what questions to confirm before traveling.</p></div>
+            </div>
+            <div class="note-box">Healthcare costs in China may be lower than in some private healthcare systems, depending on the service, hospital, physician, and individual case. IntersectionMed does not guarantee savings or medical outcomes.</div>
+        </div>
+    </section>
+
+    <section id="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>A clear coordination process for international patients planning a healthcare visit to Shenzhen.</p>
+            </div>
+            <div class="steps">
+                <div class="card step"><h3>Send Your Request</h3><p>Tell us the service you are considering, preferred travel dates, language needs, and any relevant medical documents.</p></div>
+                <div class="card step"><h3>Initial Coordination Review</h3><p>We review your requested service and timeline to understand whether a Shenzhen visit may be practical.</p></div>
+                <div class="card step"><h3>Appointment Support</h3><p>We help coordinate appointment options based on service type, location, language support, and availability.</p></div>
+                <div class="card step"><h3>Travel Preparation</h3><p>We help you prepare documents, timing, hotel location, airport pickup needs, and your expected schedule.</p></div>
+                <div class="card step"><h3>In-Person Support</h3><p>Our team can accompany you to the hospital, assist with registration, translate communication, and help you navigate the visit.</p></div>
+                <div class="card step"><h3>Follow-Up Assistance</h3><p>After the visit, we can help with report translation, follow-up communication, and medical record organization.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Cost Disclaimer -->
-    <section style="background: var(--bg-light); padding: 3rem 2rem;">
-        <div style="max-width: 900px; margin: 0 auto; text-align: left;">
-            <p style="font-size: 0.875rem; color: var(--text-light);">
-                * <strong>Cost Comparison Disclaimer:</strong> The 70% cost savings figure is based on comparative studies between typical US/EU medical procedure costs and equivalent procedures in China. Actual savings vary by procedure type, hospital, and individual case. Data sourced from international medical tourism industry reports (2023-2024).
-            </p>
+    <section class="bg-light" id="patient-needs">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Common Patient Needs</h2>
+                <p>International patients usually contact us when they need clear logistics, language support, and reliable coordination before traveling to Shenzhen.</p>
+            </div>
+            <div class="grid-4">
+                <div class="card"><h3>Health Checkup During a China Trip</h3><p>A visitor wants to complete a comprehensive health screening and needs help with timing, documents, and hospital process.</p></div>
+                <div class="card"><h3>Digestive Screening With Translation</h3><p>A patient is considering endoscopy or colonoscopy and wants appointment coordination, consultation interpretation, and report translation.</p></div>
+                <div class="card"><h3>Dental Consultation Planning</h3><p>A patient wants an in-person dental assessment in Shenzhen and needs clinic communication and visit timing support.</p></div>
+                <div class="card"><h3>Fertility Assessment Visit</h3><p>A couple wants fertility evaluation or IVF-related consultation coordination with translation and local logistics support.</p></div>
+            </div>
         </div>
     </section>
 
-    <!-- Our Medical Network -->
-    <section style="padding: 4rem 2rem; background: var(--bg-light);">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Our Medical Network in Shenzhen</h2>
+    <section id="network">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Shenzhen Hospital Coordination</h2>
+                <p>IntersectionMed helps international patients coordinate with hospitals and clinics in Shenzhen based on service type, appointment availability, location, and communication needs.</p>
             </div>
-            <div style="max-width: 700px; margin: 0 auto 2rem auto;">
-                <p style="text-gray-700; margin-bottom: 1.5rem;">We help connect you with leading hospitals across Shenzhen, including:</p>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
-                        <span style="font-weight: 500;">HKU Shenzhen Hospital</span>
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
-                        <span style="font-weight: 500;">Shenzhen People's Hospital</span>
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
-                        <span style="font-weight: 500;">Shenzhen Second People's Hospital</span>
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
-                        <span style="font-weight: 500;">Peking University Shenzhen Hospital</span>
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0;"></span>
-                        <span style="font-weight: 500;">Southern Medical University Shenzhen Hospital</span>
-                    </li>
-                </ul>
+            <div class="grid-3">
+                <div class="card"><h3>Public Hospitals</h3><p>Coordination may involve public hospitals in Shenzhen when they match the requested service and availability.</p></div>
+                <div class="card"><h3>Private Clinics</h3><p>Some dental, screening, or outpatient services may be coordinated through private clinics or specialized providers.</p></div>
+                <div class="card"><h3>International Departments</h3><p>When available, international departments may provide more familiar registration, payment, or language support processes.</p></div>
             </div>
-            <p style="text-align: left; font-size: 0.875rem; color: var(--text-light); margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 0.75rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                And <strong>10+ more facilities</strong> across Shenzhen. <a href="contact.html" style="color: var(--primary); font-weight: 500; text-decoration: none;">Contact us</a> for a complete list and personalized hospital matching based on your condition.
-            </p>
-            <p style="text-align: left; font-size: 0.75rem; color: #9ca3af; margin-top: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                <strong>Disclaimer:</strong> We facilitate connections with these and other quality hospitals based on your medical needs. IntersectionMed is an independent patient advocacy and medical escort service, not affiliated with any hospital.
-            </p>
+            <div class="note-box">IntersectionMed is an independent healthcare coordination and patient support platform. We are not owned by, operated by, or officially affiliated with any hospital unless explicitly stated in a written agreement.</div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <section class="bg-light" id="scope">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>What We Do Not Provide</h2>
+                <p>Clear boundaries help patients make informed decisions and protect the role of licensed medical professionals.</p>
+            </div>
+            <div class="grid-4">
+                <div class="card"><h3>No Emergency Care</h3><p>We are not an emergency service. For urgent symptoms, contact local emergency services or go directly to a medical facility.</p></div>
+                <div class="card"><h3>No Diagnosis or Treatment</h3><p>We do not diagnose, treat, prescribe, or make clinical decisions.</p></div>
+                <div class="card"><h3>No Medical Advice</h3><p>We provide coordination, information support, and translation, not medical recommendations.</p></div>
+                <div class="card"><h3>No Outcome Guarantees</h3><p>We do not guarantee cure rates, treatment success, cost savings, appointment results, or hospital outcomes.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>FAQ for International Patients</h2>
+                <p>Key questions foreign patients usually need answered before planning a healthcare visit to Shenzhen.</p>
+            </div>
+            <div class="faq-grid">
+                <details open><summary>Do I need to speak Chinese?</summary><p>No. IntersectionMed can help with English-Chinese communication during appointment coordination and in-person hospital visits.</p></details>
+                <details><summary>Can foreigners use hospitals in Shenzhen?</summary><p>Many hospitals and clinics in Shenzhen can receive international patients, but requirements vary. We help confirm appointment process, document needs, and visit logistics before you travel.</p></details>
+                <details><summary>How long should I stay in Shenzhen?</summary><p>Many planned services can fit within 1-7 days, depending on service type, appointment availability, test preparation, and physician assessment.</p></details>
+                <details><summary>Can you recommend the best hospital?</summary><p>We do not make "best hospital" claims. We help coordinate options based on your requested service, location, language needs, appointment availability, and hospital suitability.</p></details>
+                <details><summary>Do you provide medical advice?</summary><p>No. We provide coordination, translation, and practical support. Diagnosis, treatment recommendations, and medical decisions are made by licensed physicians and healthcare institutions.</p></details>
+                <details><summary>Can you help with hotels and airport pickup?</summary><p>Yes. We can assist with hotel location planning, airport pickup coordination, and local transportation around your appointment schedule.</p></details>
+                <details><summary>Can you translate medical reports?</summary><p>We can help translate and organize medical documents for communication and follow-up support. Official certified translation may require a separate certified provider depending on the use case.</p></details>
+                <details><summary>Do you handle emergency cases?</summary><p>No. IntersectionMed is not an emergency service. For urgent or emergency medical needs, contact local emergency services or go directly to a hospital.</p></details>
+            </div>
+        </div>
+    </section>
+
     <section class="cta">
-        <h2>Start Your Medical Journey Today</h2>
-        <p>Get a free consultation and personalized treatment plan within 24 hours</p>
-        <a href="contact.html" class="btn btn-white">Contact Us Now</a>
+        <h2>Planning a Healthcare Visit to Shenzhen?</h2>
+        <p>Send us your preferred dates, service type, and language needs. We will help you understand the practical next steps for appointment coordination and travel planning.</p>
+        <a href="contact.html" class="btn btn-white">Request Appointment Support</a>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
         <div class="footer-container">
             <div class="footer-brand">
                 <img src="logo.png" alt="IntersectionMed" class="logo-footer">
-                <p>Your trusted bridge to China's healthcare system. We help international patients navigate the local medical landscape with confidence.</p>
+                <p>IntersectionMed helps international patients access healthcare in Shenzhen through appointment coordination, medical translation, in-person accompaniment, travel planning support, and post-visit follow-up assistance.</p>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
@@ -1278,10 +471,14 @@
             <div class="footer-links">
                 <h4>Contact</h4>
                 <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>
+                <p>Location: Shenzhen, China</p>
+                <p>Languages: English and Chinese. Additional language support subject to availability.</p>
+                <p>Response time: usually within 1 business day.</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 IntersectionMed. All rights reserved.</p>
+            <p>IntersectionMed is not a healthcare provider and does not provide medical diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions.</p>
+            <p style="margin-top: 1rem;">© 2026 IntersectionMed. All rights reserved.</p>
         </div>
     </footer>
 </body>
