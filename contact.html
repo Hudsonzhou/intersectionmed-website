@@ -3,591 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - IntersectionMed</title>
+    <title>Contact IntersectionMed | Shenzhen Medical Travel Support</title>
+    <meta name="description" content="Contact IntersectionMed for appointment coordination, medical translation, hospital navigation, and short-stay medical travel support in Shenzhen, China.">
+    <meta name="keywords" content="contact IntersectionMed, medical travel Shenzhen, hospital appointment China, medical translation Shenzhen">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #10b981;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg: #ffffff;
-            --bg-light: #f8fafc;
-        }
-
-        body {
-            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.5rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            background: transparent;
-            border-radius: 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            margin: 5px 0;
-            transition: all 0.3s;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .mobile-menu.active {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            font-size: 1.5rem;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text);
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            background: transparent;
-            border-radius: 0;
-        }
-
-        @media (min-width: 769px) {
-            .logo img {
-                height: 80px;
-            }
-        }
-
-        /* Language Dropdown */
-        .lang-dropdown {
-            position: relative;
-        }
-
-        .lang-dropdown-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e5e7eb;
-            background: white;
-            cursor: pointer;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: 0.25rem;
-        }
-
-        .lang-dropdown-btn:hover {
-            border-color: var(--primary);
-        }
-
-        .lang-dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: white;
-            min-width: 120px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 0.25rem;
-            z-index: 1001;
-        }
-
-        .lang-dropdown-content a {
-            color: var(--text);
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            font-size: 0.875rem;
-        }
-
-        .lang-dropdown-content a:hover {
-            background: #f3f4f6;
-        }
-
-        .lang-dropdown:hover .lang-dropdown-content {
-            display: block;
-        }
-
-        /* Page Header */
-        .page-header {
-            padding: 10rem 2rem 6rem;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            text-align: center;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .contact-form h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .g-recaptcha {
-            margin: 1.5rem 0;
-            transform-origin: left top;
-        }
-
-        .btn-submit {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s;
-        }
-
-        .btn-submit:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Contact Info */
-        .contact-info h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-methods {
-            margin-bottom: 3rem;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-light);
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .contact-method h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-method p {
-            color: var(--text-light);
-        }
-
-        .contact-method a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* Office Hours */
-        .office-hours {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .office-hours h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .hours-list {
-            list-style: none;
-        }
-
-        .hours-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .hours-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Response Time */
-        .response-time {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-        }
-
-        .response-time h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .response-time p {
-            color: var(--text-light);
-        }
-
-        /* Map Placeholder */
-        .map-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-        }
-
-        .map-placeholder {
-            background: var(--bg-light);
-            height: 400px;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1rem;
-            color: var(--text-light);
-        }
-
-        .map-placeholder span {
-            font-size: 4rem;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: var(--bg-light);
-            padding: 4rem 2rem;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-container h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .faq-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .faq-item h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-        }
-
-        .faq-item p {
-            color: var(--text-light);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand p {
-            color: #9ca3af;
-            margin-top: 1rem;
-        }
-
-        .footer-brand .logo-footer {
-            height: 100px;
-            width: auto;
-            background: white;
-            padding: 5px;
-            border-radius: 8px;
-        }
-
-        .footer-location {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #9ca3af;
-            margin-top: 0.5rem;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            display: block;
-            color: #9ca3af;
-            text-decoration: none;
-            padding: 0.25rem 0;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid #374151;
-            text-align: center;
-            color: #6b7280;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .page-header {
-                padding: 8rem 1rem 4rem;
-            }
-
-            .page-header h1 {
-                font-size: 1.75rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-
-            .contact-section {
-                padding: 2rem 1rem;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-
-            body {
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            html {
-                scroll-behavior: smooth;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #0f766e; --text: #1f2937; --text-light: #5f6b7a; --bg: #ffffff; --bg-light: #f4f7fb; --border: #dbe3ef; }
+        html { scroll-behavior: smooth; }
+        body { font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.96); box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 1000; backdrop-filter: blur(10px); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0.5rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; width: auto; display: block; }
+        @media (min-width: 769px) { .logo img { height: 80px; } }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: all 0.3s; }
+        .mobile-menu { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: white; z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-size: 1.5rem; text-decoration: none; color: var(--text); font-weight: 600; }
+        .mobile-menu-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text); }
+        .page-header { padding: 10rem 2rem 5rem; background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(15,118,110,0.08) 100%); text-align: center; }
+        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+        .page-header p { color: var(--text-light); font-size: 1.18rem; max-width: 760px; margin: 0 auto; }
+        section { padding: 5rem 2rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-light); font-size: 1.05rem; max-width: 760px; margin: 0 auto; }
+        .bg-light { background: var(--bg-light); }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .card { background: white; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
+        .card h3 { font-size: 1.15rem; margin-bottom: 0.65rem; color: #172033; }
+        .card p, .card li { color: var(--text-light); font-size: 0.96rem; }
+        .card ul { padding-left: 1.15rem; }
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .split img { width: 100%; height: 390px; object-fit: cover; border-radius: 0.75rem; border: 1px solid var(--border); box-shadow: 0 4px 18px rgba(15,23,42,0.07); }
+        .prose p { color: var(--text-light); font-size: 1.05rem; margin-bottom: 1rem; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: steps; }
+        .step { counter-increment: steps; position: relative; padding-top: 3.5rem; }
+        .step::before { content: counter(steps); position: absolute; top: 1.25rem; left: 1.25rem; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: white; font-weight: 800; }
+        .note-box { margin-top: 2rem; padding: 1.2rem 1.4rem; background: white; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 0.75rem; color: var(--text-light); }
+        .cta { background: var(--primary); color: white; text-align: center; }
+        .cta h2 { font-size: 2.25rem; margin-bottom: 1rem; }
+        .cta p { color: rgba(255,255,255,0.9); font-size: 1.08rem; margin: 0 auto 2rem; max-width: 760px; }
+        .btn { padding: 0.95rem 1.45rem; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 0.5rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border: 0; cursor: pointer; }
+        .btn-white { background: white; color: var(--primary); }
+        .btn-primary { background: var(--primary); color: white; }
+        .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 0.45rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--border); border-radius: 0.5rem; font-size: 1rem; font-family: inherit; }
+        .form-group textarea { min-height: 130px; resize: vertical; }
+        footer { background: var(--text); color: white; padding: 4rem 2rem 2rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 3rem; }
+        .footer-brand p, .footer-links a, .footer-links p { color: #c7d0dc; margin-top: 1rem; }
+        .logo-footer { height: 100px; width: auto; background: white; padding: 5px; border-radius: 8px; }
+        .footer-links h4 { margin-bottom: 1rem; }
+        .footer-links a { display: block; text-decoration: none; padding: 0.25rem 0; }
+        .footer-bottom { max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid #374151; color: #aab4c0; font-size: 0.9rem; }
+        @media (max-width: 960px) { .grid-2, .grid-3, .grid-4, .steps, .split, .contact-grid, .footer-container { grid-template-columns: 1fr; } .page-header h1 { font-size: 2.2rem; } }
+        @media (max-width: 768px) { .mobile-menu-btn { display: block; } .nav-links { display: none; } .page-header { padding: 8rem 1rem 4rem; } section { padding: 4rem 1rem; } .section-header h2, .cta h2 { font-size: 1.8rem; } .split img { height: 260px; } .btn { width: 100%; } }
     </style>
+
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="IntersectionMed">
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="services.html">Services</a>
-                <a href="shenzhen.html">Why Shenzhen</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
-        <a href="index.html" onclick="toggleMobileMenu()">Home</a>
-        <a href="about.html" onclick="toggleMobileMenu()">About</a>
-        <a href="services.html" onclick="toggleMobileMenu()">Services</a>
-        <a href="shenzhen.html" onclick="toggleMobileMenu()">Why Shenzhen</a>
-        <a href="contact.html" onclick="toggleMobileMenu()">Contact</a>
-    </div>
-
+    <nav class="navbar"><div class="nav-container"><a class="logo" href="index.html" aria-label="IntersectionMed home"><img src="logo.png" alt="IntersectionMed"></a><div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="contact.html" class="active">Contact</a></div><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button></div></nav>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">x</button><a href="index.html" onclick="toggleMobileMenu()">Home</a><a href="about.html" onclick="toggleMobileMenu()">About</a><a href="services.html" onclick="toggleMobileMenu()">Services</a><a href="shenzhen.html" onclick="toggleMobileMenu()">Why Shenzhen</a><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></div>
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -595,138 +84,14 @@
             document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
         }
     </script>
-
-    <header class="page-header">
-        <h1>Get in Touch</h1>
-        <p>Ready to start your medical journey? We're here to answer your questions and guide you every step of the way.</p>
-    </header>
-
-    <section class="contact-section">
-        <div class="contact-grid">
-            <div class="contact-form">
-                <h2>Send Us a Message</h2>
-                <form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="New Contact Form - IntersectionMed">
-                    <input type="hidden" name="_captcha" value="true">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" name="fullname" placeholder="Your full name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email Address *</label>
-                        <input type="email" name="email" placeholder="your@email.com" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Country *</label>
-                        <input type="text" name="country" placeholder="e.g., Singapore, United States" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Medical Condition / Interest</label>
-                        <input type="text" name="interest" placeholder="e.g., Cardiac surgery, Dental implants">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Your Message *</label>
-                        <textarea name="message" placeholder="Tell us about your medical needs..." required></textarea>
-                    </div>
-
-                    <div class="g-recaptcha" data-sitekey="6LdxlaQsAAAAANv7GS82qGDojqip3QC6gI06IDYs"></div>
-                    <button type="submit" class="btn-submit">Send Message →</button>
-                </form>
-            </div>
-
-            <div class="contact-info">
-                <h2>Contact Information</h2>
-
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-method">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h3>Office</h3>
-                            <p>Shenzhen, China</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="office-hours">
-                    <h3>🕐 Office Hours</h3>
-                    <ul class="hours-list">
-                        <li>
-                            <span>Monday - Friday</span>
-                            <span>9:00 AM - 6:00 PM CST</span>
-                        </li>
-                        <li>
-                            <span>Saturday</span>
-                            <span>10:00 AM - 4:00 PM CST</span>
-                        </li>
-                        <li>
-                            <span>Sunday</span>
-                            <span>Closed</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="response-time">
-                    <h3>⚡ Fast Response Guarantee</h3>
-                    <p>We respond to all inquiries within 24 hours</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="map-section">
-        <div class="section-container" style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
-            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-                <h2>Our Location</h2>
-                <p>Based in Shenzhen, China - A Global Hub of Innovation and Healthcare</p>
-            </div>
-            
-            <div style="max-width: 100%; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238130.70336399207!2d113.76328285!3d22.54151775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403f4c94a6f81c3%3A0xfd0c6f7f1e7a5c3!2sShenzhen%2C%20Guangdong%20Province%2C%20China!5e0!3m2!1sen!2sus!4v1709644800000!5m2!1sen!2sus" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-        </div>
-    </section>
-
+<header class="page-header"><h1>Contact IntersectionMed</h1><p>Send your request and we will help you understand the practical next steps for a planned healthcare visit to Shenzhen.</p></header><section><div class="section-container contact-grid"><div class="card"><h2 style="margin-bottom: 1.5rem;">Request Appointment Support</h2><form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST"><input type="hidden" name="_subject" value="New Appointment Support Request - IntersectionMed"><input type="hidden" name="_captcha" value="true"><div class="form-group"><label>Full Name *</label><input type="text" name="fullname" placeholder="Your full name" required></div><div class="form-group"><label>Email Address *</label><input type="email" name="email" placeholder="your@email.com" required></div><div class="form-group"><label>Country or Region *</label><input type="text" name="country" placeholder="e.g., Vietnam, Singapore, Canada" required></div><div class="form-group"><label>Service Type</label><select name="service_type"><option value="">Select one</option><option>Health checkup coordination</option><option>Digestive screening support</option><option>Dental consultation support</option><option>Fertility assessment coordination</option><option>Medical translation or accompaniment</option><option>Other planned healthcare visit</option></select></div><div class="form-group"><label>Preferred Travel Dates</label><input type="text" name="preferred_dates" placeholder="e.g., July 10-15, 2026"></div><div class="form-group"><label>Your Message *</label><textarea name="message" placeholder="Tell us what service you are considering, your timeline, language needs, and any practical questions. Please do not use this form for emergencies." required></textarea></div><button type="submit" class="btn btn-primary">Send Request</button></form></div><div><div class="card" style="margin-bottom: 1.5rem;"><h3>Email</h3><p><a href="mailto:intersectionmed@gmail.com" style="color: var(--primary); text-decoration: none;">intersectionmed@gmail.com</a></p></div><div class="card" style="margin-bottom: 1.5rem;"><h3>Location</h3><p>Shenzhen, China</p></div><div class="card" style="margin-bottom: 1.5rem;"><h3>Languages</h3><p>English and Chinese. Additional language support is subject to availability.</p></div><div class="card"><h3>Response Time</h3><p>We usually respond within 1 business day. IntersectionMed is not an emergency service.</p></div></div></div></section><section class="bg-light"><div class="section-container"><div class="section-header"><h2>What to Include in Your Message</h2><p>The more context you provide, the easier it is to coordinate the right practical next step.</p></div><div class="grid-3"><div class="card"><h3>Service and Timeline</h3><p>Tell us which service you are considering and when you hope to visit Shenzhen.</p></div><div class="card"><h3>Documents</h3><p>Mention whether you have previous reports, test results, or medical records that may be relevant.</p></div><div class="card"><h3>Travel Needs</h3><p>Tell us if you need airport pickup, hotel location advice, or in-person accompaniment.</p></div></div><div class="note-box">For urgent symptoms or emergency medical needs, contact local emergency services or go directly to an appropriate medical facility.</div></div></section>
     <footer>
         <div class="footer-container">
-            <div class="footer-brand">
-                <img src="logo.png" alt="IntersectionMed" class="logo-footer">
-                <p>Your trusted bridge to China's healthcare system. We help international patients navigate the local medical landscape with confidence.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="services.html">Services</a>
-                <a href="shenzhen.html">Why Shenzhen</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-links">
-                <h4>Contact</h4>
-                <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>
-            </div>
+            <div class="footer-brand"><img src="logo.png" alt="IntersectionMed" class="logo-footer"><p>IntersectionMed helps international patients access healthcare in Shenzhen through appointment coordination, medical translation, in-person accompaniment, travel planning support, and post-visit follow-up assistance.</p></div>
+            <div class="footer-links"><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="contact.html">Contact</a></div>
+            <div class="footer-links"><h4>Contact</h4><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a><p>Location: Shenzhen, China</p><p>Languages: English and Chinese. Additional language support subject to availability.</p><p>Response time: usually within 1 business day.</p></div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 IntersectionMed. All rights reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>IntersectionMed is not a healthcare provider and does not provide medical diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions.</p><p style="margin-top: 1rem;">© 2026 IntersectionMed. All rights reserved.</p></div>
     </footer>
 </body>
 </html>
