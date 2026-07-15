@@ -186,6 +186,9 @@
         .cta h2 { font-size: 2.35rem; margin-bottom: 1rem; }
         .cta p { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin: 0 auto 2rem; max-width: 760px; }
         .btn-white { background: white; color: var(--primary); }
+        .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-outline-white { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.78); }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.12); }
         footer { background: #1f2937; color: white; padding: 4rem 2rem 2rem; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 3rem; }
         .footer-brand p, .footer-links a, .footer-links p { color: #c7d0dc; margin-top: 1rem; }
@@ -476,7 +479,7 @@
     <section class="cta">
         <h2>Planning a Healthcare Visit to Shenzhen?</h2>
         <p>Send us your preferred dates, service type, and language needs. We will help you understand the practical next steps for appointment coordination and travel planning.</p>
-        <a href="contact.html" class="btn btn-white">Request Appointment Support</a>
+        <div class="cta-actions"><a href="contact.html" class="btn btn-white">Request Appointment Support</a><a href="contact.html#whatsapp" class="btn btn-outline-white">Contact on WhatsApp</a></div>
     </section>
 
     <footer id="contact">
@@ -497,7 +500,7 @@
                 <h4>Contact</h4>
                 <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>
                 <p>Location: Shenzhen, China</p>
-                <p>Languages: English and Chinese. Additional language support subject to availability.</p>
+                <p>Languages: English and Chinese. Additional language support subject to availability.</p><p>WhatsApp: scan the QR code on the <a href="contact.html" style="color: #c7d0dc;">Contact page</a>.</p>
                 <p>Response time: usually within 1-2 business days.</p>
             </div>
         </div>
