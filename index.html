@@ -25,13 +25,14 @@
         body { background: var(--white); color: var(--ink); font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
         a { color: inherit; }
         .container { width: min(1120px, calc(100% - 120px)); margin: 0 auto; }
-        .navbar { position: fixed; top: 0; z-index: 20; width: 100%; background: rgba(255,255,255,0.97); border-bottom: 1px solid rgba(19,35,59,0.08); }
-        .nav-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-        .logo img { display: block; width: auto; height: 58px; }
-        .nav-links { display: flex; align-items: center; gap: 1.8rem; }
-        .nav-links a { color: var(--ink); font-size: 0.95rem; font-weight: 700; text-decoration: none; }
+        .navbar { position: fixed; top: 0; z-index: 20; width: 100%; background: rgba(255,255,255,0.96); box-shadow: 0 1px 3px rgba(0,0,0,0.1); backdrop-filter: blur(10px); }
+        .nav-inner { width: min(1200px, calc(100% - 32px)); margin: 0 auto; padding: 0.5rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+        .logo img { display: block; width: auto; height: 50px; }
+        @media (min-width: 769px) { .logo img { height: 80px; } }
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { color: var(--ink); font-size: 1rem; font-weight: 500; text-decoration: none; }
         .nav-links a:hover, .nav-links a.active { color: var(--blue); }
-        .nav-contact { border: 1px solid var(--blue); color: var(--blue) !important; padding: 0.52rem 0.82rem; }
+        .nav-contact { color: var(--blue) !important; }
         .menu-button { display: none; border: 0; background: transparent; color: var(--ink); cursor: pointer; font: inherit; font-weight: 800; }
         .mobile-menu { display: none; }
         .hero { position: relative; min-height: 720px; display: flex; align-items: end; overflow: hidden; background: var(--navy) url("docs/images/shenzhen-bay-skyline.jpg") center / cover no-repeat; isolation: isolate; }
@@ -99,8 +100,8 @@
         .footer-block a { display: block; margin: 0.4rem 0; text-decoration: none; }
         .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.14); color: #8fa0b5; font-size: 0.82rem; }
         .footer-bottom a { color: #b9c5d5; text-decoration: none; }
-        @media (max-width: 860px) { .nav-links, .city-layout, .service-grid, .process-grid, .trust-layout, .footer-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .menu-button { display: block; } .mobile-menu { position: fixed; inset: 82px 0 0; z-index: 19; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; background: white; } .mobile-menu.open { display: flex; } .mobile-menu a { color: var(--navy); font-size: 1.3rem; font-weight: 800; text-decoration: none; } .service + .service { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; } .service { min-height: auto; } .city-photo { min-height: 340px; } .trust-layout { gap: 3rem; } }
-        @media (max-width: 600px) { .container { width: min(100% - 32px, 1200px); } .nav-inner { min-height: 70px; } .logo img { height: 48px; } .mobile-menu { inset: 70px 0 0; } .hero { min-height: 720px; } .hero-inner { padding: 8.5rem 0 3rem; } h1 { font-size: 2.8rem; } .hero-copy { font-size: 1.04rem; } .hero-actions .button { width: 100%; } .hero-facts { display: block; margin-top: 2.5rem; } .hero-fact + .hero-fact { border-left: 0; padding-left: 0; } section { padding: 4.5rem 0; } .city-copy { padding: 3rem 1.5rem; } .footer-bottom { display: block; } .footer-bottom p + p { margin-top: 0.45rem; } }
+        @media (max-width: 860px) { .nav-links, .city-layout, .service-grid, .process-grid, .trust-layout, .footer-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .menu-button { display: block; } .mobile-menu { position: fixed; inset: 66px 0 0; z-index: 19; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; background: white; } .mobile-menu.open { display: flex; } .mobile-menu a { color: var(--navy); font-size: 1.3rem; font-weight: 800; text-decoration: none; } .service + .service { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; } .service { min-height: auto; } .city-photo { min-height: 340px; } .trust-layout { gap: 3rem; } }
+        @media (max-width: 600px) { .container { width: min(100% - 32px, 1200px); } .hero { min-height: 720px; } .hero-inner { padding: 8.5rem 0 3rem; } h1 { font-size: 2.8rem; } .hero-copy { font-size: 1.04rem; } .hero-actions .button { width: 100%; } .hero-facts { display: block; margin-top: 2.5rem; } .hero-fact + .hero-fact { border-left: 0; padding-left: 0; } section { padding: 4.5rem 0; } .city-copy { padding: 3rem 1.5rem; } .footer-bottom { display: block; } .footer-bottom p + p { margin-top: 0.45rem; } }
     </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"IntersectionMed","description":"Healthcare coordination and patient support platform helping international patients plan short-stay healthcare visits in Shenzhen, China.","url":"https://intersectionmed.com","logo":"https://intersectionmed.com/logo.png","email":"intersectionmed@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Shenzhen","addressRegion":"Guangdong","addressCountry":"CN"},"areaServed":["Shenzhen","China"],"knowsAbout":["medical travel China","healthcare in Shenzhen","medical translation","hospital appointment coordination"]}
