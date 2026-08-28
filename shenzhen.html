@@ -81,7 +81,7 @@
         @media (max-width: 768px) { .mobile-menu-btn { display: block; } .nav-links { display: none; } .page-header { padding: 8rem 1rem 4rem; } section { padding: 4rem 1rem; } .section-header h2, .cta h2 { font-size: 1.8rem; } .split img { height: 260px; } .btn { width: 100%; } }
 
         /* Shenzhen page enhancements */
-        .shenzhen-hero { position: relative; min-height: 630px; display: flex; align-items: flex-end; padding: 10rem 2rem 5rem; color: white; background: #172033 url("hero-bg.png") center / cover no-repeat; isolation: isolate; }
+        .shenzhen-hero { position: relative; min-height: 630px; display: flex; align-items: flex-end; padding: 10rem 2rem 5rem; color: white; background: #172033 url("docs/images/shenzhen-bay-sunset.jpg") center 55% / cover no-repeat; isolation: isolate; }
         .shenzhen-hero::before { content: ""; position: absolute; inset: 0; background: rgba(10, 26, 51, 0.78); z-index: -1; }
         .hero-container { width: 100%; max-width: 1200px; margin: 0 auto; }
         .eyebrow { color: #b9d5ff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0; text-transform: uppercase; margin-bottom: 1rem; }
@@ -99,11 +99,19 @@
         .location-panel { border-left: 3px solid var(--primary); padding: 0.25rem 0 0.25rem 1.5rem; }
         .location-panel p { margin-bottom: 0.6rem; }
         .location-panel strong { color: #172033; }
+        .map-link { display: inline-block; margin-top: 0.75rem; color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 700; }
         .reason-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
         .reason { background: white; padding: 2rem; min-height: 210px; }
         .reason .number { display: block; color: var(--primary); font-size: 0.85rem; font-weight: 800; margin-bottom: 1.2rem; }
         .reason h3 { font-size: 1.25rem; line-height: 1.3; margin-bottom: 0.7rem; }
         .reason p { color: var(--text-light); }
+        .city-visual { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr); min-height: 430px; background: #172033; color: white; }
+        .city-visual img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; }
+        .city-visual-copy { display: flex; flex-direction: column; justify-content: center; padding: 3rem; }
+        .city-visual-copy h2 { font-size: 2rem; line-height: 1.2; letter-spacing: 0; margin-bottom: 1rem; }
+        .city-visual-copy p { color: rgba(255,255,255,0.82); margin-bottom: 1rem; }
+        .photo-credit { color: rgba(255,255,255,0.58); font-size: 0.78rem; margin-top: 1.2rem; }
+        .photo-credit a { color: inherit; }
         .travel-plan { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .plan-item { border-top: 3px solid var(--secondary); padding-top: 1.15rem; }
         .plan-item h3 { font-size: 1.15rem; margin-bottom: 0.55rem; }
@@ -114,10 +122,10 @@
         .fit-list li:first-child { border-top: 0; padding-top: 0; }
         .guide-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.35rem; }
         .guide-links a { color: var(--primary); background: white; border: 1px solid var(--border); padding: 0.65rem 0.9rem; text-decoration: none; font-weight: 700; }
-        @media (max-width: 960px) { .hero-facts, .reason-grid, .travel-plan, .fit-grid, .intro-layout { grid-template-columns: 1fr; } .shenzhen-hero { min-height: auto; } }
+        @media (max-width: 960px) { .hero-facts, .reason-grid, .travel-plan, .fit-grid, .intro-layout, .city-visual { grid-template-columns: 1fr; } .shenzhen-hero { min-height: auto; } .city-visual img { min-height: 290px; max-height: 420px; } }
         @media (max-width: 768px) { .shenzhen-hero { padding: 8rem 1rem 4rem; } .shenzhen-hero h1 { font-size: 2.5rem; } .hero-actions .btn { width: auto; } .hero-facts { margin-top: 2rem; } .intro-layout h2, .section-title { font-size: 1.9rem; } }
         /* End Shenzhen page enhancements */
-    </style>
+</style>
 
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebPage","name":"Why Shenzhen for Planned Healthcare Visits?","url":"https://intersectionmed.com/shenzhen.html","about":{"@type":"Place","name":"Shenzhen, China"}}
@@ -134,6 +142,8 @@
         }
     </script>
 
+
+
 <header class="shenzhen-hero">
     <div class="hero-container">
         <p class="eyebrow">Shenzhen, Southern China</p>
@@ -144,9 +154,11 @@
     </div>
 </header>
 
-<section id="why-shenzhen"><div class="section-container intro-layout"><div><p class="eyebrow">More than a destination</p><h2>Make the visit feel manageable from the moment you arrive.</h2><p>Choosing a city for planned healthcare is not only about an appointment. It is also about how easily you can arrive, find your way, communicate your needs, rest between visits, and understand the next steps.</p><p>Shenzhen can work well for selected short-stay visits when the appointment, travel dates, documents, language support, and local transport are planned together. IntersectionMed helps coordinate those practical pieces; healthcare institutions and licensed clinicians remain responsible for all clinical care and decisions.</p></div><aside class="location-panel"><p><strong>Where Shenzhen sits</strong></p><p>On the southern coast of China and directly beside Hong Kong, Shenzhen is part of the Guangdong-Hong Kong-Macao Greater Bay Area.</p><p>That position can make it a practical choice for visitors combining a Shenzhen appointment with regional business or travel plans.</p></aside></div></section>
+<section id="why-shenzhen"><div class="section-container intro-layout"><div><p class="eyebrow">More than a destination</p><h2>Make the visit feel manageable from the moment you arrive.</h2><p>Choosing a city for planned healthcare is not only about an appointment. It is also about how easily you can arrive, find your way, communicate your needs, rest between visits, and understand the next steps.</p><p>Shenzhen can work well for selected short-stay visits when the appointment, travel dates, documents, language support, and local transport are planned together. IntersectionMed helps coordinate those practical pieces; healthcare institutions and licensed clinicians remain responsible for all clinical care and decisions.</p></div><aside class="location-panel"><p><strong>Where Shenzhen sits</strong></p><p>On the southern coast of China and directly beside Hong Kong, Shenzhen is part of the Guangdong-Hong Kong-Macao Greater Bay Area.</p><p>That position can make it a practical choice for visitors combining a Shenzhen appointment with regional business or travel plans.</p><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Shenzhen%2C%20China" target="_blank" rel="noopener noreferrer">View Shenzhen in Google Maps</a></aside></div></section>
 
 <section class="bg-light"><div class="section-container"><div class="section-header"><p class="eyebrow">The practical advantage</p><h2 class="section-title">Four reasons international visitors consider Shenzhen</h2><p>These are travel and coordination advantages, not claims about a particular hospital, clinician, or medical outcome.</p></div><div class="reason-grid"><article class="reason"><span class="number">01</span><h3>Close to Hong Kong and the region</h3><p>Shenzhen gives many travellers a mainland China base close to Hong Kong, with cross-border, air, and rail options that can support regional itineraries. Visa and border requirements should always be checked before travel.</p></article><article class="reason"><span class="number">02</span><h3>Connected arrival and local travel</h3><p>Shenzhen Bao'an International Airport, railway stations, and the city metro create several ways to plan arrival and in-city movement. We help align appointment timing with the route that suits your itinerary.</p></article><article class="reason"><span class="number">03</span><h3>An international visitor environment</h3><p>Shenzhen's cross-border business character means international accommodation, dining, transport, and digital travel tools are familiar parts of daily city life. English-language service varies by venue and institution, so preparation matters.</p></article><article class="reason"><span class="number">04</span><h3>Support that reduces friction</h3><p>Registration processes, local navigation, translation, and report communication can feel unfamiliar in a new healthcare system. Our role is to help make those non-clinical steps clearer and more organized.</p></article></div></div></section>
+
+<section><div class="section-container"><div class="city-visual"><img src="docs/images/shenzhen-bay-skyline.jpg" alt="Shenzhen Bay skyline and waterfront"><div class="city-visual-copy"><p class="eyebrow">A city with room to breathe</p><h2>Modern skyline, waterfront spaces, and a clear base for a short stay.</h2><p>For visitors with time around a planned appointment, Shenzhen offers a contemporary urban setting with waterfront areas, parks, dining, and accommodation across several districts.</p><p>Travel plans should remain flexible around provider instructions and any follow-up arrangements.</p><p class="photo-credit">Shenzhen city photography: <a href="https://unsplash.com/photos/city-skyline-across-body-of-water-during-daytime-4P2nfbuygys" target="_blank" rel="noopener noreferrer">Weichao Deng</a> and <a href="https://unsplash.com/photos/a-city-skyline-with-a-body-of-water-in-the-foreground-qOLl1J2uVP0" target="_blank" rel="noopener noreferrer">koala z</a> via Unsplash.</p></div></div></div></section>
 
 <section><div class="section-container"><div class="section-header"><p class="eyebrow">A short-stay city experience</p><h2 class="section-title">Plan the visit around real life, not just the appointment.</h2><p>We help make an appointment day fit into a sensible travel schedule.</p></div><div class="travel-plan"><div class="plan-item"><h3>Before arrival</h3><p>Confirm your intended service, travel dates, passport country, language needs, relevant documents, and any preparation instructions received from the healthcare institution.</p></div><div class="plan-item"><h3>During the visit</h3><p>Choose accommodation and transport with the appointment location in mind. Translation and navigation support can be coordinated where available and appropriate.</p></div><div class="plan-item"><h3>After the appointment</h3><p>Allow time for any provider-led follow-up arrangements, report collection, and travel adjustments before continuing your journey.</p></div></div><div class="note-box">Shenzhen is intended here as a destination for planned, non-emergency visits. For urgent symptoms, emergency care, critical illness, or immediate medical concerns, contact local emergency services or go directly to an appropriate medical facility.</div></div></section>
 
