@@ -139,6 +139,21 @@
         .site-footer-bottom a { color: #b9c5d5; text-decoration: none; }
         @media (max-width: 860px) { .site-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
         @media (max-width: 600px) { footer.site-footer { padding: 3.5rem 0 1.5rem; } .site-footer-grid, .site-footer-bottom { width: min(100% - 32px, 1200px); } .site-footer-bottom { display: block; } .site-footer-bottom p + p { margin-top: 0.45rem; } }
+
+        /* Unified site footer */
+        footer.site-footer { background: #0d192a; color: #ffffff; padding: 4.5rem 0 2rem; }
+        .site-footer-grid { width: min(1120px, calc(100% - 120px)); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 0.7fr 1fr; gap: 4rem; }
+        .site-footer-logo { display: block; width: auto; height: 82px; background: #ffffff; border-radius: 6px; }
+        .site-footer-copy, .site-footer-block p, .site-footer-block a { color: #b9c5d5; font-size: 0.92rem; }
+        .site-footer-copy { max-width: 440px; margin-top: 1rem; }
+        .site-footer-block h3 { margin-bottom: 1rem; color: #ffffff; font-size: 1rem; }
+        .site-footer-block a { display: block; margin: 0.4rem 0; text-decoration: none; }
+        .site-footer-block a:hover, .site-footer-bottom a:hover { color: #ffffff; }
+        .site-footer-bottom { width: min(1120px, calc(100% - 120px)); margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; gap: 1rem; color: #8fa0b5; font-size: 0.82rem; }
+        .site-footer-bottom a { color: #b9c5d5; text-decoration: none; }
+        @media (max-width: 860px) { .site-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        @media (max-width: 600px) { footer.site-footer { padding: 3.5rem 0 1.5rem; } .site-footer-grid, .site-footer-bottom { width: min(100% - 32px, 1200px); } .site-footer-bottom { display: block; } .site-footer-bottom p + p { margin-top: 0.45rem; } }
+        /* End unified site footer */
 </style>
 
     <script type="application/ld+json">
