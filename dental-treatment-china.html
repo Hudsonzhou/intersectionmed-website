@@ -79,7 +79,22 @@
         .footer-bottom { max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid #374151; color: #aab4c0; font-size: 0.9rem; }
         @media (max-width: 960px) { .grid-2, .grid-3, .grid-4, .steps, .split, .contact-grid, .footer-container { grid-template-columns: 1fr; } .page-header h1 { font-size: 2.2rem; } }
         @media (max-width: 768px) { .mobile-menu-btn { display: block; } .nav-links { display: none; } .page-header { padding: 8rem 1rem 4rem; } section { padding: 4rem 1rem; } .section-header h2, .cta h2 { font-size: 1.8rem; } .split img { height: 260px; } .btn { width: 100%; } }
-    </style>
+
+        /* Unified site footer */
+        footer.site-footer { background: #0d192a; color: #ffffff; padding: 4.5rem 0 2rem; }
+        .site-footer-grid { width: min(1120px, calc(100% - 120px)); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 0.7fr 1fr; gap: 4rem; }
+        .site-footer-logo { display: block; width: auto; height: 82px; background: #ffffff; border-radius: 6px; }
+        .site-footer-copy, .site-footer-block p, .site-footer-block a { color: #b9c5d5; font-size: 0.92rem; }
+        .site-footer-copy { max-width: 440px; margin-top: 1rem; }
+        .site-footer-block h3 { margin-bottom: 1rem; color: #ffffff; font-size: 1rem; }
+        .site-footer-block a { display: block; margin: 0.4rem 0; text-decoration: none; }
+        .site-footer-block a:hover, .site-footer-bottom a:hover { color: #ffffff; }
+        .site-footer-bottom { width: min(1120px, calc(100% - 120px)); margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; gap: 1rem; color: #8fa0b5; font-size: 0.82rem; }
+        .site-footer-bottom a { color: #b9c5d5; text-decoration: none; }
+        @media (max-width: 860px) { .site-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        @media (max-width: 600px) { footer.site-footer { padding: 3.5rem 0 1.5rem; } .site-footer-grid, .site-footer-bottom { width: min(100% - 32px, 1200px); } .site-footer-bottom { display: block; } .site-footer-bottom p + p { margin-top: 0.45rem; } }
+        /* End unified site footer */
+</style>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -110,13 +125,13 @@
 <section class="bg-light"><div class="section-container"><div class="section-header"><h2>What We Can Help With</h2><p>Dental travel planning often depends on consultation findings, provider assessment, lab timing, and follow-up requirements.</p></div><div class="grid-3"><div class="card"><h3>Consultation Coordination</h3><p>We help coordinate dental assessment appointments and practical communication before your Shenzhen visit.</p></div><div class="card"><h3>Translation Support</h3><p>We help translate provider explanations for dental implants, crowns, veneers, restorative care, or cosmetic dentistry discussions.</p></div><div class="card"><h3>Scheduling and Follow-Up</h3><p>We help align visit timing, clinic communication, travel plans, and follow-up questions after the consultation.</p></div></div></div></section>
 <section><div class="section-container"><div class="section-header"><h2>What We Do Not Do</h2><p>Dental decisions must be made by licensed dental professionals and healthcare institutions.</p></div><div class="grid-3"><div class="card"><h3>No Treatment Plan by IntersectionMed</h3><p>We do not create dental treatment plans or decide whether implants, crowns, veneers, or other services are appropriate.</p></div><div class="card"><h3>No Outcome Claims</h3><p>We do not guarantee aesthetic results, treatment success, treatment duration, or cost savings.</p></div><div class="card"><h3>No Replacement for Dental Consultation</h3><p>We support communication and logistics. Clinical assessment and treatment decisions remain with licensed dental providers.</p></div></div></div></section>
 <p>Send us your preferred dates, service type, language needs, and any relevant documents. We will help you understand the practical next steps.</p><a href="contact.html" class="btn btn-white">Request Appointment Support</a></section>
-<footer>
-        <div class="footer-container">
-            <div class="footer-brand"><img src="logo.png" alt="IntersectionMed" class="logo-footer"><p>IntersectionMed helps international patients access healthcare in Shenzhen through appointment coordination, medical translation, in-person accompaniment, travel planning support, and post-visit follow-up assistance.</p></div>
-            <div class="footer-links"><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Guides</a><a href="contact.html">Contact</a></div>
-            <div class="footer-links"><h4>Contact</h4><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a><p>Location: Shenzhen, China</p><p>Languages: English and Chinese. Additional language support subject to availability.</p><p>Response time: usually within 1-2 business days.</p></div>
+<footer class="site-footer">
+        <div class="site-footer-grid">
+            <div><img class="site-footer-logo" src="logo.png" alt="IntersectionMed"><p class="site-footer-copy">IntersectionMed helps international patients coordinate planned healthcare visits in Shenzhen through appointment communication, translation, accompaniment, travel planning, and post-visit support.</p></div>
+            <div class="site-footer-block"><h3>Explore</h3><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Patient Guides</a><a href="about.html">About</a></div>
+            <div class="site-footer-block"><h3>Contact</h3><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a><p>Shenzhen, China</p><p>English and Chinese. Additional language support subject to availability.</p><p>Usually within 1-2 business days.</p></div>
         </div>
-        <div class="footer-bottom"><p><a href="privacy.html" style="color: #c7d0dc; text-decoration: none;">Privacy</a></p><p>© 2026 IntersectionMed. All rights reserved.</p></div>
+        <div class="site-footer-bottom"><p><a href="privacy.html">Privacy</a></p><p>&copy; 2026 IntersectionMed. All rights reserved.</p></div>
     </footer>
 </body>
 </html>
