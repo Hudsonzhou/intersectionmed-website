@@ -125,6 +125,20 @@
         @media (max-width: 960px) { .hero-facts, .reason-grid, .travel-plan, .fit-grid, .intro-layout, .city-visual { grid-template-columns: 1fr; } .shenzhen-hero { min-height: auto; } .city-visual img { min-height: 290px; max-height: 420px; } }
         @media (max-width: 768px) { .shenzhen-hero { padding: 8rem 1rem 4rem; } .shenzhen-hero h1 { font-size: 2.5rem; } .hero-actions .btn { width: auto; } .hero-facts { margin-top: 2rem; } .intro-layout h2, .section-title { font-size: 1.9rem; } }
         /* End Shenzhen page enhancements */
+
+        /* Matches the homepage footer layout. */
+        footer.site-footer { background: #0d192a; color: #ffffff; padding: 4.5rem 0 2rem; }
+        .site-footer-grid { width: min(1120px, calc(100% - 120px)); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 0.7fr 1fr; gap: 4rem; }
+        .site-footer-logo { display: block; width: auto; height: 82px; background: #ffffff; border-radius: 6px; }
+        .site-footer-copy, .site-footer-block p, .site-footer-block a { color: #b9c5d5; font-size: 0.92rem; }
+        .site-footer-copy { max-width: 440px; margin-top: 1rem; }
+        .site-footer-block h3 { margin-bottom: 1rem; color: #ffffff; font-size: 1rem; }
+        .site-footer-block a { display: block; margin: 0.4rem 0; text-decoration: none; }
+        .site-footer-block a:hover, .site-footer-bottom a:hover { color: #ffffff; }
+        .site-footer-bottom { width: min(1120px, calc(100% - 120px)); margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; gap: 1rem; color: #8fa0b5; font-size: 0.82rem; }
+        .site-footer-bottom a { color: #b9c5d5; text-decoration: none; }
+        @media (max-width: 860px) { .site-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        @media (max-width: 600px) { footer.site-footer { padding: 3.5rem 0 1.5rem; } .site-footer-grid, .site-footer-bottom { width: min(100% - 32px, 1200px); } .site-footer-bottom { display: block; } .site-footer-bottom p + p { margin-top: 0.45rem; } }
 </style>
 
     <script type="application/ld+json">
