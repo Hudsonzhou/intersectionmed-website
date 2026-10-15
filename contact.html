@@ -1,211 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX3WEED6K"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-JMX3WEED6K');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact IntersectionMed | Shenzhen Medical Travel Support</title>
-    <meta name="description" content="Contact IntersectionMed for appointment coordination, medical translation, hospital navigation, and short-stay medical travel support in Shenzhen, China.">
-    <meta name="keywords" content="contact IntersectionMed, medical travel Shenzhen, hospital appointment China, medical translation Shenzhen">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #0f766e; --text: #1f2937; --text-light: #5f6b7a; --bg: #ffffff; --bg-light: #f4f7fb; --border: #dbe3ef; }
-        html { scroll-behavior: smooth; }
-        body { font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); }
-        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.96); box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 1000; backdrop-filter: blur(10px); }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0.5rem 1rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 50px; width: auto; display: block; }
-        @media (min-width: 769px) { .logo img { height: 80px; } }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
-        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: all 0.3s; }
-        .mobile-menu { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: white; z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; }
-        .mobile-menu.active { display: flex; }
-        .mobile-menu a { font-size: 1.5rem; text-decoration: none; color: var(--text); font-weight: 600; }
-        .mobile-menu-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text); }
-        .page-header { padding: 10rem 2rem 5rem; background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(15,118,110,0.08) 100%); text-align: center; }
-        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
-        .page-header p { color: var(--text-light); font-size: 1.18rem; max-width: 760px; margin: 0 auto; }
-        section { padding: 5rem 2rem; }
-        .section-container { max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem; }
-        .section-header p { color: var(--text-light); font-size: 1.05rem; max-width: 760px; margin: 0 auto; }
-        .bg-light { background: var(--bg-light); }
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .card { background: white; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 18px rgba(15,23,42,0.05); }
-        .card h3 { font-size: 1.15rem; margin-bottom: 0.65rem; color: #172033; }
-        .card p, .card li { color: var(--text-light); font-size: 0.96rem; }
-        .card ul { padding-left: 1.15rem; }
-        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .split img { width: 100%; height: 390px; object-fit: cover; border-radius: 0.75rem; border: 1px solid var(--border); box-shadow: 0 4px 18px rgba(15,23,42,0.07); }
-        .prose p { color: var(--text-light); font-size: 1.05rem; margin-bottom: 1rem; }
-        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: steps; }
-        .step { counter-increment: steps; position: relative; padding-top: 3.5rem; }
-        .step::before { content: counter(steps); position: absolute; top: 1.25rem; left: 1.25rem; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: white; font-weight: 800; }
-        .note-box { margin-top: 2rem; padding: 1.2rem 1.4rem; background: white; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 0.75rem; color: var(--text-light); }
-        .cta { background: var(--primary); color: white; text-align: center; }
-        .cta h2 { font-size: 2.25rem; margin-bottom: 1rem; }
-        .cta p { color: rgba(255,255,255,0.9); font-size: 1.08rem; margin: 0 auto 2rem; max-width: 760px; }
-        .btn { padding: 0.95rem 1.45rem; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 0.5rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border: 0; cursor: pointer; }
-        .btn-white { background: white; color: var(--primary); }
-        .btn-primary { background: var(--primary); color: white; }
-        .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; }
-        .whatsapp-qr-card { text-align: center; }
-        .whatsapp-qr-card img { width: min(100%, 220px); height: auto; display: block; margin: 0.7rem auto; border: 1px solid var(--border); border-radius: 0.75rem; background: white; }
-        .location-map-card { padding: 0; overflow: hidden; }
-        .location-map-card h3 { padding: 1.35rem 1.5rem 0; }
-        .location-map-card > p { padding: 0 1.5rem; }
-        .location-map { display: block; width: 100%; height: 280px; margin-top: 1rem; border: 0; }
-        .map-actions { padding: 1rem 1.5rem 1.35rem; }
-        .map-link { color: var(--primary); font-weight: 700; text-decoration: none; }
-        .map-link:hover { text-decoration: underline; }
-        .form-group { margin-bottom: 1.25rem; }
-        .form-group label { display: block; font-weight: 700; margin-bottom: 0.45rem; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--border); border-radius: 0.5rem; font-size: 1rem; font-family: inherit; }
-        .form-group textarea { min-height: 130px; resize: vertical; }
-        footer { background: var(--text); color: white; padding: 4rem 2rem 2rem; }
-        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 3rem; }
-        .footer-brand p, .footer-links a, .footer-links p { color: #c7d0dc; margin-top: 1rem; }
-        .logo-footer { height: 100px; width: auto; background: white; padding: 5px; border-radius: 8px; }
-        .footer-links h4 { margin-bottom: 1rem; }
-        .footer-links a { display: block; text-decoration: none; padding: 0.25rem 0; }
-        .footer-bottom { max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid #374151; color: #aab4c0; font-size: 0.9rem; }
-        @media (max-width: 960px) { .grid-2, .grid-3, .grid-4, .steps, .split, .contact-grid, .footer-container { grid-template-columns: 1fr; } .page-header h1 { font-size: 2.2rem; } }
-        @media (max-width: 768px) { .mobile-menu-btn { display: block; } .nav-links { display: none; } .page-header { padding: 8rem 1rem 4rem; } section { padding: 4rem 1rem; } .section-header h2, .cta h2 { font-size: 1.8rem; } .split img { height: 260px; } .btn { width: 100%; } }
-
-        .contact-page-section { padding: 4.5rem 2rem 5rem; }
-        .contact-layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr); gap: 4rem; align-items: start; }
-        .contact-form-panel { padding: 2.25rem; border: 1px solid var(--border); border-radius: 0.75rem; background: white; box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06); }
-        .contact-form-panel h2 { font-size: 1.8rem; margin-bottom: 0.55rem; }
-        .contact-intro { color: var(--text-light); margin-bottom: 1.75rem; max-width: 580px; }
-        .contact-sidebar { min-width: 0; }
-        .contact-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border); }
-        .contact-fact { min-height: 112px; padding: 1rem 0.75rem 1rem 0; border-bottom: 1px solid var(--border); }
-        .contact-fact:nth-child(even) { padding-left: 1.25rem; border-left: 1px solid var(--border); }
-        .contact-fact-label { display: block; color: var(--text-light); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
-        .contact-fact-value { color: var(--text); font-size: 0.98rem; font-weight: 600; line-height: 1.5; }
-        .contact-fact-value a { color: var(--primary); text-decoration: none; }
-        .contact-whatsapp { display: grid; grid-template-columns: minmax(0, 1fr) 124px; gap: 1.5rem; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--border); }
-        .contact-whatsapp h3 { font-size: 1.25rem; margin-bottom: 0.35rem; }
-        .contact-whatsapp p { color: var(--text-light); }
-        .contact-whatsapp img { width: 124px; height: 124px; object-fit: contain; border: 1px solid var(--border); border-radius: 0.5rem; background: white; }
-        .contact-map-panel { padding-top: 2rem; }
-        .contact-map-panel h3 { font-size: 1.25rem; margin-bottom: 0.35rem; }
-        .contact-map-panel > p { color: var(--text-light); margin-bottom: 1rem; }
-        .contact-map { display: block; width: 100%; height: 280px; border: 1px solid var(--border); border-radius: 0.5rem; }
-        .map-actions { margin-top: 0.85rem; }
-        .map-link { color: var(--primary); font-weight: 700; text-decoration: none; }
-        .map-link:hover { text-decoration: underline; }
-        @media (max-width: 960px) { .contact-layout { grid-template-columns: 1fr; gap: 3rem; } }
-        @media (max-width: 640px) { .contact-page-section { padding: 3.5rem 1rem 4rem; } .contact-form-panel { padding: 1.5rem; } .contact-facts { grid-template-columns: 1fr; } .contact-fact, .contact-fact:nth-child(even) { min-height: auto; padding: 1rem 0; border-left: 0; } .contact-whatsapp { grid-template-columns: 1fr 112px; gap: 1rem; } .contact-whatsapp img { width: 112px; height: 112px; } .contact-map { height: 240px; } }
-
-        /* Unified site footer */
-        footer.site-footer { background: #0d192a; color: #ffffff; padding: 4.5rem 0 2rem; }
-        .site-footer-grid { width: min(1120px, calc(100% - 120px)); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 0.7fr 1fr; gap: 4rem; }
-        .site-footer-logo { display: block; width: auto; height: 82px; background: #ffffff; border-radius: 6px; }
-        .site-footer-copy, .site-footer-block p, .site-footer-block a { color: #b9c5d5; font-size: 0.92rem; }
-        .site-footer-copy { max-width: 440px; margin-top: 1rem; }
-        .site-footer-block h3 { margin-bottom: 1rem; color: #ffffff; font-size: 1rem; }
-        .site-footer-block a { display: block; margin: 0.4rem 0; text-decoration: none; }
-        .site-footer-block a:hover, .site-footer-bottom a:hover { color: #ffffff; }
-        .site-footer-bottom { width: min(1120px, calc(100% - 120px)); margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; gap: 1rem; color: #8fa0b5; font-size: 0.82rem; }
-        .site-footer-bottom a { color: #b9c5d5; text-decoration: none; }
-        @media (max-width: 860px) { .site-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-        @media (max-width: 600px) { footer.site-footer { padding: 3.5rem 0 1.5rem; } .site-footer-grid, .site-footer-bottom { width: min(100% - 32px, 1200px); } .site-footer-bottom { display: block; } .site-footer-bottom p + p { margin-top: 0.45rem; } }
-        /* End unified site footer */
-</style>
-
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "IntersectionMed",
-        "description": "IntersectionMed is a healthcare coordination and patient support platform based in Shenzhen, China. We help international patients plan short-stay healthcare visits with hospital appointment coordination, medical translation, in-person accompaniment, travel logistics, and post-visit follow-up support.",
-        "url": "https://intersectionmed.com/contact.html",
-        "logo": "https://intersectionmed.com/logo.png",
-        "email": "intersectionmed@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Shenzhen",
-            "addressRegion": "Guangdong",
-            "addressCountry": "CN"
-        },
-        "areaServed": [
-            { "@type": "City", "name": "Shenzhen" },
-            { "@type": "AdministrativeArea", "name": "Guangdong" },
-            { "@type": "Country", "name": "China" }
-        ],
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "18:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "10:00",
-                "closes": "16:00"
-            }
-        ],
-        "knowsAbout": [
-            "medical travel China",
-            "healthcare in Shenzhen",
-            "hospital appointment coordination",
-            "medical translation Shenzhen",
-            "health checkup coordination",
-            "endoscopy and colonoscopy coordination",
-            "dental consultation support",
-            "fertility assessment coordination"
-        ],
-        "makesOffer": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Health Checkup Coordination" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digestive Screening Support" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dental Consultation Support" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fertility Assessment Coordination" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Traditional Chinese Medicine and Rehabilitation Coordination" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Medical Translation and Accompaniment" } }
-        ]
-    }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact IntersectionMed | Shenzhen Visit Support and Fees</title>
+<meta name="description" content="Discuss your Shenzhen appointment, interpretation, accompaniment and coordination fees. Contact IntersectionMed by WhatsApp, email or initial inquiry form.">
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="canonical" href="https://intersectionmed.com/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="docs/site.css?v=20261015">
+<script src="docs/site.js?v=20261015" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX3WEED6K"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JMX3WEED6K');</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ContactPage", "name": "Contact IntersectionMed | Shenzhen Visit Support and Fees", "description": "Discuss your Shenzhen appointment, interpretation, accompaniment and coordination fees. Contact IntersectionMed by WhatsApp, email or initial inquiry form.", "url": "https://intersectionmed.com/contact.html"}</script>
 </head>
 <body>
-    <nav class="navbar"><div class="nav-container"><a class="logo" href="index.html" aria-label="IntersectionMed home"><img src="logo.png" alt="IntersectionMed"></a><div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Guides</a><a href="contact.html" class="active">Contact</a></div><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button></div></nav>
-    <div class="mobile-menu" id="mobileMenu"><button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">x</button><a href="index.html" onclick="toggleMobileMenu()">Home</a><a href="about.html" onclick="toggleMobileMenu()">About</a><a href="services.html" onclick="toggleMobileMenu()">Services</a><a href="shenzhen.html" onclick="toggleMobileMenu()">Why Shenzhen</a><a href="guides.html" onclick="toggleMobileMenu()">Guides</a><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></div>
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
-        }
-    </script>
-<header class="page-header"><h1>Contact IntersectionMed</h1><p>Send your request and we will help you understand the practical next steps for a planned healthcare visit to Shenzhen.</p></header><section class="contact-page-section"><div class="contact-layout"><div class="contact-form-panel"><h2>Request Coordination Support</h2><p class="contact-intro">Tell us the service you are considering, your preferred dates, and your language needs. We will reply with the practical next steps for a planned Shenzhen visit.</p><form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST"><input type="hidden" name="_subject" value="New Appointment Support Request - IntersectionMed"><input type="hidden" name="_captcha" value="true"><p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">For an initial inquiry, please share only general planning information. Do not send passport numbers, payment details, detailed medical records, or imaging files through this form.</p><div class="form-group"><label>Full Name *</label><input type="text" name="fullname" placeholder="Your full name" required></div><div class="form-group"><label>Email Address *</label><input type="email" name="email" placeholder="your@email.com" required></div><div class="form-group"><label for="country">Country or Region *</label><input id="country" type="text" name="country" list="country-options" placeholder="Start typing or select a country" autocomplete="country-name" required><datalist id="country-options"><option value="Afghanistan"><option value="Albania"><option value="Algeria"><option value="Andorra"><option value="Angola"><option value="Antigua and Barbuda"><option value="Argentina"><option value="Armenia"><option value="Australia"><option value="Austria"><option value="Azerbaijan"><option value="Bahamas"><option value="Bahrain"><option value="Bangladesh"><option value="Barbados"><option value="Belarus"><option value="Belgium"><option value="Belize"><option value="Benin"><option value="Bhutan"><option value="Bolivia"><option value="Bosnia and Herzegovina"><option value="Botswana"><option value="Brazil"><option value="Brunei"><option value="Bulgaria"><option value="Burkina Faso"><option value="Burundi"><option value="Cabo Verde"><option value="Cambodia"><option value="Cameroon"><option value="Canada"><option value="Central African Republic"><option value="Chad"><option value="Chile"><option value="China"><option value="Colombia"><option value="Comoros"><option value="Congo - Brazzaville"><option value="Congo - Kinshasa"><option value="Costa Rica"><option value="Cote d'Ivoire"><option value="Croatia"><option value="Cuba"><option value="Cyprus"><option value="Czechia"><option value="Denmark"><option value="Djibouti"><option value="Dominica"><option value="Dominican Republic"><option value="Ecuador"><option value="Egypt"><option value="El Salvador"><option value="Equatorial Guinea"><option value="Eritrea"><option value="Estonia"><option value="Eswatini"><option value="Ethiopia"><option value="Fiji"><option value="Finland"><option value="France"><option value="Gabon"><option value="Gambia"><option value="Georgia"><option value="Germany"><option value="Ghana"><option value="Greece"><option value="Grenada"><option value="Guatemala"><option value="Guinea"><option value="Guinea-Bissau"><option value="Guyana"><option value="Haiti"><option value="Honduras"><option value="Hong Kong"><option value="Hungary"><option value="Iceland"><option value="India"><option value="Indonesia"><option value="Iran"><option value="Iraq"><option value="Ireland"><option value="Israel"><option value="Italy"><option value="Jamaica"><option value="Japan"><option value="Jordan"><option value="Kazakhstan"><option value="Kenya"><option value="Kiribati"><option value="Kosovo"><option value="Kuwait"><option value="Kyrgyzstan"><option value="Laos"><option value="Latvia"><option value="Lebanon"><option value="Lesotho"><option value="Liberia"><option value="Libya"><option value="Liechtenstein"><option value="Lithuania"><option value="Luxembourg"><option value="Macao"><option value="Madagascar"><option value="Malawi"><option value="Malaysia"><option value="Maldives"><option value="Mali"><option value="Malta"><option value="Marshall Islands"><option value="Mauritania"><option value="Mauritius"><option value="Mexico"><option value="Micronesia"><option value="Moldova"><option value="Monaco"><option value="Mongolia"><option value="Montenegro"><option value="Morocco"><option value="Mozambique"><option value="Myanmar"><option value="Namibia"><option value="Nauru"><option value="Nepal"><option value="Netherlands"><option value="New Zealand"><option value="Nicaragua"><option value="Niger"><option value="Nigeria"><option value="North Korea"><option value="North Macedonia"><option value="Norway"><option value="Oman"><option value="Pakistan"><option value="Palau"><option value="Palestine"><option value="Panama"><option value="Papua New Guinea"><option value="Paraguay"><option value="Peru"><option value="Philippines"><option value="Poland"><option value="Portugal"><option value="Qatar"><option value="Romania"><option value="Russia"><option value="Rwanda"><option value="Saint Kitts and Nevis"><option value="Saint Lucia"><option value="Saint Vincent and the Grenadines"><option value="Samoa"><option value="San Marino"><option value="Sao Tome and Principe"><option value="Saudi Arabia"><option value="Senegal"><option value="Serbia"><option value="Seychelles"><option value="Sierra Leone"><option value="Singapore"><option value="Slovakia"><option value="Slovenia"><option value="Solomon Islands"><option value="Somalia"><option value="South Africa"><option value="South Korea"><option value="South Sudan"><option value="Spain"><option value="Sri Lanka"><option value="Sudan"><option value="Suriname"><option value="Sweden"><option value="Switzerland"><option value="Syria"><option value="Taiwan"><option value="Tajikistan"><option value="Tanzania"><option value="Thailand"><option value="Timor-Leste"><option value="Togo"><option value="Tonga"><option value="Trinidad and Tobago"><option value="Tunisia"><option value="Turkiye"><option value="Turkmenistan"><option value="Tuvalu"><option value="Uganda"><option value="Ukraine"><option value="United Arab Emirates"><option value="United Kingdom"><option value="United States"><option value="Uruguay"><option value="Uzbekistan"><option value="Vanuatu"><option value="Vatican City"><option value="Venezuela"><option value="Vietnam"><option value="Yemen"><option value="Zambia"><option value="Zimbabwe"><option value="Other"></datalist></div><div class="form-group"><label>Service Type</label><select name="service_type"><option value="">Select one</option><option>Health checkup coordination</option><option>Digestive screening support</option><option>Dental consultation support</option><option>Fertility assessment coordination</option><option>Traditional Chinese medicine and rehabilitation coordination</option><option>Medical translation or accompaniment</option><option>Other planned healthcare visit</option></select></div><div class="form-group"><label>Preferred Travel Dates</label><input type="text" name="preferred_dates" placeholder="e.g., July 10-15, 2026"></div><div class="form-group"><label>Your Message *</label><textarea name="message" placeholder="Tell us what service you are considering, your timeline, language needs, and any practical questions. Please do not use this form for emergencies." required></textarea></div><div class="form-group" style="display: flex; align-items: flex-start; gap: 0.6rem;"><input type="checkbox" id="privacy-consent" name="privacy_consent" required style="width: auto; margin-top: 0.35rem;"><label for="privacy-consent" style="margin: 0; font-weight: 400;">I have read the <a href="privacy.html" style="color: var(--primary);">Privacy Notice</a> and understand this form is for a non-emergency initial inquiry.</label></div><button type="submit" class="btn btn-primary">Send Request</button></form></div><aside class="contact-sidebar"><div class="contact-facts"><div class="contact-fact"><span class="contact-fact-label">Email</span><div class="contact-fact-value"><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a></div></div><div class="contact-fact"><span class="contact-fact-label">Response time</span><div class="contact-fact-value">Usually within 1-2 business days</div></div><div class="contact-fact"><span class="contact-fact-label">Languages</span><div class="contact-fact-value">English and Chinese</div></div><div class="contact-fact"><span class="contact-fact-label">Visit type</span><div class="contact-fact-value">Planned, non-emergency support</div></div></div><div class="contact-whatsapp" id="whatsapp"><div><h3>WhatsApp</h3><p>Scan the QR code to start a conversation with IntersectionMed.</p></div><img src="whatsapp-qr.png" alt="IntersectionMed WhatsApp QR code"></div><div class="contact-map-panel"><h3>Shenzhen, China</h3><p>Explore the city, zoom in for local areas, or open the full map to search and plan your route.</p><iframe class="contact-map" title="Interactive Google Map of Shenzhen, China" src="https://www.google.com/maps?q=Shenzhen%2C%20China&z=12&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><div class="map-actions"><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Shenzhen%2C%20China" target="_blank" rel="noopener noreferrer">Open full map</a></div></div></aside></div></section>
-    <section class="bg-light"><div class="section-container"><div class="section-header"><h2>What to Include in Your Message</h2><p>The more context you provide, the easier it is to coordinate the right practical next step.</p></div><div class="grid-3"><div class="card"><h3>Service and Timeline</h3><p>Tell us which service you are considering and when you hope to visit Shenzhen.</p></div><div class="card"><h3>Documents</h3><p>Mention whether you have previous reports, test results, or medical records that may be relevant.</p></div><div class="card"><h3>Travel Needs</h3><p>Tell us if you need airport pickup, hotel location advice, or in-person accompaniment.</p></div></div><div class="note-box">For urgent symptoms or emergency medical needs, contact local emergency services or go directly to an appropriate medical facility.</div></div></section>
-    <footer class="site-footer">
-        <div class="site-footer-grid">
-            <div><img class="site-footer-logo" src="logo.png" alt="IntersectionMed"><p class="site-footer-copy">IntersectionMed helps international patients coordinate planned healthcare visits in Shenzhen through appointment communication, translation, accompaniment, travel planning, and post-visit support.</p></div>
-            <div class="site-footer-block"><h3>Explore</h3><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Patient Guides</a><a href="about.html">About</a></div>
-            <div class="site-footer-block"><h3>Contact</h3><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a><p>Shenzhen, China</p><p>English and Chinese. Additional language support subject to availability.</p><p>Usually within 1-2 business days.</p></div>
-        </div>
-        <div class="site-footer-bottom"><p><a href="privacy.html">Privacy</a></p><p>&copy; 2026 IntersectionMed. All rights reserved.</p></div>
-    </footer>
+<a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><nav class="site-nav" aria-label="Main navigation"><a class="brand" href="index.html" aria-label="IntersectionMed home"><img src="logo.png" width="80" height="80" alt="IntersectionMed"></a><div class="desktop-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Patient Guides</a><a href="contact.html" aria-current="page">Contact</a></div><button type="button" class="nav-toggle" aria-label="Open navigation" title="Navigation" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button></nav></header><nav id="mobile-menu" class="mobile-links" aria-label="Mobile navigation" hidden><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Patient Guides</a><a href="contact.html" aria-current="page">Contact</a></nav>
+<main id="main-content" tabindex="-1">
+<header class="page-intro"><div class="wrap"><h1>Contact IntersectionMed</h1><p>Tell us the visit you are considering. We can discuss appointment support, language needs and the coordination fee for your request.</p></div></header><div class="wrap contact-top"><a class="button" href="https://wa.me/qr/TY3MLSWE4SS7D1" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a><a href="mailto:intersectionmed@gmail.com">Email IntersectionMed</a><p>Usually within 1-2 business days &middot; China Standard Time (UTC+8)</p></div><section class="band"><div class="wrap contact-layout"><div class="contact-form"><h2>Request coordination support</h2><p class="privacy-hint" id="privacy-hint">Share general planning information only. Do not send passport numbers, payment details, medical records or imaging files in this initial inquiry.</p><form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST" aria-describedby="privacy-hint"><input type="hidden" name="_subject" value="New Appointment Support Request - IntersectionMed"><input type="hidden" name="_captcha" value="true"><div class="form-row"><div class="field"><label for="fullname">Name *</label><input id="fullname" name="fullname" autocomplete="name" required maxlength="120"></div><div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254"></div></div><div class="form-row"><div class="field"><label for="country">Country or region of residence *</label><div class="country-combo"><div class="country-controls"><input id="country" name="country" list="country-options" placeholder="Type to search or choose" autocomplete="country-name" required maxlength="100"><button class="country-open" type="button" aria-label="Show all countries and regions" title="Show all countries and regions" aria-controls="country-results" hidden>&#9662;</button></div><ul class="country-options" id="country-results" role="listbox" aria-label="Countries and regions" hidden></ul><datalist id="country-options"><option value="Afghanistan"></option><option value="Albania"></option><option value="Algeria"></option><option value="Andorra"></option><option value="Angola"></option><option value="Antigua and Barbuda"></option><option value="Argentina"></option><option value="Armenia"></option><option value="Australia"></option><option value="Austria"></option><option value="Azerbaijan"></option><option value="Bahamas"></option><option value="Bahrain"></option><option value="Bangladesh"></option><option value="Barbados"></option><option value="Belarus"></option><option value="Belgium"></option><option value="Belize"></option><option value="Benin"></option><option value="Bhutan"></option><option value="Bolivia"></option><option value="Bosnia and Herzegovina"></option><option value="Botswana"></option><option value="Brazil"></option><option value="Brunei"></option><option value="Bulgaria"></option><option value="Burkina Faso"></option><option value="Burundi"></option><option value="Cabo Verde"></option><option value="Cambodia"></option><option value="Cameroon"></option><option value="Canada"></option><option value="Central African Republic"></option><option value="Chad"></option><option value="Chile"></option><option value="China"></option><option value="Colombia"></option><option value="Comoros"></option><option value="Congo - Brazzaville"></option><option value="Congo - Kinshasa"></option><option value="Costa Rica"></option><option value="Cote d'Ivoire"></option><option value="Croatia"></option><option value="Cuba"></option><option value="Cyprus"></option><option value="Czechia"></option><option value="Denmark"></option><option value="Djibouti"></option><option value="Dominica"></option><option value="Dominican Republic"></option><option value="Ecuador"></option><option value="Egypt"></option><option value="El Salvador"></option><option value="Equatorial Guinea"></option><option value="Eritrea"></option><option value="Estonia"></option><option value="Eswatini"></option><option value="Ethiopia"></option><option value="Fiji"></option><option value="Finland"></option><option value="France"></option><option value="Gabon"></option><option value="Gambia"></option><option value="Georgia"></option><option value="Germany"></option><option value="Ghana"></option><option value="Greece"></option><option value="Grenada"></option><option value="Guatemala"></option><option value="Guinea"></option><option value="Guinea-Bissau"></option><option value="Guyana"></option><option value="Haiti"></option><option value="Honduras"></option><option value="Hong Kong"></option><option value="Hungary"></option><option value="Iceland"></option><option value="India"></option><option value="Indonesia"></option><option value="Iran"></option><option value="Iraq"></option><option value="Ireland"></option><option value="Israel"></option><option value="Italy"></option><option value="Jamaica"></option><option value="Japan"></option><option value="Jordan"></option><option value="Kazakhstan"></option><option value="Kenya"></option><option value="Kiribati"></option><option value="Kosovo"></option><option value="Kuwait"></option><option value="Kyrgyzstan"></option><option value="Laos"></option><option value="Latvia"></option><option value="Lebanon"></option><option value="Lesotho"></option><option value="Liberia"></option><option value="Libya"></option><option value="Liechtenstein"></option><option value="Lithuania"></option><option value="Luxembourg"></option><option value="Macao"></option><option value="Madagascar"></option><option value="Malawi"></option><option value="Malaysia"></option><option value="Maldives"></option><option value="Mali"></option><option value="Malta"></option><option value="Marshall Islands"></option><option value="Mauritania"></option><option value="Mauritius"></option><option value="Mexico"></option><option value="Micronesia"></option><option value="Moldova"></option><option value="Monaco"></option><option value="Mongolia"></option><option value="Montenegro"></option><option value="Morocco"></option><option value="Mozambique"></option><option value="Myanmar"></option><option value="Namibia"></option><option value="Nauru"></option><option value="Nepal"></option><option value="Netherlands"></option><option value="New Zealand"></option><option value="Nicaragua"></option><option value="Niger"></option><option value="Nigeria"></option><option value="North Korea"></option><option value="North Macedonia"></option><option value="Norway"></option><option value="Oman"></option><option value="Pakistan"></option><option value="Palau"></option><option value="Palestine"></option><option value="Panama"></option><option value="Papua New Guinea"></option><option value="Paraguay"></option><option value="Peru"></option><option value="Philippines"></option><option value="Poland"></option><option value="Portugal"></option><option value="Qatar"></option><option value="Romania"></option><option value="Russia"></option><option value="Rwanda"></option><option value="Saint Kitts and Nevis"></option><option value="Saint Lucia"></option><option value="Saint Vincent and the Grenadines"></option><option value="Samoa"></option><option value="San Marino"></option><option value="Sao Tome and Principe"></option><option value="Saudi Arabia"></option><option value="Senegal"></option><option value="Serbia"></option><option value="Seychelles"></option><option value="Sierra Leone"></option><option value="Singapore"></option><option value="Slovakia"></option><option value="Slovenia"></option><option value="Solomon Islands"></option><option value="Somalia"></option><option value="South Africa"></option><option value="South Korea"></option><option value="South Sudan"></option><option value="Spain"></option><option value="Sri Lanka"></option><option value="Sudan"></option><option value="Suriname"></option><option value="Sweden"></option><option value="Switzerland"></option><option value="Syria"></option><option value="Taiwan"></option><option value="Tajikistan"></option><option value="Tanzania"></option><option value="Thailand"></option><option value="Timor-Leste"></option><option value="Togo"></option><option value="Tonga"></option><option value="Trinidad and Tobago"></option><option value="Tunisia"></option><option value="Turkiye"></option><option value="Turkmenistan"></option><option value="Tuvalu"></option><option value="Uganda"></option><option value="Ukraine"></option><option value="United Arab Emirates"></option><option value="United Kingdom"></option><option value="United States"></option><option value="Uruguay"></option><option value="Uzbekistan"></option><option value="Vanuatu"></option><option value="Vatican City"></option><option value="Venezuela"></option><option value="Vietnam"></option><option value="Yemen"></option><option value="Zambia"></option><option value="Zimbabwe"></option><option value="Other"></option></datalist></div></div><div class="field"><label for="language">Preferred language</label><input id="language" name="language" placeholder="e.g., English or Chinese" autocomplete="off" maxlength="100"></div></div><div class="field"><label for="service-type">Service you are considering</label><select id="service-type" name="service_type"><option value="">Not yet decided</option><option>Health checkup coordination</option><option>Digestive screening support</option><option>Dental consultation support</option><option>Fertility assessment coordination</option><option>TCM and rehabilitation coordination</option><option>Interpretation or accompaniment</option><option>Other planned visit</option></select></div><div class="field"><label for="preferred-dates">Approximate travel dates</label><input id="preferred-dates" name="preferred_dates" placeholder="Month or date range, or not yet decided" maxlength="150"><p class="hint">You can inquire before booking travel.</p></div><div class="field"><label for="message">What would you like help with? *</label><textarea id="message" name="message" required maxlength="4000" placeholder="Describe the visit, whether an appointment is already booked, and any interpretation, accompaniment or travel support you need."></textarea></div><div class="consent"><input type="checkbox" id="privacy-consent" name="privacy_consent" value="accepted" required><label for="privacy-consent">I have read the <a href="privacy.html">Privacy Notice</a> and understand this is a non-emergency inquiry.</label></div><button class="button" type="submit">Send Inquiry</button></form></div><aside><section class="sidebar-section"><h2>What happens next?</h2><ol class="steps-list"><li>We review the service, timing and support you are asking about.</li><li>We reply with follow-up questions or the next coordination steps.</li><li>Discuss availability, support scope and fees before confirming arrangements.</li></ol><p>English and Chinese support. Other languages are subject to availability.</p></section><section class="sidebar-section"><div class="whatsapp-row"><div><h2>WhatsApp</h2><p>Open the contact link on your phone or scan from another device.</p><a href="https://wa.me/qr/TY3MLSWE4SS7D1" target="_blank" rel="noopener noreferrer">Open WhatsApp</a></div><img src="whatsapp-qr.png" width="112" height="112" alt="Scan to contact IntersectionMed on WhatsApp" loading="lazy"></div></section><section class="sidebar-section"><h2>Service area: Shenzhen</h2><p>This city map shows the service area, not an office or a hospital appointment location.</p><iframe class="contact-map" title="Google Map of the Shenzhen service area" src="https://www.google.com/maps?q=Shenzhen%2C%20China&amp;z=12&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Shenzhen%2C%20China" target="_blank" rel="noopener noreferrer">Open full map</a></p></section><p class="privacy-hint">For urgent symptoms or emergencies, contact local emergency services or an appropriate medical facility. This inquiry channel is for planned visits.</p></aside></div><div class="wrap"><div class="scope"><p>IntersectionMed is not a hospital or healthcare provider and does not provide medical diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions.</p></div></div></section>
+</main>
+<footer class="site-footer"><div class="wrap"><div class="site-footer-grid"><div><img class="site-footer-logo" src="logo.png" width="82" height="82" alt="IntersectionMed"><p class="site-footer-copy">IntersectionMed helps international patients coordinate planned healthcare visits in Shenzhen through appointment communication, translation, accompaniment, travel planning, and post-visit support.</p></div><div class="site-footer-block"><h2>Explore</h2><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Patient Guides</a><a href="about.html">About</a></div><div class="site-footer-block"><h2>Contact</h2><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a><p>Shenzhen, China</p><p>English and Chinese. Additional language support subject to availability.</p><p>Usually within 1-2 business days.</p></div></div><div class="site-footer-bottom"><p><a href="privacy.html">Privacy</a></p><p>&copy; 2026 IntersectionMed. All rights reserved.</p></div></div></footer>
 </body>
 </html>
