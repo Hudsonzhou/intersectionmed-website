@@ -5,8 +5,10 @@ The site is static HTML. No Node build or backend is required to view it.
 ## Shared files
 
 - `docs/site.css`: layout, navigation, footer, content and form styles.
-- `docs/site.js`: mobile navigation and the searchable country selector.
+- `docs/site.js`: mobile navigation, the searchable country selector and
+  allowlisted inquiry preselection from service/scenario links.
 - `docs/build_site.py`: shared navigation/footer templates and page content.
+- `docs/validate_site.py`: static markup, local target, inventory and content checks.
 
 From the repository root, regenerate the existing pages with:
 
@@ -48,6 +50,39 @@ Then visit `http://127.0.0.1:8766/`. Close the temporary server when finished.
 
 Do not fill these gaps with invented prices, credentials, testimonials, terms
 or healthcare claims.
+
+## Short-visit focus approved on 2026-10-21
+
+- Three core categories: health checkups, dental checks/basic care, and
+  digestive consultations/endoscopy coordination.
+- TCM consultations and rehabilitation assessments are optional visits, not
+  promises of completing a treatment course.
+- Fertility consultation stays available only as an individual request; it is
+  not a core package or an offer of a complete IVF cycle.
+- One or two appointments is a feasibility question for the institution, not
+  a guarantee of completed treatment, all reports or clearance to travel.
+- Keep women's/men's health within checkup planning. Other specialist requests
+  need individual provider confirmation, not automatic package expansion.
+- Implants, orthodontics, complex restorative care, surgery and ongoing
+  rehabilitation are not advertised as short-visit packages.
+
+## Assets and sources
+
+- The two Shenzhen photographs retain their existing Unsplash source links
+  on the Shenzhen page. They illustrate the destination, not hospital partners.
+- `docs/images/visit-planning.png` is an AI-generated planning still life.
+  Its visible caption identifies it as an illustration, not a real team,
+  patient, office or proof of services delivered.
+- Digestive visit boundaries were checked against NHS endoscopy information:
+  https://www.nhs.uk/tests-and-treatments/endoscopy/
+- Fertility scheduling boundaries were checked against NHS information:
+  https://www.nhs.uk/conditions/infertility/diagnosis/
+- TCM visit boundaries were checked against the provider's session guidance:
+  https://www.guysandstthomas.nhs.uk/health-information/acupuncture
+
+Run `python3 docs/validate_site.py .` after rebuilding. The browser checks
+should cover every URL at desktop and mobile widths, in addition to inquiry
+preselection, country keyboard selection and menu focus behavior.
 
 ## Publishing checks
 

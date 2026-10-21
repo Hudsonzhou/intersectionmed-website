@@ -1,5 +1,19 @@
 "use strict";
 
+// Carry only known visit choices into the inquiry; never accept personal data from URLs.
+const inquiry = document.querySelector(".contact-form form");
+if (inquiry) {
+  const params = new URLSearchParams(window.location.search);
+  for (const [param, id] of [["service", "service-type"], ["intent", "visit-stage"]]) {
+    const field = document.getElementById(id);
+    const value = params.get(param);
+    if (field && value && [...field.options].some(option => option.value === value)) field.value = value;
+  }
+  if (params.get("intent") === "booked" && !params.has("service")) {
+    document.getElementById("service-type").value = "interpretation";
+  }
+}
+
 const menuButton = document.querySelector(".nav-toggle");
 const mobileMenu = document.querySelector("#mobile-menu");
 function closeMenu(restoreFocus = false) {
