@@ -88,23 +88,27 @@ SERVICE_INFO = [
     ("Dental checks and basic care", "Dental assessment and, where the dentist confirms suitability, cleaning or simple fillings. Further care is planned separately.", "dental-treatment-china.html", "Explore dental support"),
     ("Digestive consultations and endoscopy", "Appointment and preparation communication for provider-assessed gastroscopy or colonoscopy, with accompaniment and report handover.", "colonoscopy-shenzhen.html", "Explore digestive support"),
 ]
-TCM_INFO = ("TCM and rehabilitation consultations", "An optional consultation or initial assessment with a qualified provider, not a promise to complete treatment during a short stay.", "traditional-chinese-medicine-rehabilitation-shenzhen.html", "Explore TCM consultation support")
 
 
 def service_catalog():
-    return '<div class="service-catalog">' + ''.join(
-        f'<article class="service-row"><span class="number">0{i}</span><div><h3><a href="{url}">{title}</a></h3><p>{desc}</p></div><a class="text-link" href="{url}">{label} &rarr;</a></article>'
-        for i, (title, desc, url, label) in enumerate(SERVICE_INFO, 1)) + '</div>'
+    visuals = [
+        ('checkup', 'Health checkups', 'Appointments, language support and report handover.', 'Illustrative blood-pressure monitor and blank checkup clipboard'),
+        ('dental', 'Dental checks and basic care', 'Assessment, cleaning and dentist-confirmed basic care.', 'Illustrative dental teaching model and examination mirror'),
+        ('digestive', 'Digestive appointments', 'Consultation, gastroscopy and colonoscopy coordination.', 'Illustrative endoscope equipment, not partner-facility photography'),
+    ]
+    return '<div class="visual-services">' + ''.join(
+        f'<article class="visual-service"><a href="{service[2]}"><img src="docs/images/service-{image}.png" width="1536" height="1024" alt="{alt}" loading="lazy" decoding="async"><h3>{title}<span aria-hidden="true">&rarr;</span></h3><p>{caption}</p></a></article>'
+        for service, (image, title, caption, alt) in zip(SERVICE_INFO, visuals)) + '</div><p class="image-disclosure">AI-generated service illustrations, not photographs of partner facilities.</p>'
 
 
 def visit_paths():
-    return '<div class="visit-paths">' + ''.join(
-        f'<a class="visit-path" href="contact.html?intent={intent}"><span>{label}</span><strong>{title}</strong><span class="path-action">{action} &rarr;</span></a>'
-        for intent, label, title, action in [
-            ('planning', 'Planning ahead', 'Considering a visit to Shenzhen?', 'Discuss my visit'),
-            ('booked', 'Already have an appointment', 'Need interpretation or accompaniment?', 'Ask about language support'),
-            ('hong-kong', 'Coming through Hong Kong', 'Fit the Shenzhen visit into your trip.', 'Discuss my Shenzhen arrangements'),
-        ]) + '</div>'
+    return '<nav class="quick-paths wrap" aria-label="Your visit situation">' + ''.join(
+        f'<a href="contact.html?intent={intent}">{label}<span aria-hidden="true">&rarr;</span></a>'
+        for intent, label in [('planning', 'Planning a visit'), ('booked', 'Already booked'), ('hong-kong', 'Coming via Hong Kong')]) + '</nav>'
+
+
+def tcm_feature():
+    return '''<div class="tcm-feature"><img src="docs/images/service-tcm.png" width="1536" height="1024" alt="AI-generated TCM consultation still life with a notebook, ceramic bowl and wooden drawers" loading="lazy" decoding="async"><div><p class="eyebrow">Optional consultation</p><h3>TCM and rehabilitation</h3><p>Provider-led consultations and initial assessments.</p><a class="text-link" href="traditional-chinese-medicine-rehabilitation-shenzhen.html">Explore consultation support &rarr;</a><p class="image-disclosure">AI-generated illustration, not a partner clinic.</p></div></div>'''
 
 PAGES = {}
 
@@ -113,22 +117,17 @@ def add(name, title, desc, body, kind="WebPage"):
     PAGES[name] = {"title": title, "desc": desc, "body": body, "kind": kind}
 
 
-home = '''<header class="hero home-hero"><div class="wrap"><p class="eyebrow">IntersectionMed &middot; Short-visit coordination</p><h1>Healthcare visit support.<br><span>In Shenzhen.</span></h1><p class="lead">Make room for a planned healthcare visit in your China journey. We help with appointments, English-Chinese interpretation and local accompaniment.</p><div class="actions"><a class="button" href="contact.html?intent=planning">Plan My Shenzhen Visit</a><a class="hero-link" href="medical-travel-shenzhen.html">See how support works &rarr;</a></div><p class="hero-note">Checkups &middot; Basic dental care &middot; Digestive appointments</p></div></header><div class="trust-strip"><div class="wrap"><p>English-Chinese support</p><p>Public and private options</p><p>Dates and scope confirmed individually</p></div></div>'''
-home += band("Where are you in your planning?", visit_paths(), eyebrow="Your starting point")
-home += band("Focused visits. Thoughtful support.", service_catalog() + '<div class="optional-service"><span class="tag">Optional consultation</span><div><h3>' + TCM_INFO[0] + '</h3><p>' + TCM_INFO[1] + '</p></div><a class="text-link" href="' + TCM_INFO[2] + '">Explore TCM support &rarr;</a></div><p class="service-note">Planning around one or two appointments? Ask us to check feasibility with the provider. Reports, further visits and treatment may take longer.</p>', soft=True, eyebrow="Three core visit types")
-home += '''<section class="band"><div class="wrap editorial-split"><figure><img class="planning-photo" src="docs/images/visit-planning.png" alt="Illustrative desk scene with a notebook, map and appointment-planning materials" width="1536" height="1024" loading="lazy"><figcaption>Appointment-planning illustration; not a patient or team photograph.</figcaption></figure><div><p class="eyebrow">The support around the appointment</p><h2>Know where to go.<br>Know what comes next.</h2><p>From checking the campus address to communicating at registration, small details matter when the system and language are unfamiliar.</p><ul class="support-list"><li><strong>Before</strong><span>Appointment details, support scope and provider-issued preparation.</span></li><li><strong>During</strong><span>English-Chinese interpretation, registration and local navigation.</span></li><li><strong>After</strong><span>Report collection, translation requests and questions relayed to the care team.</span></li></ul><a class="text-link" href="medical-translation-shenzhen.html">Already booked? Ask about interpretation &rarr;</a></div></div></section>'''
-home += '''<section class="destination-feature"><img src="docs/images/shenzhen-bay-sunset.jpg" alt="Shenzhen Bay waterfront at sunset" width="1200" height="525" loading="lazy"><div class="wrap"><div><p class="eyebrow">The destination</p><h2>Shenzhen.<br>Part of your wider journey.</h2><p>Beside Hong Kong, with an international airport and a waterfront city to explore. Plan the appointment first, then build your stay around the provider's instructions.</p><a class="button secondary" href="shenzhen.html">Discover Shenzhen</a></div></div></section>'''
-home += band("A clear next step, before you commit.", cards([
-    ("Share your plans", "Tell us the visit type, dates and language needs. Undecided dates are welcome.", "", ""),
-    ("Discuss scope and fees", "Review appointment options, coordination support and separately charged medical or travel services.", "services.html#fees", "Understand scope and fees"),
-    ("Confirm the details", "Check the appointment, provider requirements, support timing and report handover before fixing travel.", "medical-travel-shenzhen.html", "Read the planning process"),
-]), eyebrow="How it works")
-home += band("Before you decide", faq([
-    ("Can everything be finished in one or two appointments?", "Some checkups, consultations or basic dental visits may fit this pattern after the provider confirms. It is not a guarantee: further tests, pathology, treatment or follow-up can require more time."),
-    ("Do I need to book travel first?", "No. Share your preferred dates or an approximate window. Confirm the appointment, preparation, report timing and any travel restrictions with the provider before fixing travel."),
-    ("What will my inquiry help clarify?", "We can discuss the appointment you are considering, language and accompaniment needs, possible support scope and coordination fees. Hospital charges and travel costs are confirmed separately."),
-]) + scope(), soft=True)
-home += cta()
+home = '''<div class="visual-home"><header class="hero home-hero"><div class="wrap"><p class="eyebrow">IntersectionMed &middot; Short-visit coordination</p><h1>Healthcare visit support.<br><span>In Shenzhen.</span></h1><p class="lead">Checkups, dental visits and digestive appointments, with English-Chinese support.</p><div class="actions"><a class="button" href="contact.html?intent=planning">Plan My Shenzhen Visit</a><a class="hero-link" href="#visit-options">Explore visit options &rarr;</a></div><p class="hero-note">Public and private options &middot; Availability confirmed individually</p></div></header>'''
+home += visit_paths()
+home += '<section class="band" id="visit-options"><div class="wrap"><div class="section-heading"><p class="eyebrow">Three core visit types</p><h2>What brings you to Shenzhen?</h2></div>' + service_catalog() + tcm_feature() + '</div></section>'
+home += '''<section class="band soft"><div class="wrap"><div class="section-heading"><p class="eyebrow">How it works</p><h2>Three steps. One point of contact.</h2></div><ol class="visual-process"><li><span class="step-number">01</span><h3>Tell us your plans</h3><p>Visit &middot; Dates &middot; Language</p></li><li><span class="step-number">02</span><h3>Confirm arrangements</h3><p>Availability &middot; Scope &middot; Fees</p></li><li><span class="step-number">03</span><h3>Attend with support</h3><p>Interpretation &middot; Navigation &middot; Report handover</p></li></ol><a class="text-link" href="medical-travel-shenzhen.html">See the full process &rarr;</a></div></section>'''
+home += '''<section class="destination-feature"><img src="docs/images/shenzhen-bay-sunset.jpg" alt="Shenzhen Bay waterfront at sunset" width="2400" height="3258" loading="lazy"><div class="wrap"><div><p class="eyebrow">The destination</p><h2>Shenzhen.<br>Connected to your journey.</h2><p>Beside Hong Kong. A waterfront base for a carefully planned visit.</p><a class="button secondary" href="shenzhen.html">Discover Shenzhen</a></div></div></section>'''
+home += band("A few practical questions", faq([
+    ("Can my visit fit one or two appointments?", "Ask us to check with the provider. Reports, further tests, treatment or follow-up may require more time; a short visit does not mean completed care."),
+    ("Should I book travel first?", "Not yet. Confirm appointment timing, preparation and any travel restrictions with the provider before fixing travel."),
+    ("How do I find out the fee?", "Share your dates and support needs. We discuss coordination fees; hospital and travel charges are confirmed separately."),
+]) + scope())
+home += cta("Let's plan your Shenzhen visit.", "Share your dates and support needs. Discuss scope and fees before confirming.") + '</div>'
 add("index.html", "Short-Visit Healthcare Coordination in Shenzhen | IntersectionMed", "Plan checkups, basic dental visits and digestive appointments in Shenzhen with English-Chinese interpretation and accompaniment. Discuss timing, support and fees.", home)
 
 about = intro("Local support. Clear responsibilities.", "IntersectionMed coordinates shorter healthcare visits for international visitors to Shenzhen. We help with the process around the appointment; licensed providers deliver the care.")
@@ -144,7 +143,7 @@ add("about.html", "About IntersectionMed | Shenzhen Healthcare Coordination", "L
 
 services = intro("Healthcare support for a shorter stay.", "Three core visit types, an optional TCM consultation, and practical support before, during and after your appointment.")
 services += band("Choose your starting point", service_catalog(), eyebrow="Our core focus")
-services += band("A consultation, not a promised course of treatment.", '<div class="split"><div><p class="eyebrow">Optional TCM and rehabilitation</p><h3>' + TCM_INFO[0] + '</h3><p>' + TCM_INFO[1] + '</p><a class="text-link" href="' + TCM_INFO[2] + '">Discuss the scope of a TCM visit &rarr;</a></div><div class="aside-note"><h3>Other outpatient requests</h3><p>Women\'s and men\'s health questions can be discussed within checkup planning. Eye, skin, fertility or other specialist consultations are considered individually, subject to provider availability and requirements.</p><p>We do not present IVF cycles, implants, surgery or ongoing rehabilitation as one- or two-appointment packages.</p><a href="ivf-consultation-china.html">Read the fertility consultation boundaries</a></div></div>', soft=True)
+services += band("Optional consultations", tcm_feature() + faq([('What about other outpatient requests?', 'Women\'s and men\'s health questions can be discussed within checkup planning. Eye, skin, fertility or other specialist requests need individual provider confirmation. IVF cycles, implants, surgery and ongoing rehabilitation are not one- or two-appointment packages.')]) + '<p class="service-note">An initial assessment is not a completed treatment course. <a href="ivf-consultation-china.html">Read the fertility consultation boundaries</a>.</p>', soft=True)
 services += band("One visit is not the same as finished care", table(["Stage", "What must be confirmed"], [("Appointment", "Consultation, checkup or provider-assessed basic care; the institution confirms suitability and scheduling."), ("Reports", "Which results are available during the visit, which follow later and how a clinician will explain them."), ("Further care", "Any additional tests, treatment, return appointments and travel restrictions remain provider-led.")]))
 services += band("Choose the support around your appointment", table(["Support", "What to discuss"], [
     ("Appointment coordination", "Institution or department, preferred dates, registration requirements and appointment confirmation."),
@@ -448,7 +447,7 @@ def write_pages():
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{BASE}docs/images/shenzhen-bay-skyline.jpg">
 <meta property="og:image:alt" content="Shenzhen Bay waterfront and skyline">
-<link rel="stylesheet" href="docs/site.css?v=20261021">
+<link rel="stylesheet" href="docs/site.css?v=20261021b">
 <script src="docs/site.js?v=20261021" defer></script>
 {analytics}
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=True)}</script>

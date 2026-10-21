@@ -84,6 +84,20 @@ Run `python3 docs/validate_site.py .` after rebuilding. The browser checks
 should cover every URL at desktop and mobile widths, in addition to inquiry
 preselection, country keyboard selection and menu focus behavior.
 
+## Image-led homepage update on 2026-10-21
+
+- Homepage copy is intentionally shorter; detailed preparation and boundaries
+  remain on service and guide pages rather than being flattened into images.
+- The three core visit entries share their image-led component with Services.
+- `docs/images/service-checkup.png`, `service-dental.png`,
+  `service-digestive.png` and `service-tcm.png` are generated illustrations.
+  Visible captions identify them as AI-generated, not partner-facility photos.
+- Images have stable aspect ratios, descriptive alt text and lazy loading.
+  Keep headings and important information as HTML text, not baked into images.
+- The homepage retains three accessible, expandable FAQs, the full role
+  disclaimer and the usual 1-2 business day response note.
+- Keep the existing URLs and country selector behavior intact.
+
 ## Publishing checks
 
 Keep the HTML pages, `docs/site.css`, `docs/site.js`, images and sitemap in the

@@ -85,6 +85,11 @@ expected = {'https://intersectionmed.com/' if name == 'index.html' else 'https:/
 assert set(locations) == expected, 'Sitemap inventory mismatch'
 home = pages['index.html'][0]
 assert 'Fertility assessment coordination' not in home and 'Optional consultation' in home
+assert home.count('class="visual-service"') == 3, 'Core visual service entries'
+for asset in ('checkup', 'dental', 'digestive', 'tcm'):
+    assert f'docs/images/service-{asset}.png' in home, ('Missing service image', asset)
+assert 'AI-generated service illustrations' in home and 'AI-generated illustration, not a partner clinic.' in home
+assert 'class="visual-process"' in home
 contact = pages['contact.html'][0]
 assert 'value="checkup"' in contact and 'value="dental"' in contact and 'value="digestive"' in contact
 assert 'https://formsubmit.co/intersectionmed@gmail.com' in contact
