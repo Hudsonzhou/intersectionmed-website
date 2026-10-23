@@ -5,10 +5,12 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(sys.argv[1]).resolve()
 DATE = "2026-10-21"
+CONTENT_UPDATED = {name: "2026-10-23" for name in ("health-checkup-china.html", "dental-treatment-china.html", "medical-translation-shenzhen.html", "privacy.html")}
 BASE = "https://intersectionmed.com/"
 WA = "https://wa.me/qr/TY3MLSWE4SS7D1"
 SCOPE = "IntersectionMed is not a hospital or healthcare provider and does not provide medical diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions."
@@ -20,6 +22,42 @@ NIA = "https://en.nia.gov.cn/"
 
 def p(text):
     return f"<p>{text}</p>"
+
+
+def responsive_image(stem, alt, sizes="(max-width: 600px) calc(100vw - 40px), 560px", hero=False):
+    city = stem.startswith('shenzhen-')
+    widths = (800, 1600) if city else (480, 960)
+    dimensions = (1800, 1201) if stem == 'shenzhen-bay-skyline' else (2400, 3258) if city else (1536, 1024)
+    sources = ', '.join(f'docs/images/{stem}-{width}.webp {width}w' for width in widths)
+    attrs = 'loading="eager" fetchpriority="high"' if hero else 'loading="lazy"'
+    return f'<img src="docs/images/{stem}-{widths[-1]}.webp" srcset="{sources}" sizes="{sizes}" width="{dimensions[0]}" height="{dimensions[1]}" alt="{escape(alt, quote=True)}" {attrs} decoding="async">'
+
+
+class OptimizedMedia(HTMLParser):
+    """Preserve generated HTML while upgrading known image sources and hero media."""
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.output = []
+
+    def handle_starttag(self, tag, attrs):
+        data = dict(attrs)
+        source = data.get('src', '')
+        if tag == 'img' and source in ('docs/images/shenzhen-bay-skyline.jpg', 'docs/images/shenzhen-bay-sunset.jpg'):
+            stem = Path(source).stem
+            data.update(src=f'docs/images/{stem}-1600.webp', srcset=f'docs/images/{stem}-800.webp 800w, docs/images/{stem}-1600.webp 1600w', sizes='(max-width: 600px) 100vw, 1160px', decoding='async')
+            self.output.append('<img ' + ' '.join(key if value is None else f'{key}="{escape(value, quote=True)}"' for key, value in data.items()) + '>')
+        else:
+            self.output.append(self.get_starttag_text())
+        if tag == 'header' and 'hero' in data.get('class', '').split():
+            stem = 'shenzhen-bay-sunset' if 'city-hero' in data['class'] else 'shenzhen-bay-skyline'
+            self.output.append(responsive_image(stem, 'Shenzhen Bay waterfront and city skyline', '100vw', hero=True).replace('<img ', '<img class="hero-image" ', 1))
+
+    def handle_endtag(self, tag): self.output.append(f'</{tag}>')
+    def handle_data(self, data): self.output.append(data)
+    def handle_entityref(self, name): self.output.append(f'&{name};')
+    def handle_charref(self, name): self.output.append(f'&#{name};')
+    def handle_comment(self, data): self.output.append(f'<!--{data}-->')
+    def handle_startendtag(self, tag, attrs): self.output.append(self.get_starttag_text())
 
 
 def ul(items, ordered=False):
@@ -97,7 +135,7 @@ def service_catalog():
         ('digestive', 'Digestive appointments', 'Consultation, gastroscopy and colonoscopy coordination.', 'Illustrative endoscope equipment, not partner-facility photography'),
     ]
     return '<div class="visual-services">' + ''.join(
-        f'<article class="visual-service"><a href="{service[2]}"><img src="docs/images/service-{image}.png" width="1536" height="1024" alt="{alt}" loading="lazy" decoding="async"><h3>{title}<span aria-hidden="true">&rarr;</span></h3><p>{caption}</p></a></article>'
+        f'<article class="visual-service"><a href="{service[2]}">' + responsive_image('service-' + image, alt, '(max-width: 600px) calc(100vw - 40px), (max-width: 960px) 28vw, 368px') + f'<h3>{title}<span aria-hidden="true">&rarr;</span></h3><p>{caption}</p></a></article>'
         for service, (image, title, caption, alt) in zip(SERVICE_INFO, visuals)) + '</div><p class="image-disclosure">AI-generated service illustrations, not photographs of partner facilities.</p>'
 
 
@@ -108,7 +146,7 @@ def visit_paths():
 
 
 def tcm_feature():
-    return '''<div class="tcm-feature"><img src="docs/images/service-tcm.png" width="1536" height="1024" alt="AI-generated TCM consultation still life with a notebook, ceramic bowl and wooden drawers" loading="lazy" decoding="async"><div><p class="eyebrow">Optional consultation</p><h3>TCM and rehabilitation</h3><p>Provider-led consultations and initial assessments.</p><a class="text-link" href="traditional-chinese-medicine-rehabilitation-shenzhen.html">Explore consultation support &rarr;</a><p class="image-disclosure">AI-generated illustration, not a partner clinic.</p></div></div>'''
+    return '<div class="tcm-feature">' + responsive_image('service-tcm', 'AI-generated TCM consultation still life, not a partner clinic') + '''<div><p class="eyebrow">Optional consultation</p><h3>TCM and rehabilitation</h3><p>Provider-led consultations and initial assessments.</p><a class="text-link" href="traditional-chinese-medicine-rehabilitation-shenzhen.html">Explore consultation support &rarr;</a><p class="image-disclosure">AI-generated illustration, not a partner clinic.</p></div></div>'''
 
 PAGES = {}
 
@@ -170,7 +208,7 @@ shenzhen += band("Check before booking travel", p(f'Confirm the appointment and 
 add("shenzhen.html", "Why Shenzhen for a Planned Healthcare Visit? | IntersectionMed", "Explore Shenzhen's location, public and private healthcare settings, airport and Hong Kong connections, accommodation planning and official travel resources.", shenzhen)
 
 SERVICE_PAGES = [
-    ("health-checkup-china.html", "Health checkup coordination in Shenzhen", "Appointment and English-Chinese support for international visitors arranging a health checkup.", [
+    ("health-checkup-china.html", "Health checkups in Shenzhen for foreigners", "Arrange a Shenzhen health checkup with English-Chinese interpretation, registration support and report handover. Discuss dates, provider options and coordination fees.", [
         ("Before the appointment", "Discuss the checkup provider, appointment date, language needs and the provider's document and preparation requirements. The provider determines which tests are appropriate."),
         ("At the checkup", "Ask about registration assistance, interpretation and navigation between departments. Confirm the time and location of any accompaniment in advance."),
         ("Reports and follow-up", "Confirm when each report will be ready, its language and how to arrange a clinician's explanation. Document translation is separate from clinical interpretation."),
@@ -185,7 +223,7 @@ SERVICE_PAGES = [
         ("Understand the provider's requirements", "Confirm appointment timing, provider-issued preparation instructions, consent and any companion arrangements. Request language support before arrival."),
         ("Keep reports and follow-up connected", "Ask when documents will be available and how to obtain a clinician's explanation or further consultation. Translation and document organization can be discussed separately."),
     ], [("Can I ask for gastroscopy and colonoscopy together?", "You can raise the request with the institution. Whether both are appropriate and how they are scheduled must be decided by the clinician."), ("What should I send initially?", "Share the appointment you are seeking, approximate dates and language needs. Describe whether previous reports exist; wait to agree an appropriate channel before sharing records.")], [("endoscopy-shenzhen-planning-guide.html", "Coordinate endoscopy preparation communication"), ("colonoscopy-shenzhen.html", "Colonoscopy appointment support")]),
-    ("dental-treatment-china.html", "Dental checks and basic care support in Shenzhen", "Coordinate a dental check, cleaning or dentist-assessed simple filling, with English-Chinese interpretation and clear follow-up arrangements.", [
+    ("dental-treatment-china.html", "Dental checks and cleaning support in Shenzhen", "Plan a dental check or cleaning in Shenzhen with English-Chinese support. The dentist confirms suitability, any basic care and follow-up; ask about coordination fees.", [
         ("Start with the dental assessment", "Share the visit you are considering and your available dates. The dentist confirms whether a check, cleaning or simple filling is appropriate and whether it can fit your stay."),
         ("Discuss basic care and written costs", "Ask what the dentist proposes, whether care can be provided at that appointment and what is charged separately. Interpretation supports communication, not clinical decision-making."),
         ("Keep complex treatment separate", "Implants, orthodontics, crowns, veneers and complex root-canal care are not our short-visit packages. They may involve laboratory work, healing, multiple stages and return visits."),
@@ -200,7 +238,7 @@ SERVICE_PAGES = [
         ("Rehabilitation and physiotherapy", "Ask about an initial assessment or a planned appointment. The provider determines the plan, number of sessions and follow-up; a short trip does not imply a completed rehabilitation course."),
         ("Language and practical support", "Coordinate documents, registration, hospital or clinic navigation and communication about the provider's instructions. Travel arrangements should fit the confirmed appointment schedule."),
     ], [("Can I request a particular therapy?", "You can tell us what consultation or provider-led service you are researching. The healthcare institution must confirm availability and clinical appropriateness."), ("Will a short stay be enough?", "An initial consultation may fit a short visit, but treatment sessions or rehabilitation can have a longer schedule. Ask the provider to distinguish assessment from ongoing care.")], [("services.html#fees", "Discuss scope and coordination fees"), ("medical-translation-shenzhen.html", "Explore interpretation and accompaniment")]),
-    ("medical-translation-shenzhen.html", "Medical interpretation and accompaniment in Shenzhen", "English-Chinese communication support for appointments you are arranging or have already booked.", [
+    ("medical-translation-shenzhen.html", "English-Chinese medical interpreter in Shenzhen", "Request a medical interpreter or hospital accompaniment in Shenzhen, including appointments already booked. Discuss spoken interpretation, document translation and fees.", [
         ("At the hospital", "Request interpretation for registration, consultation communication, provider instructions and navigation. Confirm the campus, appointment time, duration and any waiting-time arrangements."),
         ("Written documents", "Discuss which reports or letters need translation, their length, target language and turnaround. Certified translation, where required, needs separate confirmation with an appropriate provider."),
         ("After the appointment", "Ask about report organization, translating questions and relaying the care team's response. Interpretation conveys clinical information; it does not provide an independent medical opinion."),
@@ -216,6 +254,25 @@ for name, title, desc, stages, questions, related in SERVICE_PAGES:
         code = service_codes[name]
         body += '<div class="wrap service-intro-actions"><a class="button" href="contact.html?service=' + code + '">Ask About This Visit</a><p>Discuss dates, support scope and coordination fees. Usually within 1-2 business days.</p></div>'
     body += band("Support around your appointment", cards([(h,t,"","") for h,t in stages]))
+    practical = {
+        'health-checkup-china.html': [
+            ('Can foreigners arrange a checkup without a local booking app?', 'Ask the institution which channel accepts a foreign passport, how the name should be entered and which original document to show. We can help communicate registration requirements; an inquiry is not a confirmed booking.'),
+            ('What should I compare before choosing a package?', 'Request the included consultations and tests, report language, expected delivery dates and any separately charged items. Women\'s and men\'s health requests can be discussed within the checkup; the clinician determines appropriate tests.'),
+            ('What happens if reports are ready after I leave?', 'Agree how to obtain each report, whether translation is needed and who will provide the clinical explanation. A report handed over later is different from a further appointment, which needs separate confirmation.'),
+        ],
+        'dental-treatment-china.html': [
+            ('Can I request a check and cleaning rather than a full treatment plan?', 'Yes. Describe that request and your dates. The dentist confirms the assessment, whether cleaning or simple care is appropriate, its written costs and whether it can take place during your stay.'),
+            ('What should be confirmed before an appointment?', 'Confirm the institution and campus, registration documents, assessment charges, interpretation time and how any additional care would be approved. Do not send images or full records in an initial inquiry.'),
+            ('What if the dentist proposes more complex care?', 'Ask for all stages, laboratory or healing intervals, follow-up and costs before deciding. Implants, orthodontics and complex restorative work are not advertised as our one- or two-appointment packages.'),
+        ],
+        'medical-translation-shenzhen.html': [
+            ('Do you support an appointment I have already booked?', 'You can request English-Chinese interpretation or accompaniment separately. Share the institution, exact campus, appointment date and support window. Availability and fees need confirmation.'),
+            ('Is medical document translation the same as an interpreter?', 'No. Spoken interpretation supports a live conversation; written translation conveys a document. Tell us which you need, the language and expected timing. Certification, where required by an insurer or institution, must be confirmed separately.'),
+            ('How are waiting time and follow-up handled?', 'Discuss the agreed time on site, waiting or overtime, travel between campuses and any later document work before confirming. Clinical questions are relayed to the care team; interpretation does not replace medical advice.'),
+        ],
+    }
+    if name in practical:
+        body += band('Practical questions for international visitors', faq(practical[name]) + '<p class="service-note">Public and private options can be discussed. Institution requirements, appointment availability and medical charges must be confirmed for your request.</p>')
     if name in ('colonoscopy-shenzhen.html', 'endoscopy-shenzhen.html'):
         body += band("Plan beyond the procedure time", '<div class="split"><div><h3>Preparation and the return journey</h3><p>The care team must explain preparation, sedation-related companion needs and when travel or other activities are appropriate. Do not plan an immediate flight or an unaccompanied return on an assumption.</p></div><div><h3>Reports may follow later</h3><p>Biopsy or pathology results can take longer than the appointment itself. Confirm report delivery, a clinician\'s explanation and further-care arrangements before leaving.</p><a href="https://www.nhs.uk/tests-and-treatments/endoscopy/" target="_blank" rel="noopener noreferrer">General background: NHS endoscopy information</a></div></div>', soft=True)
     body += band("Before you request coordination", '<div class="split"><div>' + ul(["Share the service or appointment, approximate dates and communication language.", "Tell us whether an appointment is already booked and whether you need accompaniment, written translation or travel support.", "Mention whether relevant records exist; do not send passport numbers, payment details or full medical files in the initial inquiry."]) + '</div><div class="aside-note"><h3>Ask about your support and fee</h3><p>The coordination fee is discussed for your request. Confirm the support included, time on site and any separately charged hospital or travel services.</p><a href="contact.html">Discuss Your Visit</a></div></div>', soft=True)
@@ -405,11 +462,11 @@ privacy_sections = [
     ("Who to contact", p('IntersectionMed coordinates planned healthcare visits in Shenzhen. For questions about information you share with us, contact <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>.')),
     ("Information in an initial inquiry", p("The form asks for your name, email, country or region of residence and a general description of the support requested. You may also provide language preferences and approximate travel dates. This information is used to respond and discuss coordination options.")),
     ("Sensitive documents", p("Do not submit passport numbers, payment details, full medical records or imaging through the website form or ordinary email. If records are needed for further coordination, first discuss which documents are necessary, who needs to receive them and an appropriate sharing channel.")),
-    ("Website and communication services", ul(["The inquiry form posts to FormSubmit to deliver the message to intersectionmed@gmail.com. The service processes the submitted fields and may show its own verification or confirmation page.", "Opening a WhatsApp link takes you to WhatsApp; communication there is also subject to its service and privacy terms.", "Pages that load Google Analytics use it for website-usage information. The contact page embeds a Google Map, which requests content from Google when loaded."]) + p('You can read the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit privacy information</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.')),
+    ("Website and communication services", ul(["The inquiry form posts to FormSubmit to deliver the message to intersectionmed@gmail.com. The service processes the submitted fields and may show its own verification or confirmation page.", "Opening a WhatsApp link takes you to WhatsApp; communication there is also subject to its service and privacy terms.", "Pages that load Google Analytics use it for website-usage information and contact-channel interactions. Custom interaction events do not read or send your name, email, country, medical details or message fields. A form handoff event records an attempted submission, not confirmed email delivery or a booked appointment.", "The contact page embeds a Google Map, which requests content from Google when loaded."]) + p('You can read the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit privacy information</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.')),
     ("Coordination and onward sharing", p("If you continue beyond an initial inquiry, clarify which information a hospital, interpreter or other service provider needs before sharing records. An inquiry alone is not a confirmed appointment or agreement to a care plan.")),
     ("Questions, corrections and deletion requests", p("Email us to ask about information submitted to IntersectionMed, request a correction or raise a deletion request. Identify the inquiry using minimal details; do not attach sensitive records to make the request. Handling depends on the information concerned and any applicable requirements.")),
 ]
-privacy += '<div class="band"><div class="wrap reading article-body">' + ''.join(section(h,t,f'privacy-{i}') for i,(h,t) in enumerate(privacy_sections)) + scope() + f'<p class="article-meta">Updated {DATE}</p></div></div>'
+privacy += '<div class="band"><div class="wrap reading article-body">' + ''.join(section(h,t,f'privacy-{i}') for i,(h,t) in enumerate(privacy_sections)) + scope() + f'<p class="article-meta">Updated {CONTENT_UPDATED["privacy.html"]}</p></div></div>'
 add("privacy.html", "Privacy Notice | IntersectionMed", "How IntersectionMed's initial inquiry form and website services handle information, with contact details for privacy questions.", privacy)
 
 
@@ -421,8 +478,11 @@ def write_pages():
         original = (ROOT / name).read_text()
         analytics = ''
         if "G-JMX3WEED6K" in original:
-            analytics = '''<script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX3WEED6K"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JMX3WEED6K');</script>'''
+            analytics = '''<script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX3WEED6K"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());let safeReferrer='';try{if(document.referrer){const u=new URL(document.referrer);safeReferrer=u.origin+u.pathname;}}catch{}gtag('config','G-JMX3WEED6K',{page_location:location.origin+location.pathname,page_referrer:safeReferrer});</script>'''
         canonical = BASE if name == 'index.html' else BASE + name
+        media = OptimizedMedia()
+        media.feed(info['body'])
+        rendered_body = ''.join(media.output)
         active = name if name in dict(NAV) else 'services.html' if info['kind'] == 'Service' else 'guides.html' if info['kind'] == 'Article' else ''
         if info['kind'] == 'Service':
             schema = {"@context":"https://schema.org", "@type":"Service", "name":info['title'].split(' | ')[0], "description":info['desc'], "url":canonical, "provider":{"@type":"Organization","name":"IntersectionMed","url":BASE}, "areaServed":{"@type":"City","name":"Shenzhen"}}
@@ -447,15 +507,15 @@ def write_pages():
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{BASE}docs/images/shenzhen-bay-skyline.jpg">
 <meta property="og:image:alt" content="Shenzhen Bay waterfront and skyline">
-<link rel="stylesheet" href="docs/site.css?v=20261021b">
-<script src="docs/site.js?v=20261021" defer></script>
+<link rel="stylesheet" href="docs/site.css?v=20261023">
+<script src="docs/site.js?v=20261023" defer></script>
 {analytics}
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=True)}</script>
 </head>
 <body>
 {navigation(active)}
 <main id="main-content" tabindex="-1">
-{info['body']}
+{rendered_body}
 </main>
 {FOOTER}
 </body>
@@ -468,7 +528,7 @@ def write_pages():
     for name in sorted(PAGES):
         entry = ET.SubElement(tree.getroot(), f'{{{namespace}}}url')
         ET.SubElement(entry, f'{{{namespace}}}loc').text = BASE if name == 'index.html' else BASE + name
-        ET.SubElement(entry, f'{{{namespace}}}lastmod').text = DATE
+        ET.SubElement(entry, f'{{{namespace}}}lastmod').text = CONTENT_UPDATED.get(name, DATE)
     ET.indent(tree, space='  ')
     tree.write(ROOT / 'sitemap.xml', encoding='utf-8', xml_declaration=True)
     print(f"Updated {len(PAGES)} existing pages and sitemap. No URLs removed.")

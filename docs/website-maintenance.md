@@ -105,3 +105,23 @@ same commit. Verify desktop/mobile navigation, internal links, country search,
 form field labels and footer consistency. Do not send a real contact form
 submission during routine visual testing. The external FormSubmit delivery and
 mailbox activation require a separate authorized delivery check.
+
+## Search and performance update on 2026-10-23
+
+- Keep page-specific meaningful update dates in `CONTENT_UPDATED` in the builder;
+  do not advance every sitemap date for a shared style or analytics change.
+- Rebuild responsive service and city images with `python3 docs/optimize_images.py .`
+  before building HTML. This requires the official `cwebp` executable on PATH.
+  Original PNG/JPEG assets remain available; rendered pages use WebP variants.
+- Service images use 480/960 pixel variants, city images use 800/1600 pixel
+  variants. Preserve `srcset`, `sizes`, intrinsic dimensions and descriptive alt
+  text. The first hero image loads eagerly with high fetch priority.
+- Three priority pages cover checkups, dental checks/basic care, and
+  English-Chinese interpretation. Keep practical appointment FAQs as HTML.
+- `docs/seo-measurement.md` defines keyword ownership, event meaning and outreach
+  drafts. Never copy private Search Console reports into this public repository.
+- Existing analytics page views omit URL query strings and fragments. Custom
+  contact events do not read form values and respect DNT/GPC signals; this is not
+  a consent-management system or a claim of compliance in every jurisdiction.
+- Do not mark the form handoff as a delivered inquiry or a confirmed appointment.
+  Verify actual delivery separately with the owner before reporting lead totals.

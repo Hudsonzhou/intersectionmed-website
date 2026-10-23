@@ -1,8 +1,29 @@
 "use strict";
 
+// Measure contact-channel intent, never form contents or confirmed clinical leads.
+function trackContact(name, channel) {
+  if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) return;
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", name, {
+    contact_channel: channel,
+    page_location: window.location.origin + window.location.pathname,
+    transport_type: "beacon"
+  });
+}
+document.addEventListener("click", event => {
+  const link = event.target.closest("a[href]");
+  if (!link) return;
+  const href = link.getAttribute("href");
+  if (href === "https://wa.me/qr/TY3MLSWE4SS7D1") trackContact("im_whatsapp_click", "whatsapp");
+  else if (href === "mailto:intersectionmed@gmail.com") trackContact("im_email_click", "email");
+});
+
 // Carry only known visit choices into the inquiry; never accept personal data from URLs.
 const inquiry = document.querySelector(".contact-form form");
 if (inquiry) {
+  inquiry.addEventListener("submit", event => {
+    if (!event.defaultPrevented && inquiry.checkValidity()) trackContact("im_inquiry_handoff", "form");
+  });
   const params = new URLSearchParams(window.location.search);
   for (const [param, id] of [["service", "service-type"], ["intent", "visit-stage"]]) {
     const field = document.getElementById(id);
