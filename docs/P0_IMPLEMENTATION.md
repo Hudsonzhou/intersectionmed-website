@@ -88,7 +88,8 @@ advertising personalization are disabled in the loader.
 | contact_form_error | Local validation, offline, blocked tab or handoff exception | Fixed `error_type`, not a provider failure claim |
 | contact_form_success | **Not emitted** | Blocked pending authenticated provider receipt; owner approved this boundary |
 
-Error types: `validation`, `offline`, `popup_blocked`, `handoff_error`. Custom event
+Error types: `validation`, `offline`, `popup_blocked`, `handoff_error`,
+`unsupported_origin` (added in the Contact source hotfix). Custom event
 parameters contain fixed channel, sanitized page location, empty referrer and
 fixed error category only. No fields, email, names, country, service selections,
 message text or raw exceptions are passed to GA4. `im_*` names are retired, not
@@ -152,7 +153,39 @@ Screenshots, browser scripts and Lighthouse JSON are retained privately in the
 workspace `docs/p0-review/`, not copied into the website repository. Third-party
 requests were blocked/mocked for browser interaction tests; embedded Map content
 and the WhatsApp account identity were not re-certified by those tests.
-No real FormSubmit POST or mailbox delivery has been tested during this change.
+During the initial P0 pass no real FormSubmit POST or mailbox delivery was tested.
+The subsequent separately authorized real test is documented below.
+
+## Contact source hotfix and separately authorized real test
+
+The initial P0 tests above did not cover the provider's missing-Referer behavior.
+The owner subsequently reproduced a source-origin error on the actual HTTPS site.
+An intercepted HTTP-preview request confirmed that the detached-tab transfer had
+no Referer. Add the official `_url` fallback as a fixed hidden field:
+`https://intersectionmed.com/contact.html`. Do not derive this from user input,
+queries or the local filesystem path. Preserve `_captcha=true`.
+
+The enhanced flow now rejects `file:` submissions with a clear online Contact
+link and no data transfer. This JavaScript guard does not run when JavaScript is
+disabled; the native form still carries the fixed `_url` and CAPTCHA. Direct
+HTML-file previews should be used for visual review, not submission testing.
+Shared assets use version `20261027.1` to avoid stale scripts after publication.
+
+Hotfix checks: 32-page static validation, JS syntax, offline analytics unit tests,
+and intercepted field/state tests passed. Both submission paths include `_url`;
+the file guard blocks without a POST; fields and CAPTCHA remain intact.
+
+After separate explicit owner approval, exactly one synthetic request was sent
+from the existing production Contact page after a temporary browser-only `_url`
+addition. The provider displayed "Thanks! The form was submitted successfully"
+at `/form/submission`, rather than the earlier source error. The test contained
+only a technical marker and an example.com reply address; no patient information.
+No CAPTCHA was operated by the agent. The owner confirmed receipt of the test
+email. This does not add a reliable automatic `contact_form_success`
+integration to the static site.
+
+No production code, DNS or hosting setting was changed. The repository hotfix
+must still be reviewed and published before it applies to ordinary visitors.
 
 ## Reference docs
 

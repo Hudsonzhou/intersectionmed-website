@@ -37,6 +37,9 @@ if (inquiry) {
   const send = inquiry.querySelector('[type="submit"]');
   const sameTab = document.getElementById("same-tab-submit");
   const edit = document.getElementById("edit-inquiry");
+  const localNotice = document.getElementById("local-preview-notice");
+  const hostedPage = ["http:", "https:"].includes(window.location.protocol);
+  if (!hostedPage && localNotice) localNotice.hidden = false;
   let handingOff = false;
   const showStatus = (state, message) => {
     status.dataset.state = state;
@@ -59,6 +62,10 @@ if (inquiry) {
     trackContact("contact_form_attempt", "form");
     sameTab.hidden = true;
     edit.hidden = true;
+    if (!hostedPage) {
+      fail("unsupported_origin", "This is a local file preview. Open the online Contact page linked above, or an HTTP preview, before submitting. Nothing has been sent; your entries have not been transferred.");
+      return;
+    }
     for (const field of inquiry.querySelectorAll("input[required],textarea[required]")) {
       field.setCustomValidity("");
       if (field.type !== "checkbox" && field.value && !field.value.trim()) {

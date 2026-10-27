@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-27 - Contact source hotfix
+
+- Add FormSubmit's documented `_url` fallback with the fixed canonical Contact
+  URL. The detached-tab request has no Referer even from an HTTP source; this
+  missing-source case was not covered by the initial simulated provider tests.
+- Reject JavaScript-enhanced submissions from `file:` previews, show an online
+  Contact link, and retain fields without transferring them in URLs.
+- Bump shared asset version so the corrected script is not hidden by an old cache.
+- Keep CAPTCHA and the unverified-success boundary. After separate owner approval,
+  one synthetic request was submitted from the production Contact page with a
+  browser-only `_url` addition. FormSubmit displayed its success confirmation;
+  the owner confirmed the test email arrived. No deploy or automatic retry.
+
 ## 2026-10-27 - P0 local implementation
 
 - Clarify homepage coordination scope, improve first-screen inquiry/WhatsApp CTAs,

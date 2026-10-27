@@ -66,3 +66,24 @@ The approved success-event gap remains open; it is not reported as a fixed defec
 External-link HEAD checks found 8/11 destinations reachable with HTTP 200. Two
 Unsplash attribution links returned 401 and the Shenzhen airport link 403 for
 the audit client; these remain manual-review items, not confirmed dead URLs.
+
+## Contact source follow-up (2026-10-27)
+
+Owner reported FormSubmit's "open through a web server" error and confirmed it
+occurred on the formal HTTPS website, not a local file. An intercepted
+request from the HTTP preview confirmed that the detached-tab transfer had an
+Origin header but no Referer and no `_url` field. Initial mock-provider checks did not validate
+FormSubmit's source-recognition contract; their passing status was insufficient
+to establish compatibility with the real provider.
+
+Apply the provider's documented fixed `_url` fallback and add a JavaScript
+local-file guard. Never put user-entered values or the current query into `_url`.
+Preserve CAPTCHA and do not infer mailbox delivery from this correction.
+Reference: https://formsubmit.co/help (Unable to submit form / form URL guidance).
+
+After distinct owner authorization, one synthetic production-site request with a
+temporary browser-only `_url` field reached FormSubmit's "Thanks! The form was
+submitted successfully" confirmation page. The owner then confirmed receipt of
+that test email. This validates this one authorized request, not all future
+submissions or a reliable automatic success event. No production code was
+deployed; the permanent local patch still requires review and publication.

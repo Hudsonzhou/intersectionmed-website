@@ -149,3 +149,13 @@ retention and Enhanced Measurement settings in the GA4 account.
 
 Run `node docs/test_analytics.cjs` in addition to static validation. Do not remove
 CAPTCHA or add a client-generated success URL/event to make the funnel look complete.
+
+### Contact source hotfix
+
+Keep the hidden `_url` fixed at `https://intersectionmed.com/contact.html`.
+FormSubmit documents this fallback for missing source/referrer recognition;
+the detached-tab flow otherwise has no Referer. Validate the source field in
+both native submission paths, not only the response status or other fields.
+Use an HTTP preview for testing; the enhanced file-preview guard blocks posting
+from local HTML files. One separately authorized synthetic real-provider test
+reached its success page, and the owner confirmed receipt of that test email.

@@ -12,7 +12,7 @@ ROOT = Path(sys.argv[1]).resolve()
 DATE = "2026-10-21"
 CONTENT_UPDATED = {name: "2026-10-23" for name in ("health-checkup-china.html", "dental-treatment-china.html", "medical-translation-shenzhen.html", "privacy.html")}
 CONTENT_UPDATED.update({name: "2026-10-27" for name in ("index.html", "contact.html", "privacy.html")})
-ASSET_VERSION = "20261027"
+ASSET_VERSION = "20261027.1"
 BASE = "https://intersectionmed.com/"
 WA = "https://wa.me/qr/TY3MLSWE4SS7D1"
 SCOPE = "IntersectionMed is not a hospital or healthcare provider and does not provide medical diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions."
@@ -451,8 +451,10 @@ contact = intro("Let's plan your Shenzhen visit.", "Ask about appointments, inte
 contact += f'<div class="wrap contact-top"><a class="button" href="{WA}" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a><a href="mailto:intersectionmed@gmail.com">Email IntersectionMed</a><p>Usually within 1-2 business days &middot; China Standard Time (UTC+8)</p></div>'
 contact += '''<section class="band"><div class="wrap contact-layout"><div class="contact-form">
 <h2>Start an inquiry</h2><p class="privacy-hint" id="privacy-hint">General planning information only. Please do not send passport numbers, payment details, medical records or imaging files.</p>
+<p id="local-preview-notice" class="form-status" data-state="error" hidden>Local file preview only. To submit, open <a href="https://intersectionmed.com/contact.html" target="_blank" rel="noopener noreferrer">the online Contact page</a> or use an HTTP preview. Entries are not transferred automatically.</p>
 <form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST" aria-describedby="privacy-hint verification-hint">
 <input type="hidden" name="_subject" value="New Short-Visit Inquiry - IntersectionMed"><input type="hidden" name="_captcha" value="true">
+<input type="hidden" name="_url" value="https://intersectionmed.com/contact.html">
 <div class="field"><label for="service-type">Visit you are considering</label><select id="service-type" name="service_type">
 <option value="">Not yet decided</option><optgroup label="Core visits"><option value="checkup">Health checkup</option><option value="dental">Dental check and basic care</option><option value="digestive">Digestive consultation or endoscopy</option></optgroup>
 <optgroup label="Additional support"><option value="tcm">TCM consultation or rehabilitation assessment</option><option value="interpretation">Interpretation or accompaniment</option><option value="fertility">Fertility consultation - individual request</option><option value="other">Other specialist consultation</option></optgroup></select></div>
