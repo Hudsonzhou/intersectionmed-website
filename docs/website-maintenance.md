@@ -9,6 +9,8 @@ The site is static HTML. No Node build or backend is required to view it.
   allowlisted inquiry preselection from service/scenario links.
 - `docs/build_site.py`: shared navigation/footer templates and page content.
 - `docs/validate_site.py`: static markup, local target, inventory and content checks.
+- `docs/analytics.js`: existing GA4 property, production host and privacy gates.
+- `docs/test_analytics.cjs`: dependency-free, offline analytics unit tests.
 
 From the repository root, regenerate the existing pages with:
 
@@ -125,3 +127,25 @@ mailbox activation require a separate authorized delivery check.
   a consent-management system or a claim of compliance in every jurisdiction.
 - Do not mark the form handoff as a delivered inquiry or a confirmed appointment.
   Verify actual delivery separately with the owner before reporting lead totals.
+
+## P0 update on 2026-10-27
+
+Read `docs/SITE_AUDIT.md`, `docs/P0_IMPLEMENTATION.md` and `docs/CHANGELOG.md` for
+the reviewed scope and external dependencies. Homepage now explains the four
+coordination roles, with prominent inquiry/WhatsApp CTAs and a mobile header link.
+All service URLs, country search, map and QR remain available.
+
+FormSubmit keeps `_captcha=true` and the original native POST. The enhanced flow
+opens the provider in a detached tab and retains entries, with explicit same-tab
+fallback. Pending status is not a success claim. The owner approved leaving
+`contact_form_success` blocked until an authentic receipt integration exists.
+
+The P0 replaces `im_*` custom events with the names in `seo-measurement.md`.
+Do not merge old and new events without accounting for the deployment date.
+The centralized analytics loader does not load on previews or under DNT/GPC;
+this supersedes the limited custom-event-only protection described in the
+historical 2026-10-23 section. It is not a substitute for reviewing consent,
+retention and Enhanced Measurement settings in the GA4 account.
+
+Run `node docs/test_analytics.cjs` in addition to static validation. Do not remove
+CAPTCHA or add a client-generated success URL/event to make the funnel look complete.

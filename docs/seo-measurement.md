@@ -1,6 +1,6 @@
 # Search visibility and contact measurement
 
-Updated: 2026-10-23. Internal maintenance guide, not a public service promise.
+Updated: 2026-10-27. Internal maintenance guide, not a public service promise.
 
 ## Priority and keyword ownership
 
@@ -39,28 +39,34 @@ No paid links, invented reviews, guaranteed appointments or clinical claims.
 
 ## Contact event definitions
 
-The site retains its existing Google Analytics configuration. After publication,
+The site reuses its existing Google Analytics property ID. After publication,
 check these events in that property's Realtime/DebugView and subsequent reports.
 Their local dispatch has been tested; GA account receipt is a separate check.
 
 | Event | Trigger | Meaning and limit |
 | --- | --- | --- |
-| im_whatsapp_click | Click the supplied WhatsApp contact link | Channel intent, not a sent message |
-| im_email_click | Click the public email link | Email intent, not a delivered email |
-| im_inquiry_handoff | Valid form submit event | Handoff attempt, not FormSubmit delivery or appointment confirmation |
+| whatsapp_click | Click the supplied WhatsApp contact link | Channel intent, not a sent message |
+| email_click | Click the public email link | Email intent, not a delivered email |
+| contact_form_attempt | Explicit form attempt or retry | Includes local validation failures; not confirmed delivery |
+| contact_form_error | Local validation/offline/tab/handoff error | Fixed error category, not an assertion that the provider failed |
+| contact_form_success | Not emitted in this P0 | Blocked until a verifiable receipt integration exists; owner approved preserving CAPTCHA |
 
-Custom parameters are only `contact_channel` and sanitized `page_location`, plus
-the beacon transport setting. No names, emails, country selections, service
+Custom parameters are `contact_channel`, sanitized `page_location`, empty
+`page_referrer`, an optional fixed `error_type`, and the beacon transport setting.
+No names, emails, country selections, service
 selections or free text are read into these custom events. URL query strings and
 fragments are stripped from configured page location and referrer. DNT/GPC
-suppresses these custom events, not necessarily all existing third-party tracking.
+suppresses the site's GA loader and custom events. Map and contact-provider
+requests are separate third-party services, not suppressed analytics requests.
+Local and preview hosts do not load GA. Previous `im_*` event names are retired,
+not dual-emitted; compare across a documented publication-date boundary.
 
 GA enhanced measurement can have its own settings; review those in the account.
 Do not infer complete privacy compliance from the custom-event test. Review consent
 and retention requirements for the markets served before expanding tracking.
 Never attach medical details or personal contact details to analytics events.
 
-Do not aggregate channel clicks and form handoffs as confirmed leads. One visitor
+Do not aggregate channel clicks and form attempts as confirmed leads. One visitor
 can trigger several actions. Qualified inquiries, delivered messages and confirmed
 bookings require a separate consent-aware operational record.
 

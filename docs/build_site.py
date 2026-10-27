@@ -11,6 +11,8 @@ from pathlib import Path
 ROOT = Path(sys.argv[1]).resolve()
 DATE = "2026-10-21"
 CONTENT_UPDATED = {name: "2026-10-23" for name in ("health-checkup-china.html", "dental-treatment-china.html", "medical-translation-shenzhen.html", "privacy.html")}
+CONTENT_UPDATED.update({name: "2026-10-27" for name in ("index.html", "contact.html", "privacy.html")})
+ASSET_VERSION = "20261027"
 BASE = "https://intersectionmed.com/"
 WA = "https://wa.me/qr/TY3MLSWE4SS7D1"
 SCOPE = "IntersectionMed is not a hospital or healthcare provider and does not provide medical diagnosis, treatment, or medical advice. Medical decisions are made solely by licensed physicians and healthcare institutions."
@@ -94,7 +96,7 @@ def scope():
 
 
 def cta(title="A short visit starts with a clear plan.", text="Tell us your dates, the appointment you are considering and the support you need. Discuss scope and coordination fees before confirming arrangements."):
-    return f'<section class="cta"><div class="wrap"><div><p class="eyebrow">Start with your questions</p><h2>{title}</h2><p>{text}</p><p class="response-note">Usually within 1-2 business days. No detailed medical records needed for an initial inquiry.</p></div><a class="button" href="contact.html">Plan My Shenzhen Visit</a></div></section>'
+    return f'<section class="cta"><div class="wrap"><div><p class="eyebrow">Start with your questions</p><h2>{title}</h2><p>{text}</p><p class="response-note">Usually within 1-2 business days. No detailed medical records needed for an initial inquiry.</p></div><div class="cta-links"><a class="button" href="contact.html">Start an Inquiry</a><a class="text-link" href="{WA}" target="_blank" rel="noopener noreferrer">Contact on WhatsApp &rarr;</a></div></div></section>'
 
 
 NAV = [("index.html", "Home"), ("about.html", "About"), ("services.html", "Services"), ("shenzhen.html", "Why Shenzhen"), ("guides.html", "Patient Guides"), ("contact.html", "Contact")]
@@ -103,7 +105,7 @@ NAV = [("index.html", "Home"), ("about.html", "About"), ("services.html", "Servi
 def navigation(active):
     def links():
         return "".join(f'<a href="{url}"' + (' aria-current="page"' if url == active else '') + f'>{label}</a>' for url, label in NAV)
-    return '<a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><nav class="site-nav" aria-label="Main navigation"><a class="brand" href="index.html" aria-label="IntersectionMed home"><img src="logo.png" width="80" height="80" alt="IntersectionMed"></a><div class="desktop-links">' + links() + '</div><button type="button" class="nav-toggle" aria-label="Open navigation" title="Navigation" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button></nav></header><nav id="mobile-menu" class="mobile-links" aria-label="Mobile navigation" hidden>' + links() + '</nav>'
+    return '<a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><nav class="site-nav" aria-label="Main navigation"><a class="brand" href="index.html" aria-label="IntersectionMed home"><img src="logo.png" width="80" height="80" alt="IntersectionMed"></a><div class="desktop-links">' + links() + '</div><a class="header-inquiry" href="contact.html">Start an Inquiry</a><button type="button" class="nav-toggle" aria-label="Open navigation" title="Navigation" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button></nav></header><nav id="mobile-menu" class="mobile-links" aria-label="Mobile navigation" hidden>' + links() + '</nav>'
 
 
 FOOTER = '''<footer class="site-footer"><div class="wrap"><div class="site-footer-grid"><div><img class="site-footer-logo" src="logo.png" width="82" height="82" alt="IntersectionMed"><p class="site-footer-copy">Short-visit healthcare coordination in Shenzhen. Appointment communication, English-Chinese interpretation, accompaniment and report handover for international visitors.</p></div><div class="site-footer-block"><h2>Explore</h2><a href="services.html">Services</a><a href="shenzhen.html">Why Shenzhen</a><a href="guides.html">Patient Guides</a><a href="about.html">About</a></div><div class="site-footer-block"><h2>Contact</h2><a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a><p>Shenzhen, China</p><p>English and Chinese. Additional language support subject to availability.</p><p>Usually within 1-2 business days.</p></div></div><div class="site-footer-bottom"><p><a href="privacy.html">Privacy</a></p><p>&copy; 2026 IntersectionMed. All rights reserved.</p></div></div></footer>'''
@@ -155,18 +157,28 @@ def add(name, title, desc, body, kind="WebPage"):
     PAGES[name] = {"title": title, "desc": desc, "body": body, "kind": kind}
 
 
-home = '''<div class="visual-home"><header class="hero home-hero"><div class="wrap"><p class="eyebrow">IntersectionMed &middot; Short-visit coordination</p><h1>Healthcare visit support.<br><span>In Shenzhen.</span></h1><p class="lead">Checkups, dental visits and digestive appointments, with English-Chinese support.</p><div class="actions"><a class="button" href="contact.html?intent=planning">Plan My Shenzhen Visit</a><a class="hero-link" href="#visit-options">Explore visit options &rarr;</a></div><p class="hero-note">Public and private options &middot; Availability confirmed individually</p></div></header>'''
+home = f'''<div class="visual-home"><header class="hero home-hero"><div class="wrap"><p class="eyebrow">IntersectionMed &middot; Shenzhen, China</p><h1>Need Medical Care in Shenzhen?<br><span>We'll Help You Navigate It.</span></h1><p class="lead">Hospital appointments, English-Chinese interpretation and in-person assistance for international visitors planning a healthcare visit.</p><div class="actions"><a class="button" href="contact.html?intent=planning">Start My Inquiry</a><a class="button secondary" href="{WA}" target="_blank" rel="noopener noreferrer">Contact on WhatsApp</a></div><p class="hero-note">Healthcare coordination, not a hospital. Usually within 1-2 business days.</p></div></header>'''
 home += visit_paths()
+home += band("Support around the appointment", '<div class="support-overview">' + ''.join(
+    f'<article><h3><a href="{link}">{title}</a></h3><p>{description}</p></article>'
+    for title, description, link in [
+        ("Hospital Appointment Coordination", "Registration, availability and appointment communication.", "services.html"),
+        ("English-Chinese Interpretation", "Language support for conversations with the care team.", "medical-translation-shenzhen.html"),
+        ("In-Person Hospital Assistance", "Accompaniment and navigation on the day of your visit.", "medical-translation-shenzhen.html"),
+        ("Practical Support for International Visitors", "Visit timing, local travel planning and report handover.", "medical-travel-shenzhen.html"),
+    ]) + '</div>', eyebrow="What we coordinate")
 home += '<section class="band" id="visit-options"><div class="wrap"><div class="section-heading"><p class="eyebrow">Three core visit types</p><h2>What brings you to Shenzhen?</h2></div>' + service_catalog() + tcm_feature() + '</div></section>'
 home += '''<section class="band soft"><div class="wrap"><div class="section-heading"><p class="eyebrow">How it works</p><h2>Three steps. One point of contact.</h2></div><ol class="visual-process"><li><span class="step-number">01</span><h3>Tell us your plans</h3><p>Visit &middot; Dates &middot; Language</p></li><li><span class="step-number">02</span><h3>Confirm arrangements</h3><p>Availability &middot; Scope &middot; Fees</p></li><li><span class="step-number">03</span><h3>Attend with support</h3><p>Interpretation &middot; Navigation &middot; Report handover</p></li></ol><a class="text-link" href="medical-travel-shenzhen.html">See the full process &rarr;</a></div></section>'''
+home += band("Why choose IntersectionMed?", '<div class="destination-notes"><div><h3>One coordination contact</h3><p>Bring appointment, language and practical planning questions together.</p></div><div><h3>Communication across languages</h3><p>English-Chinese support, with clinical decisions kept with your care team.</p></div><div><h3>Clarity before commitment</h3><p>Discuss availability, support scope and coordination fees before confirming.</p></div></div><!-- OWNER CONTENT SLOT: add only verified team biography, credentials and permitted portraits here after approval. No invented proof or testimonials. -->', eyebrow="Clear support. Clear responsibilities.")
 home += '''<section class="destination-feature"><img src="docs/images/shenzhen-bay-sunset.jpg" alt="Shenzhen Bay waterfront at sunset" width="2400" height="3258" loading="lazy"><div class="wrap"><div><p class="eyebrow">The destination</p><h2>Shenzhen.<br>Connected to your journey.</h2><p>Beside Hong Kong. A waterfront base for a carefully planned visit.</p><a class="button secondary" href="shenzhen.html">Discover Shenzhen</a></div></div></section>'''
 home += band("A few practical questions", faq([
     ("Can my visit fit one or two appointments?", "Ask us to check with the provider. Reports, further tests, treatment or follow-up may require more time; a short visit does not mean completed care."),
     ("Should I book travel first?", "Not yet. Confirm appointment timing, preparation and any travel restrictions with the provider before fixing travel."),
     ("How do I find out the fee?", "Share your dates and support needs. We discuss coordination fees; hospital and travel charges are confirmed separately."),
+    ("Are you a hospital or an emergency service?", "No. We provide coordination and patient support for planned visits. Licensed institutions provide care. For emergencies, contact local emergency services or an appropriate medical facility."),
 ]) + scope())
 home += cta("Let's plan your Shenzhen visit.", "Share your dates and support needs. Discuss scope and fees before confirming.") + '</div>'
-add("index.html", "Short-Visit Healthcare Coordination in Shenzhen | IntersectionMed", "Plan checkups, basic dental visits and digestive appointments in Shenzhen with English-Chinese interpretation and accompaniment. Discuss timing, support and fees.", home)
+add("index.html", "Healthcare Coordination in Shenzhen for International Visitors | IntersectionMed", "Plan your Shenzhen healthcare visit with hospital appointment coordination, English-Chinese interpretation and in-person assistance. Ask about timing, support and fees.", home)
 
 about = intro("Local support. Clear responsibilities.", "IntersectionMed coordinates shorter healthcare visits for international visitors to Shenzhen. We help with the process around the appointment; licensed providers deliver the care.")
 about += band("A local point of contact for an unfamiliar process", '<div class="split"><div>' + p("IntersectionMed helps international patients navigate the non-clinical parts of a planned healthcare visit: communicating with hospitals, arranging appointments, understanding the visit process and coordinating language support.") + p("We work around the service you are seeking, your travel dates and the communication support you need. Public and private hospital options can be discussed; availability and clinical suitability are confirmed by the institution.") + p('For questions about who will assist you and the proposed support, contact <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>. Replies are usually within 1-2 business days.') + '</div><div><img class="city-photo" src="docs/images/shenzhen-bay-skyline.jpg" alt="Shenzhen Bay skyline, the city where IntersectionMed coordinates visits" width="1200" height="525" loading="lazy"><p class="photo-credit">Shenzhen, China. City photography is illustrative of the destination.</p></div></div>')
@@ -435,11 +447,11 @@ country_match = re.search(r'<datalist id="country-options">.*?</datalist>', orig
 if not country_match:
     raise SystemExit("The existing country fallback was not found")
 country_fallback = re.sub(r'<option\b([^>]*)>(?!</option>)', r'<option\1></option>', country_match.group())
-contact = intro("Tell us about your Shenzhen visit.", "Considering a checkup, a dental visit or a digestive appointment? Start with your dates and support needs. We will discuss the scope and coordination fee for your request.")
+contact = intro("Let's plan your Shenzhen visit.", "Ask about appointments, interpretation or in-person assistance. Share your travel dates and support needs; we will discuss availability, scope and coordination fees.")
 contact += f'<div class="wrap contact-top"><a class="button" href="{WA}" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a><a href="mailto:intersectionmed@gmail.com">Email IntersectionMed</a><p>Usually within 1-2 business days &middot; China Standard Time (UTC+8)</p></div>'
 contact += '''<section class="band"><div class="wrap contact-layout"><div class="contact-form">
 <h2>Start an inquiry</h2><p class="privacy-hint" id="privacy-hint">General planning information only. Please do not send passport numbers, payment details, medical records or imaging files.</p>
-<form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST" aria-describedby="privacy-hint">
+<form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST" aria-describedby="privacy-hint verification-hint">
 <input type="hidden" name="_subject" value="New Short-Visit Inquiry - IntersectionMed"><input type="hidden" name="_captcha" value="true">
 <div class="field"><label for="service-type">Visit you are considering</label><select id="service-type" name="service_type">
 <option value="">Not yet decided</option><optgroup label="Core visits"><option value="checkup">Health checkup</option><option value="dental">Dental check and basic care</option><option value="digestive">Digestive consultation or endoscopy</option></optgroup>
@@ -450,7 +462,11 @@ contact += '''<section class="band"><div class="wrap contact-layout"><div class=
 <div class="field"><label for="preferred-dates">Approximate travel dates</label><input id="preferred-dates" name="preferred_dates" placeholder="Month, date range, or not yet decided" maxlength="150"></div>
 <div class="field"><label for="message">What would you like help with? *</label><textarea id="message" name="message" required maxlength="4000" placeholder="Tell us about the appointment and any language, accompaniment or travel-coordination needs."></textarea></div>
 <div class="consent"><input type="checkbox" id="privacy-consent" name="privacy_consent" value="accepted" required><label for="privacy-consent">I have read the <a href="privacy.html">Privacy Notice</a> and understand this is a non-emergency inquiry.</label></div>
-<button class="button" type="submit">Send My Inquiry</button><p class="hint">An inquiry is not an appointment confirmation or a clinical assessment.</p></form></div>
+<p class="hint" id="verification-hint">Continue to FormSubmit to complete verification and send your inquiry. With JavaScript enabled, it opens in a new tab and keeps your entries here. An inquiry is not an appointment confirmation.</p>
+<button class="button" type="submit">Continue to Verification</button></form>
+<p id="form-status" class="form-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+<div class="form-recovery"><button class="button secondary" id="same-tab-submit" type="button" hidden>Continue in This Tab</button><button class="button secondary" id="edit-inquiry" type="button" hidden>Return to Editing</button></div>
+<p class="contact-fallback">Another way to reach us: <a href="''' + WA + '''" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>.</p></div>
 <aside><section class="sidebar-section"><p class="eyebrow">After you get in touch</p><h2>Clarity before commitment.</h2><ol class="steps-list"><li>We review your dates and the support requested.</li><li>We reply with questions or the next coordination steps.</li><li>Discuss availability, scope and fees before confirming arrangements.</li></ol><p>Usually within 1-2 business days. English and Chinese support; other languages subject to availability.</p></section>
 <section class="sidebar-section"><div class="whatsapp-row"><div><h2>Prefer WhatsApp?</h2>''' + f'<a href="{WA}" target="_blank" rel="noopener noreferrer">Contact us on WhatsApp &rarr;</a>' + '''</div><img src="whatsapp-qr.png" width="112" height="112" alt="Scan to contact IntersectionMed on WhatsApp" loading="lazy"></div></section>
 <section class="sidebar-section"><h2>Based around Shenzhen</h2><p>Service-area map, not an office or an appointment location.</p><iframe class="contact-map" title="Google Map of the Shenzhen service area" src="https://www.google.com/maps?q=Shenzhen%2C%20China&amp;z=12&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Shenzhen%2C%20China" target="_blank" rel="noopener noreferrer">Search and explore in Google Maps &rarr;</a></p></section>
@@ -462,7 +478,7 @@ privacy_sections = [
     ("Who to contact", p('IntersectionMed coordinates planned healthcare visits in Shenzhen. For questions about information you share with us, contact <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>.')),
     ("Information in an initial inquiry", p("The form asks for your name, email, country or region of residence and a general description of the support requested. You may also provide language preferences and approximate travel dates. This information is used to respond and discuss coordination options.")),
     ("Sensitive documents", p("Do not submit passport numbers, payment details, full medical records or imaging through the website form or ordinary email. If records are needed for further coordination, first discuss which documents are necessary, who needs to receive them and an appropriate sharing channel.")),
-    ("Website and communication services", ul(["The inquiry form posts to FormSubmit to deliver the message to intersectionmed@gmail.com. The service processes the submitted fields and may show its own verification or confirmation page.", "Opening a WhatsApp link takes you to WhatsApp; communication there is also subject to its service and privacy terms.", "Pages that load Google Analytics use it for website-usage information and contact-channel interactions. Custom interaction events do not read or send your name, email, country, medical details or message fields. A form handoff event records an attempted submission, not confirmed email delivery or a booked appointment.", "The contact page embeds a Google Map, which requests content from Google when loaded."]) + p('You can read the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit privacy information</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.')),
+    ("Website and communication services", ul(["The inquiry form posts to FormSubmit for verification and processing toward intersectionmed@gmail.com. With JavaScript enabled, verification opens in a new tab, with a same-tab fallback if blocked. Complete the provider's steps there; this website cannot verify submission acceptance or email delivery. Entries are not saved in browser storage by this website.", "Opening a WhatsApp link takes you to WhatsApp; communication there is also subject to its service and privacy terms.", "Pages that load Google Analytics use it for website usage, contact-channel clicks, submission attempts and local form errors. Custom interaction events do not read or send your name, email, country, medical details or message fields. Attempts and local errors are not confirmed email delivery or booked appointments. URL queries and fragments are excluded from our configured analytics location and referrer. Analytics does not load on local previews or when DNT or Global Privacy Control is enabled.", "The contact page embeds a Google Map, which requests content from Google when loaded."]) + p('You can read the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit privacy information</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.')),
     ("Coordination and onward sharing", p("If you continue beyond an initial inquiry, clarify which information a hospital, interpreter or other service provider needs before sharing records. An inquiry alone is not a confirmed appointment or agreement to a care plan.")),
     ("Questions, corrections and deletion requests", p("Email us to ask about information submitted to IntersectionMed, request a correction or raise a deletion request. Identify the inquiry using minimal details; do not attach sensitive records to make the request. Handling depends on the information concerned and any applicable requirements.")),
 ]
@@ -475,10 +491,9 @@ def write_pages():
     if existing != set(PAGES):
         raise SystemExit(f"Page inventory mismatch: missing={existing-set(PAGES)}, unexpected={set(PAGES)-existing}")
     for name, info in PAGES.items():
-        original = (ROOT / name).read_text()
         analytics = ''
-        if "G-JMX3WEED6K" in original:
-            analytics = '''<script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX3WEED6K"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());let safeReferrer='';try{if(document.referrer){const u=new URL(document.referrer);safeReferrer=u.origin+u.pathname;}}catch{}gtag('config','G-JMX3WEED6K',{page_location:location.origin+location.pathname,page_referrer:safeReferrer});</script>'''
+        if name != 'privacy.html':
+            analytics = f'<script src="docs/analytics.js?v={ASSET_VERSION}" defer></script>'
         canonical = BASE if name == 'index.html' else BASE + name
         media = OptimizedMedia()
         media.feed(info['body'])
@@ -507,9 +522,9 @@ def write_pages():
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{BASE}docs/images/shenzhen-bay-skyline.jpg">
 <meta property="og:image:alt" content="Shenzhen Bay waterfront and skyline">
-<link rel="stylesheet" href="docs/site.css?v=20261023">
-<script src="docs/site.js?v=20261023" defer></script>
+<link rel="stylesheet" href="docs/site.css?v={ASSET_VERSION}">
 {analytics}
+<script src="docs/site.js?v={ASSET_VERSION}" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=True)}</script>
 </head>
 <body>

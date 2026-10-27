@@ -1,29 +1,29 @@
 "use strict";
 
-// Measure contact-channel intent, never form contents or confirmed clinical leads.
-function trackContact(name, channel) {
+// Only fixed event parameters may reach analytics; never include form contents.
+function trackContact(name, channel, reason) {
   if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) return;
   if (typeof window.gtag !== "function") return;
-  window.gtag("event", name, {
+  const params = {
     contact_channel: channel,
     page_location: window.location.origin + window.location.pathname,
+    page_referrer: "",
     transport_type: "beacon"
-  });
+  };
+  if (reason) params.error_type = reason;
+  try { window.gtag("event", name, params); } catch { /* Analytics must not block contact. */ }
 }
 document.addEventListener("click", event => {
   const link = event.target.closest("a[href]");
   if (!link) return;
   const href = link.getAttribute("href");
-  if (href === "https://wa.me/qr/TY3MLSWE4SS7D1") trackContact("im_whatsapp_click", "whatsapp");
-  else if (href === "mailto:intersectionmed@gmail.com") trackContact("im_email_click", "email");
+  if (href === "https://wa.me/qr/TY3MLSWE4SS7D1") trackContact("whatsapp_click", "whatsapp");
+  else if (href === "mailto:intersectionmed@gmail.com") trackContact("email_click", "email");
 });
 
 // Carry only known visit choices into the inquiry; never accept personal data from URLs.
 const inquiry = document.querySelector(".contact-form form");
 if (inquiry) {
-  inquiry.addEventListener("submit", event => {
-    if (!event.defaultPrevented && inquiry.checkValidity()) trackContact("im_inquiry_handoff", "form");
-  });
   const params = new URLSearchParams(window.location.search);
   for (const [param, id] of [["service", "service-type"], ["intent", "visit-stage"]]) {
     const field = document.getElementById(id);
@@ -33,6 +33,116 @@ if (inquiry) {
   if (params.get("intent") === "booked" && !params.has("service")) {
     document.getElementById("service-type").value = "interpretation";
   }
+  const status = document.getElementById("form-status");
+  const send = inquiry.querySelector('[type="submit"]');
+  const sameTab = document.getElementById("same-tab-submit");
+  const edit = document.getElementById("edit-inquiry");
+  let handingOff = false;
+  const showStatus = (state, message) => {
+    status.dataset.state = state;
+    status.textContent = message;
+    status.hidden = false;
+  };
+  const unlock = () => {
+    handingOff = false;
+    send.disabled = false;
+    send.textContent = "Continue to Verification";
+    inquiry.removeAttribute("aria-busy");
+  };
+  const fail = (reason, message) => {
+    unlock();
+    showStatus("error", message);
+    trackContact("contact_form_error", "form", reason);
+  };
+  const handoff = (useSameTab = false) => {
+    if (handingOff) return;
+    trackContact("contact_form_attempt", "form");
+    sameTab.hidden = true;
+    edit.hidden = true;
+    for (const field of inquiry.querySelectorAll("input[required],textarea[required]")) {
+      field.setCustomValidity("");
+      if (field.type !== "checkbox" && field.value && !field.value.trim()) {
+        field.setCustomValidity("Please enter a value, not only spaces.");
+      }
+      if (field.validity.valid) field.removeAttribute("aria-invalid");
+      else field.setAttribute("aria-invalid", "true");
+    }
+    if (!inquiry.reportValidity()) {
+      fail("validation", "Please check the required fields and your email address. Nothing has been sent.");
+      return;
+    }
+    if (navigator.onLine === false) {
+      fail("offline", "You appear to be offline. Reconnect before continuing. Your entries are still here; nothing has been sent from this page.");
+      return;
+    }
+    let providerTab;
+    if (!useSameTab) {
+      try {
+        providerTab = window.open("about:blank", "_blank");
+        if (providerTab) {
+          providerTab.opener = null;
+        }
+      } catch { if (providerTab) providerTab.close(); providerTab = null; }
+      if (!providerTab) {
+        fail("popup_blocked", "The verification tab could not open. Continue in this tab instead, or use WhatsApp or email below. Nothing has been sent from this page.");
+        sameTab.hidden = false;
+        return;
+      }
+    }
+    handingOff = true;
+    send.disabled = true;
+    send.textContent = "Verification Pending";
+    inquiry.setAttribute("aria-busy", "true");
+    showStatus("pending", "Continue on FormSubmit to complete verification and send your inquiry. This website cannot confirm the submission or email delivery. If the provider page fails, use WhatsApp or email below.");
+    edit.hidden = false;
+    try {
+      if (providerTab) {
+        // FormData retains live select/checkbox values that DOM cloning can lose.
+        const transfer = providerTab.document.createElement("form");
+        transfer.action = inquiry.action;
+        transfer.method = inquiry.method;
+        transfer.target = "_self";
+        transfer.hidden = true;
+        for (const [name, value] of new FormData(inquiry)) {
+          if (typeof value !== "string") throw new Error("Unsupported file field");
+          const field = providerTab.document.createElement("input");
+          field.type = "hidden";
+          field.name = name;
+          field.value = value;
+          transfer.append(field);
+        }
+        providerTab.document.body.append(transfer);
+        providerTab.HTMLFormElement.prototype.submit.call(transfer);
+      } else {
+        inquiry.target = "_self";
+        HTMLFormElement.prototype.submit.call(inquiry);
+      }
+    } catch {
+      if (providerTab) providerTab.close();
+      edit.hidden = true;
+      fail("handoff_error", "The verification page could not be opened. Your entries are still here. Please use WhatsApp or email if this continues.");
+    }
+  };
+  // Keep the original native POST and CAPTCHA. Cross-origin navigation is not success.
+  inquiry.noValidate = true;
+  inquiry.addEventListener("submit", event => { event.preventDefault(); handoff(); });
+  sameTab.addEventListener("click", () => handoff(true));
+  edit.addEventListener("click", () => {
+    unlock();
+    edit.hidden = true;
+    showStatus("pending", "Your entries are available for editing. Check the FormSubmit tab before submitting again to avoid duplicates. Delivery is not confirmed here.");
+  });
+  inquiry.addEventListener("input", event => {
+    if (typeof event.target.setCustomValidity === "function") event.target.setCustomValidity("");
+    event.target.removeAttribute("aria-invalid");
+  });
+  window.addEventListener("pageshow", event => {
+    if (event.persisted && handingOff) {
+      unlock();
+      edit.hidden = true;
+      showStatus("pending", "You have returned to your inquiry. Check the provider's confirmation before sending again. Email delivery is not confirmed here.");
+    }
+  });
 }
 
 const menuButton = document.querySelector(".nav-toggle");
