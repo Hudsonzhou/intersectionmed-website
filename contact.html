@@ -15,7 +15,7 @@
 <meta property="og:image:alt" content="Shenzhen Bay waterfront and skyline">
 <link rel="stylesheet" href="docs/site.css?v=20261027.1">
 <script src="docs/analytics.js?v=20261027.1" defer></script>
-<script src="docs/site.js?v=20261107.1" defer></script>
+<script src="docs/site.js?v=20261107.2" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ContactPage", "name": "Contact IntersectionMed | Shenzhen Visit Support and Fees", "description": "Discuss your Shenzhen appointment, interpretation, accompaniment and coordination fees. Contact IntersectionMed by WhatsApp, email or initial inquiry form.", "url": "https://intersectionmed.com/contact.html"}</script>
 </head>
 <body>
@@ -36,8 +36,11 @@
 <div class="field"><label for="preferred-dates">Approximate travel dates</label><input id="preferred-dates" name="preferred_dates" placeholder="Month, date range, or not yet decided" maxlength="150"></div>
 <div class="field"><label for="message">What would you like help with? *</label><textarea id="message" name="message" required maxlength="4000" placeholder="Tell us about the appointment and any language, accompaniment or travel-coordination needs."></textarea></div>
 <div class="consent"><input type="checkbox" id="privacy-consent" name="privacy_consent" value="accepted" required><label for="privacy-consent">I have read the <a href="privacy.html">Privacy Notice</a> and understand this is a non-emergency inquiry.</label></div>
-<p class="hint" id="verification-hint">Continue to FormSubmit to complete verification and send your inquiry. Verification opens in this tab. If it does not load, go back and contact us by email or WhatsApp. An inquiry is not an appointment confirmation.</p>
-<button class="button" type="submit">Continue to Verification</button></form>
+<p class="hint" id="verification-hint">You can email <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a> directly. The verified web form uses FormSubmit and may time out.</p>
+<div class="actions"><button class="button" id="prepare-email" type="button" hidden>Prepare an Email Inquiry</button><button class="button secondary" id="provider-submit" type="submit">Use Web Form (CAPTCHA)</button></div></form>
+<section id="email-draft" hidden aria-labelledby="draft-title"><h3 id="draft-title" tabindex="-1">Your email inquiry</h3><p>Copy the message, then paste it into an email to <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a> and press Send in your email app. Nothing has been sent yet.</p>
+<div class="field"><label for="draft-text">Message to copy</label><textarea id="draft-text" readonly rows="7"></textarea></div>
+<div class="actions"><button class="button secondary" type="button" id="copy-draft">Copy message</button><a class="button" href="mailto:intersectionmed@gmail.com">Open email app</a></div></section>
 <p id="form-status" class="form-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
 <div class="form-recovery"><button class="button secondary" id="edit-inquiry" type="button" hidden>Return to Editing</button></div>
 <p class="contact-fallback">Another way to reach us: <a href="https://wa.me/qr/TY3MLSWE4SS7D1" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>.</p></div>

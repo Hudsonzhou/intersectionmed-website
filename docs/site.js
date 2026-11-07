@@ -34,7 +34,11 @@ if (inquiry) {
     document.getElementById("service-type").value = "interpretation";
   }
   const status = document.getElementById("form-status");
-  const send = inquiry.querySelector('[type="submit"]');
+  const send = document.getElementById("provider-submit") || inquiry.querySelector('[type="submit"]');
+  const draftButton = document.getElementById("prepare-email");
+  const draft = document.getElementById("email-draft");
+  const draftText = document.getElementById("draft-text");
+  const copy = document.getElementById("copy-draft");
   const edit = document.getElementById("edit-inquiry");
   const localNotice = document.getElementById("local-preview-notice");
   const hostedPage = ["http:", "https:"].includes(window.location.protocol);
@@ -48,7 +52,7 @@ if (inquiry) {
   const unlock = () => {
     handingOff = false;
     send.disabled = false;
-    send.textContent = "Continue to Verification";
+    send.textContent = "Use Web Form (CAPTCHA)";
     inquiry.removeAttribute("aria-busy");
   };
   const fail = (reason, message) => {
@@ -58,7 +62,9 @@ if (inquiry) {
   };
   const handoff = event => {
     if (handingOff) { event.preventDefault(); return; }
-    trackContact("contact_form_attempt", "form");
+    const emailMode = !!draftButton && event.submitter === draftButton;
+    if (emailMode) event.preventDefault();
+    else trackContact("contact_form_attempt", "form");
     edit.hidden = true;
     if (!hostedPage) {
       event.preventDefault();
@@ -78,6 +84,18 @@ if (inquiry) {
       fail("validation", "Please check the required fields and your email address. Nothing has been sent.");
       return;
     }
+    if (emailMode) {
+      const lines = [];
+      for (const field of inquiry.querySelectorAll("input:not([type]), input[type=email], select, textarea")) {
+        const value = field.tagName === "SELECT" ? field.selectedOptions[0]?.textContent : field.value;
+        if (value?.trim() && field.labels?.length) lines.push(field.labels[0].textContent.replace(/\s*\*$/, "") + ": " + value.trim());
+      }
+      draftText.value = lines.join("\n\n");
+      draft.hidden = false;
+      status.hidden = true;
+      document.getElementById("draft-title").focus();
+      return;
+    }
     if (navigator.onLine === false) {
       event.preventDefault();
       fail("offline", "You appear to be offline. Reconnect before continuing. Your entries are still here; nothing has been sent from this page.");
@@ -94,12 +112,30 @@ if (inquiry) {
   // Keep the original native POST and CAPTCHA. Cross-origin navigation is not success.
   inquiry.noValidate = true;
   inquiry.addEventListener("submit", handoff);
+  if (draftButton) {
+    draftButton.type = "submit";
+    draftButton.hidden = false;
+  }
+  copy?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(draftText.value);
+      showStatus("pending", "Message copied. Paste it into your email and send it there.");
+    } catch {
+      draftText.focus();
+      draftText.select();
+      showStatus("pending", "Message selected. Use your device's Copy command.");
+    }
+  });
   edit.addEventListener("click", () => {
     unlock();
     edit.hidden = true;
     showStatus("pending", "Your entries are available for editing. Check for provider confirmation before retrying to avoid duplicates. Delivery is not confirmed here.");
   });
   inquiry.addEventListener("input", event => {
+    if (draft) {
+      draft.hidden = true;
+      draftText.value = "";
+    }
     if (typeof event.target.setCustomValidity === "function") event.target.setCustomValidity("");
     event.target.removeAttribute("aria-invalid");
   });
