@@ -104,7 +104,7 @@ if (inquiry) {
     send.disabled = true;
     send.textContent = "Verification Pending";
     inquiry.setAttribute("aria-busy", "true");
-    showStatus("pending", "Continue on FormSubmit to complete verification and send your inquiry. This website cannot confirm the submission or email delivery. If the provider page fails, use WhatsApp or email below.");
+    showStatus("pending", "Complete verification if prompted. This page cannot confirm email delivery. If verification fails, use WhatsApp or email.");
     edit.hidden = false;
     // Let the browser POST the original form directly from this page.
   };

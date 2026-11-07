@@ -442,6 +442,18 @@ for i, (title, ident, desc, filenames) in enumerate(guide_groups):
 guides += band("Ready to discuss your own visit?", p('Explore <a href="services.html">checkup, basic dental and digestive visit support</a>, with optional TCM consultations. If an appointment is already booked, ask about <a href="medical-translation-shenzhen.html">interpretation and accompaniment</a>.') + scope()) + cta()
 add("guides.html", "Patient Guides | Shenzhen Healthcare Travel | IntersectionMed", "Find distinct guides to hospital access, visit preparation, coordination costs, Hong Kong connections, interpretation and report handover.", guides, "CollectionPage")
 
+endpoint_file = ROOT / "docs" / "formspree-endpoint.txt"
+using_formspree = endpoint_file.exists()
+endpoint = endpoint_file.read_text().strip() if using_formspree else "https://formsubmit.co/intersectionmed@gmail.com"
+if using_formspree and not re.fullmatch(r"https://formspree\.io/f/[a-z0-9]+", endpoint):
+    raise SystemExit("Use the complete public endpoint from the company Formspree dashboard.")
+provider = "Formspree" if using_formspree else "FormSubmit"
+policy = "https://formspree.io/legal/privacy-policy/" if using_formspree else "https://formsubmit.co/privacy.pdf"
+provider_fields = "" if using_formspree else (
+    '<input type="hidden" name="_subject" value="New Short-Visit Inquiry - IntersectionMed">'
+    '<input type="hidden" name="_captcha" value="true">'
+    '<input type="hidden" name="_url" value="https://intersectionmed.com/contact.html">'
+)
 original_contact = (ROOT / "contact.html").read_text()
 country_match = re.search(r'<datalist id="country-options">.*?</datalist>', original_contact, re.S)
 if not country_match:
@@ -452,9 +464,8 @@ contact += f'<div class="wrap contact-top"><a class="button" href="{WA}" target=
 contact += '''<section class="band"><div class="wrap contact-layout"><div class="contact-form">
 <h2>Start an inquiry</h2><p class="privacy-hint" id="privacy-hint">General planning information only. Please do not send passport numbers, payment details, medical records or imaging files.</p>
 <p id="local-preview-notice" class="form-status" data-state="error" hidden>Local file preview only. To submit, open <a href="https://intersectionmed.com/contact.html" target="_blank" rel="noopener noreferrer">the online Contact page</a> or use an HTTP preview. Entries are not transferred automatically.</p>
-<form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST" aria-describedby="privacy-hint verification-hint">
-<input type="hidden" name="_subject" value="New Short-Visit Inquiry - IntersectionMed"><input type="hidden" name="_captcha" value="true">
-<input type="hidden" name="_url" value="https://intersectionmed.com/contact.html">
+<form action="''' + endpoint + '''" method="POST" aria-describedby="privacy-hint verification-hint">
+''' + provider_fields + '''
 <div class="field"><label for="service-type">Visit you are considering</label><select id="service-type" name="service_type">
 <option value="">Not yet decided</option><optgroup label="Core visits"><option value="checkup">Health checkup</option><option value="dental">Dental check and basic care</option><option value="digestive">Digestive consultation or endoscopy</option></optgroup>
 <optgroup label="Additional support"><option value="tcm">TCM consultation or rehabilitation assessment</option><option value="interpretation">Interpretation or accompaniment</option><option value="fertility">Fertility consultation - individual request</option><option value="other">Other specialist consultation</option></optgroup></select></div>
@@ -464,7 +475,7 @@ contact += '''<section class="band"><div class="wrap contact-layout"><div class=
 <div class="field"><label for="preferred-dates">Approximate travel dates</label><input id="preferred-dates" name="preferred_dates" placeholder="Month, date range, or not yet decided" maxlength="150"></div>
 <div class="field"><label for="message">What would you like help with? *</label><textarea id="message" name="message" required maxlength="4000" placeholder="Tell us about the appointment and any language, accompaniment or travel-coordination needs."></textarea></div>
 <div class="consent"><input type="checkbox" id="privacy-consent" name="privacy_consent" value="accepted" required><label for="privacy-consent">I have read the <a href="privacy.html">Privacy Notice</a> and understand this is a non-emergency inquiry.</label></div>
-<p class="hint" id="verification-hint">Complete the verification step if prompted. No email app is needed. If verification times out, return here to contact us by email or WhatsApp.</p>
+<p class="hint" id="verification-hint">Submit your planning inquiry through ''' + provider + '''. Complete verification if prompted. No email app is needed.</p>
 <div class="actions"><button class="button" id="provider-submit" type="submit">Submit inquiry</button><button class="button secondary" id="prepare-email" type="button" hidden>Use email instead</button></div></form>
 <section id="email-draft" hidden aria-labelledby="draft-title"><h3 id="draft-title" tabindex="-1">Your email inquiry</h3><p>Copy the message, then paste it into an email to <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a> and press Send in your email app. Nothing has been sent yet.</p>
 <div class="field"><label for="draft-text">Message to copy</label><textarea id="draft-text" readonly rows="7"></textarea></div>
@@ -483,7 +494,7 @@ privacy_sections = [
     ("Who to contact", p('IntersectionMed coordinates planned healthcare visits in Shenzhen. For questions about information you share with us, contact <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a>.')),
     ("Information in an initial inquiry", p("The form asks for your name, email, country or region of residence and a general description of the support requested. You may also provide language preferences and approximate travel dates. This information is used to respond and discuss coordination options.")),
     ("Sensitive documents", p("Do not submit passport numbers, payment details, full medical records or imaging through the website form or ordinary email. If records are needed for further coordination, first discuss which documents are necessary, who needs to receive them and an appropriate sharing channel.")),
-    ("Website and communication services", ul(["Preparing an email inquiry creates a draft on this page only. Copying places its text on your device clipboard at your request. You choose when to send it from your email app. Only the web form option posts to FormSubmit for verification and processing toward intersectionmed@gmail.com. Verification opens in the current tab. Complete the provider's steps there; this website cannot verify submission acceptance or email delivery. Entries are not saved in browser storage by this website.", "Opening a WhatsApp link takes you to WhatsApp; communication there is also subject to its service and privacy terms.", "Pages that load Google Analytics use it for website usage, contact-channel clicks, submission attempts and local form errors. Custom interaction events do not read or send your name, email, country, medical details or message fields. Attempts and local errors are not confirmed email delivery or booked appointments. URL queries and fragments are excluded from our configured analytics location and referrer. Analytics does not load on local previews or when DNT or Global Privacy Control is enabled.", "The contact page embeds a Google Map, which requests content from Google when loaded."]) + p('You can read the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit privacy information</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.')),
+    ("Website and communication services", ul([f"Preparing an email inquiry creates a draft on this page only. Copying places its text on your device clipboard at your request. You choose when to send it from your email app. Only the web form option sends your entries to {provider} to process the inquiry and notify intersectionmed@gmail.com. The provider may store the submission. Verification opens in the current tab. Complete the provider's steps there; this website cannot verify submission acceptance or email delivery. Entries are not saved in browser storage by this website.", "Opening a WhatsApp link takes you to WhatsApp; communication there is also subject to its service and privacy terms.", "Pages that load Google Analytics use it for website usage, contact-channel clicks, submission attempts and local form errors. Custom interaction events do not read or send your name, email, country, medical details or message fields. Attempts and local errors are not confirmed email delivery or booked appointments. URL queries and fragments are excluded from our configured analytics location and referrer. Analytics does not load on local previews or when DNT or Global Privacy Control is enabled.", "The contact page embeds a Google Map, which requests content from Google when loaded."]) + p(f'You can read the <a href="{policy}" target="_blank" rel="noopener noreferrer">{provider} privacy information</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.')),
     ("Coordination and onward sharing", p("If you continue beyond an initial inquiry, clarify which information a hospital, interpreter or other service provider needs before sharing records. An inquiry alone is not a confirmed appointment or agreement to a care plan.")),
     ("Questions, corrections and deletion requests", p("Email us to ask about information submitted to IntersectionMed, request a correction or raise a deletion request. Identify the inquiry using minimal details; do not attach sensitive records to make the request. Handling depends on the information concerned and any applicable requirements.")),
 ]
@@ -529,7 +540,7 @@ def write_pages():
 <meta property="og:image:alt" content="Shenzhen Bay waterfront and skyline">
 <link rel="stylesheet" href="docs/site.css?v={ASSET_VERSION}">
 {analytics}
-<script src="docs/site.js?v={'20261107.3' if name == 'contact.html' else ASSET_VERSION}" defer></script>
+<script src="docs/site.js?v={'20261107.4' if name == 'contact.html' else ASSET_VERSION}" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=True)}</script>
 </head>
 <body>

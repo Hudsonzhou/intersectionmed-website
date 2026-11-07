@@ -124,11 +124,19 @@ assert 'Need Medical Care in Shenzhen?' in home and 'Why choose IntersectionMed?
 assert 'Hospital Appointment Coordination' in home and 'class="header-inquiry"' in home
 contact = pages['contact.html'][0]
 assert 'value="checkup"' in contact and 'value="dental"' in contact and 'value="digestive"' in contact
-assert 'https://formsubmit.co/intersectionmed@gmail.com' in contact
+endpoint_file = ROOT / 'docs/formspree-endpoint.txt'
+if endpoint_file.exists():
+    endpoint = endpoint_file.read_text().strip()
+    assert re.fullmatch(r'https://formspree\.io/f/[a-z0-9]+', endpoint)
+    assert f'<form action="{endpoint}" method="POST"' in contact
+    assert 'formsubmit.co' not in contact and 'name="_captcha"' not in contact
+    assert 'formspree.io/legal/privacy-policy/' in pages['privacy.html'][0]
+else:
+    assert '<form action="https://formsubmit.co/intersectionmed@gmail.com" method="POST"' in contact
+    assert 'name="_captcha" value="true"' in contact
+    assert contact.count('name="_url" value="https://intersectionmed.com/contact.html"') == 1
 assert 'privacy-consent' in contact and 'country-options' in contact
 assert 'https://wa.me/qr/TY3MLSWE4SS7D1' in contact
-assert 'name="_captcha" value="true"' in contact, 'CAPTCHA must remain enabled'
-assert contact.count('name="_url" value="https://intersectionmed.com/contact.html"') == 1, 'Missing fixed FormSubmit source URL'
 assert contact.count('type="submit"') == 1, 'There must be one native submit control'
 assert 'id="provider-submit" type="submit">Submit inquiry</button>' in contact
 assert 'id="prepare-email" type="button"' in contact, 'Email fallback must not intercept Enter or native submission'
