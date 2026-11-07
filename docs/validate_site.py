@@ -130,7 +130,7 @@ assert 'https://wa.me/qr/TY3MLSWE4SS7D1' in contact
 assert 'name="_captcha" value="true"' in contact, 'CAPTCHA must remain enabled'
 assert contact.count('name="_url" value="https://intersectionmed.com/contact.html"') == 1, 'Missing fixed FormSubmit source URL'
 assert 'local-preview-notice' in contact, 'Missing local-file preview warning'
-assert 'form-status' in contact and 'same-tab-submit' in contact and 'edit-inquiry' in contact
+assert 'form-status' in contact and 'same-tab-submit' not in contact and 'edit-inquiry' in contact
 assert 'novalidate' not in contact, 'No-JS validation must remain native'
 robots = (ROOT / 'robots.txt').read_text()
 assert 'Sitemap: https://intersectionmed.com/sitemap.xml' in robots

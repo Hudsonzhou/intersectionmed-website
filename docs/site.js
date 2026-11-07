@@ -35,7 +35,6 @@ if (inquiry) {
   }
   const status = document.getElementById("form-status");
   const send = inquiry.querySelector('[type="submit"]');
-  const sameTab = document.getElementById("same-tab-submit");
   const edit = document.getElementById("edit-inquiry");
   const localNotice = document.getElementById("local-preview-notice");
   const hostedPage = ["http:", "https:"].includes(window.location.protocol);
@@ -57,12 +56,12 @@ if (inquiry) {
     showStatus("error", message);
     trackContact("contact_form_error", "form", reason);
   };
-  const handoff = (useSameTab = false) => {
-    if (handingOff) return;
+  const handoff = event => {
+    if (handingOff) { event.preventDefault(); return; }
     trackContact("contact_form_attempt", "form");
-    sameTab.hidden = true;
     edit.hidden = true;
     if (!hostedPage) {
+      event.preventDefault();
       fail("unsupported_origin", "This is a local file preview. Open the online Contact page linked above, or an HTTP preview, before submitting. Nothing has been sent; your entries have not been transferred.");
       return;
     }
@@ -75,26 +74,14 @@ if (inquiry) {
       else field.setAttribute("aria-invalid", "true");
     }
     if (!inquiry.reportValidity()) {
+      event.preventDefault();
       fail("validation", "Please check the required fields and your email address. Nothing has been sent.");
       return;
     }
     if (navigator.onLine === false) {
+      event.preventDefault();
       fail("offline", "You appear to be offline. Reconnect before continuing. Your entries are still here; nothing has been sent from this page.");
       return;
-    }
-    let providerTab;
-    if (!useSameTab) {
-      try {
-        providerTab = window.open("about:blank", "_blank");
-        if (providerTab) {
-          providerTab.opener = null;
-        }
-      } catch { if (providerTab) providerTab.close(); providerTab = null; }
-      if (!providerTab) {
-        fail("popup_blocked", "The verification tab could not open. Continue in this tab instead, or use WhatsApp or email below. Nothing has been sent from this page.");
-        sameTab.hidden = false;
-        return;
-      }
     }
     handingOff = true;
     send.disabled = true;
@@ -102,42 +89,15 @@ if (inquiry) {
     inquiry.setAttribute("aria-busy", "true");
     showStatus("pending", "Continue on FormSubmit to complete verification and send your inquiry. This website cannot confirm the submission or email delivery. If the provider page fails, use WhatsApp or email below.");
     edit.hidden = false;
-    try {
-      if (providerTab) {
-        // FormData retains live select/checkbox values that DOM cloning can lose.
-        const transfer = providerTab.document.createElement("form");
-        transfer.action = inquiry.action;
-        transfer.method = inquiry.method;
-        transfer.target = "_self";
-        transfer.hidden = true;
-        for (const [name, value] of new FormData(inquiry)) {
-          if (typeof value !== "string") throw new Error("Unsupported file field");
-          const field = providerTab.document.createElement("input");
-          field.type = "hidden";
-          field.name = name;
-          field.value = value;
-          transfer.append(field);
-        }
-        providerTab.document.body.append(transfer);
-        providerTab.HTMLFormElement.prototype.submit.call(transfer);
-      } else {
-        inquiry.target = "_self";
-        HTMLFormElement.prototype.submit.call(inquiry);
-      }
-    } catch {
-      if (providerTab) providerTab.close();
-      edit.hidden = true;
-      fail("handoff_error", "The verification page could not be opened. Your entries are still here. Please use WhatsApp or email if this continues.");
-    }
+    // Let the browser POST the original form directly from this page.
   };
   // Keep the original native POST and CAPTCHA. Cross-origin navigation is not success.
   inquiry.noValidate = true;
-  inquiry.addEventListener("submit", event => { event.preventDefault(); handoff(); });
-  sameTab.addEventListener("click", () => handoff(true));
+  inquiry.addEventListener("submit", handoff);
   edit.addEventListener("click", () => {
     unlock();
     edit.hidden = true;
-    showStatus("pending", "Your entries are available for editing. Check the FormSubmit tab before submitting again to avoid duplicates. Delivery is not confirmed here.");
+    showStatus("pending", "Your entries are available for editing. Check for provider confirmation before retrying to avoid duplicates. Delivery is not confirmed here.");
   });
   inquiry.addEventListener("input", event => {
     if (typeof event.target.setCustomValidity === "function") event.target.setCustomValidity("");
