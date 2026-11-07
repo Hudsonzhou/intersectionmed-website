@@ -52,7 +52,7 @@ if (inquiry) {
   const unlock = () => {
     handingOff = false;
     send.disabled = false;
-    send.textContent = "Use Web Form (CAPTCHA)";
+    send.textContent = "Submit inquiry";
     inquiry.removeAttribute("aria-busy");
   };
   const fail = (reason, message) => {
@@ -60,9 +60,8 @@ if (inquiry) {
     showStatus("error", message);
     trackContact("contact_form_error", "form", reason);
   };
-  const handoff = event => {
+  const handoff = (event, emailMode = false) => {
     if (handingOff) { event.preventDefault(); return; }
-    const emailMode = !!draftButton && event.submitter === draftButton;
     if (emailMode) event.preventDefault();
     else trackContact("contact_form_attempt", "form");
     edit.hidden = true;
@@ -113,7 +112,7 @@ if (inquiry) {
   inquiry.noValidate = true;
   inquiry.addEventListener("submit", handoff);
   if (draftButton) {
-    draftButton.type = "submit";
+    draftButton.addEventListener("click", event => handoff(event, true));
     draftButton.hidden = false;
   }
   copy?.addEventListener("click", async () => {

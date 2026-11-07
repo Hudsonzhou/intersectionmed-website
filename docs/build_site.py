@@ -464,8 +464,8 @@ contact += '''<section class="band"><div class="wrap contact-layout"><div class=
 <div class="field"><label for="preferred-dates">Approximate travel dates</label><input id="preferred-dates" name="preferred_dates" placeholder="Month, date range, or not yet decided" maxlength="150"></div>
 <div class="field"><label for="message">What would you like help with? *</label><textarea id="message" name="message" required maxlength="4000" placeholder="Tell us about the appointment and any language, accompaniment or travel-coordination needs."></textarea></div>
 <div class="consent"><input type="checkbox" id="privacy-consent" name="privacy_consent" value="accepted" required><label for="privacy-consent">I have read the <a href="privacy.html">Privacy Notice</a> and understand this is a non-emergency inquiry.</label></div>
-<p class="hint" id="verification-hint">You can email <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a> directly. The verified web form uses FormSubmit and may time out.</p>
-<div class="actions"><button class="button" id="prepare-email" type="button" hidden>Prepare an Email Inquiry</button><button class="button secondary" id="provider-submit" type="submit">Use Web Form (CAPTCHA)</button></div></form>
+<p class="hint" id="verification-hint">Complete the verification step if prompted. No email app is needed. If verification times out, return here to contact us by email or WhatsApp.</p>
+<div class="actions"><button class="button" id="provider-submit" type="submit">Submit inquiry</button><button class="button secondary" id="prepare-email" type="button" hidden>Use email instead</button></div></form>
 <section id="email-draft" hidden aria-labelledby="draft-title"><h3 id="draft-title" tabindex="-1">Your email inquiry</h3><p>Copy the message, then paste it into an email to <a href="mailto:intersectionmed@gmail.com">intersectionmed@gmail.com</a> and press Send in your email app. Nothing has been sent yet.</p>
 <div class="field"><label for="draft-text">Message to copy</label><textarea id="draft-text" readonly rows="7"></textarea></div>
 <div class="actions"><button class="button secondary" type="button" id="copy-draft">Copy message</button><a class="button" href="mailto:intersectionmed@gmail.com">Open email app</a></div></section>
@@ -529,7 +529,7 @@ def write_pages():
 <meta property="og:image:alt" content="Shenzhen Bay waterfront and skyline">
 <link rel="stylesheet" href="docs/site.css?v={ASSET_VERSION}">
 {analytics}
-<script src="docs/site.js?v={'20261107.2' if name == 'contact.html' else ASSET_VERSION}" defer></script>
+<script src="docs/site.js?v={'20261107.3' if name == 'contact.html' else ASSET_VERSION}" defer></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=True)}</script>
 </head>
 <body>
